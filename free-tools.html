@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Tools for Contractors | Contractor Money</title>
+    <meta name="description" content="Free business tools for contractors. Profit margin calculator, estimate templates, market rate guides, and more. No signup required.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #d40b0b;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(242, 13, 13, 0.1);
+            border: 1px solid rgba(242, 13, 13, 0.2);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        .hero-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            padding: 4rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(242, 13, 13, 0.1);
+        }
+
+        .tool-card-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(242, 13, 13, 0.1);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tool-card-icon.ai {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            color: #a78bfa;
+        }
+
+        .tool-card-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 0.25rem;
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #22c55e;
+            margin-bottom: 0.75rem;
+            width: fit-content;
+        }
+
+        .tool-card-badge.ai {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border-color: rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+        }
+
+        .tool-card-badge.coming-soon {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tool-card-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .tool-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 1rem;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .tool-card:hover .tool-card-link {
+            gap: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 1.5rem;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-card {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--primary);
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(242, 13, 13, 0.3);
+        }
+
+        .cta-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-price-amount {
+            font-size: 3rem;
+            font-weight: 900;
+        }
+
+        .cta-price-period {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .cta-btn {
+            background-color: white;
+            color: var(--primary);
+            padding: 0.875rem 2rem;
+            font-weight: 800;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .cta-note {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-logo-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">Contractor Money</span>
+            </a>
+            <nav class="nav">
+                <a href="free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+            <a href="pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="material-symbols-outlined" style="font-size: 1rem;">construction</span>
+                    100% Free, No Signup
+                </div>
+                <h1 class="hero-title">Free Tools for Contractors</h1>
+                <p class="hero-description">
+                    Professional calculators, templates, and guides to help you run your business smarter. No credit card, no signup, just tools.
+                </p>
+            </div>
+        </section>
+
+        <!-- AI-Powered Tools -->
+        <section class="tools-section">
+            <div class="section-header">
+                <p class="section-label">AI-Powered</p>
+                <h2 class="section-title">Smart Business Helpers</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="tools/business-name-generator.html" class="tool-card">
+                    <div class="tool-card-icon ai">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">auto_awesome</span>
+                    </div>
+                    <span class="tool-card-badge ai">AI-Powered</span>
+                    <h3 class="tool-card-title">Business Name Generator</h3>
+                    <p class="tool-card-description">
+                        Get unique, professional business name ideas for your contracting business. Powered by AI.
+                    </p>
+                    <span class="tool-card-link">
+                        Generate Names <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/review-response-generator.html" class="tool-card">
+                    <div class="tool-card-icon ai">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">rate_review</span>
+                    </div>
+                    <span class="tool-card-badge ai">AI-Powered</span>
+                    <h3 class="tool-card-title">Review Response Generator</h3>
+                    <p class="tool-card-description">
+                        Craft professional responses to customer reviews. Works for 5-star praise or negative feedback.
+                    </p>
+                    <span class="tool-card-link">
+                        Generate Responses <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/service-description-generator.html" class="tool-card">
+                    <div class="tool-card-icon ai">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">edit_document</span>
+                    </div>
+                    <span class="tool-card-badge ai">AI-Powered</span>
+                    <h3 class="tool-card-title">Service Description Generator</h3>
+                    <p class="tool-card-description">
+                        Create professional descriptions for your website, Google Business, and marketing materials.
+                    </p>
+                    <span class="tool-card-link">
+                        Generate Descriptions <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/tagline-generator.html" class="tool-card">
+                    <div class="tool-card-icon ai">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">format_quote</span>
+                    </div>
+                    <span class="tool-card-badge ai">AI-Powered</span>
+                    <h3 class="tool-card-title">Tagline Generator</h3>
+                    <p class="tool-card-description">
+                        Create memorable slogans and taglines. Perfect for trucks, business cards, and ads.
+                    </p>
+                    <span class="tool-card-link">
+                        Generate Taglines <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/estimate-helper.html" class="tool-card">
+                    <div class="tool-card-icon ai">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">request_quote</span>
+                    </div>
+                    <span class="tool-card-badge ai">AI-Powered</span>
+                    <h3 class="tool-card-title">Estimate Helper</h3>
+                    <p class="tool-card-description">
+                        Generate professional job estimates with clear scope of work. Print or copy to send to clients.
+                    </p>
+                    <span class="tool-card-link">
+                        Create Estimate <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Pricing & Profitability -->
+        <section class="tools-section" style="padding-top: 0;">
+            <div class="section-header">
+                <p class="section-label">Pricing & Profitability</p>
+                <h2 class="section-title">Know Your Numbers</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="tools/profit-margin-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">payments</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Profit Margin Calculator</h3>
+                    <p class="tool-card-description">
+                        Know exactly how much you're clearing on every job. Account for labor, materials, overhead, and taxes.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/hourly-rate-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">schedule</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Hourly Rate Calculator</h3>
+                    <p class="tool-card-description">
+                        Calculate exactly what hourly rate you need to charge to hit your income goals after expenses and taxes.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/markup-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">calculate</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Markup Calculator</h3>
+                    <p class="tool-card-description">
+                        Calculate customer price from job cost using markup or margin. Understand the difference.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/break-even-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">trending_up</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Break-Even Calculator</h3>
+                    <p class="tool-card-description">
+                        How many jobs or hours do you need to cover your monthly expenses? Find your break-even point.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/pricing-research.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">search</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Pricing Research</h3>
+                    <p class="tool-card-description">
+                        Research competitive pricing for your trade. See average hourly rates and job prices by region.
+                    </p>
+                    <span class="tool-card-link">
+                        Research Pricing <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Taxes & Finances -->
+        <section class="tools-section" style="padding-top: 0;">
+            <div class="section-header">
+                <p class="section-label">Taxes & Finances</p>
+                <h2 class="section-title">Stay on Top of Taxes</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="tools/self-employment-tax-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">account_balance</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Self-Employment Tax Calculator</h3>
+                    <p class="tool-card-description">
+                        Estimate your self-employment tax (Social Security + Medicare) and total tax burden as a 1099 contractor.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/quarterly-tax-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">event</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Quarterly Tax Calculator</h3>
+                    <p class="tool-card-description">
+                        Calculate your quarterly estimated tax payments and never miss a deadline. Add to calendar.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/retirement-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">savings</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Retirement Calculator</h3>
+                    <p class="tool-card-description">
+                        See if you're on track for retirement and what you need to save. SEP IRA and Solo 401(k) comparison.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/truck-affordability-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">local_shipping</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Truck Affordability Calculator</h3>
+                    <p class="tool-card-description">
+                        Should you buy that truck? See if the payment makes sense for your contractor income.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/llc-vs-sole-proprietor.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">compare_arrows</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">LLC vs Sole Proprietor</h3>
+                    <p class="tool-card-description">
+                        Compare business structures. Take the quiz to find out which is right for your situation.
+                    </p>
+                    <span class="tool-card-link">
+                        Compare Options <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Job Estimators -->
+        <section class="tools-section" style="padding-top: 0;">
+            <div class="section-header">
+                <p class="section-label">Job Estimators</p>
+                <h2 class="section-title">Estimate Materials & Costs</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="tools/paint-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">format_paint</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Paint Calculator</h3>
+                    <p class="tool-card-description">
+                        Estimate paint needed and cost based on room dimensions. Includes materials checklist.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/deck-cost-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">deck</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Deck Cost Calculator</h3>
+                    <p class="tool-card-description">
+                        Estimate deck building costs by size and materials. Compare wood, composite, and PVC options.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+                <a href="tools/fence-calculator.html" class="tool-card">
+                    <div class="tool-card-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;">fence</span>
+                    </div>
+                    <span class="tool-card-badge">Live</span>
+                    <h3 class="tool-card-title">Fence Calculator</h3>
+                    <p class="tool-card-description">
+                        Estimate fence installation costs by linear feet and style. Wood, vinyl, chain link, and more.
+                    </p>
+                    <span class="tool-card-link">
+                        Use Calculator <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Want It All Automated?</h2>
+                <p class="cta-description">
+                    Get the full Contractor Money toolbox with automatic invoicing, expense tracking, scheduling, and more.
+                </p>
+                <div class="cta-card">
+                    <div class="cta-price">
+                        <span class="cta-price-amount">$9.99</span>
+                        <span class="cta-price-period">/mo</span>
+                    </div>
+                    <button class="cta-btn" onclick="window.location.href='pricing.html'">Start Free Trial</button>
+                    <p class="cta-note">No credit card required</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">Contractor Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 Contractor Money Software Solutions Inc. All rights reserved.</p>
+    </footer>
+</body>
+</html>

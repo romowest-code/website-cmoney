@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Retirement Calculator | Free Tool | C-Money</title>
+    <meta name="description" content="See if you're on track for retirement and what you need to save. Free retirement calculator for self-employed contractors.">
+    <meta name="keywords" content="retirement calculator for self employed, contractor retirement savings, SEP IRA calculator, Solo 401k calculator">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current {
+            color: white;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+            text-underline-offset: 4px;
+        }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .input-wrapper { position: relative; }
+        .input-prefix, .input-suffix {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .input-prefix { left: 1rem; }
+        .input-suffix { right: 1rem; }
+
+        .form-input {
+            width: 100%;
+            height: 3rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input.has-prefix { padding-left: 2rem; }
+        .form-input.has-suffix { padding-right: 2.5rem; }
+        .form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .result-main {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.1) 0%, rgba(242, 13, 13, 0.05) 100%);
+            border: 1px solid rgba(242, 13, 13, 0.2);
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -0.025em;
+        }
+        @media (min-width: 768px) { .result-value { font-size: 3.5rem; } }
+
+        .result-subtitle {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .results-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .result-card {
+            background-color: var(--input-bg);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .result-card-value {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .result-card-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Gap Analysis */
+        .gap-section {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+
+        .gap-section.on-track {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .gap-section.shortfall {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .gap-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .gap-section.on-track .gap-title {
+            color: var(--success);
+        }
+
+        .gap-section.shortfall .gap-title {
+            color: var(--danger);
+        }
+
+        .gap-text {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .gap-text strong {
+            color: white;
+        }
+
+        /* Account Comparison */
+        .account-comparison {
+            margin-top: 1.5rem;
+            background-color: var(--input-bg);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .account-header {
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .account-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            padding: 0.75rem 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8125rem;
+            align-items: center;
+        }
+
+        .account-row span:not(:first-child) {
+            text-align: right;
+        }
+
+        .account-name {
+            font-weight: 600;
+        }
+
+        /* Sidebar CTA */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Retirement Calculator</span>
+        </nav>
+
+        <div class="page-header">
+            <h1 class="page-title">Contractor Retirement Calculator</h1>
+            <p class="page-description">
+                See if you're on track for retirement and what you need to save as a self-employed contractor.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">tune</span>
+                        Your Situation
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Current Age</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="currentAge" class="form-input" value="45" min="18" max="80">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Desired Retirement Age</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="retirementAge" class="form-input" value="65" min="50" max="80">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Current Retirement Savings</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="currentSavings" class="form-input has-prefix" value="50000" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Monthly Contribution</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="monthlyContribution" class="form-input has-prefix" value="500" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Expected Annual Return</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="annualReturn" class="form-input has-suffix" value="7" min="0" max="15" step="0.5">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Desired Monthly Retirement Income</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="desiredIncome" class="form-input has-prefix" value="5000" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Expected Social Security (Monthly)</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="socialSecurity" class="form-input has-prefix" value="1800" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-section">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">savings</span>
+                            Retirement Projection
+                        </h2>
+
+                        <div class="result-main">
+                            <p class="result-label">Projected Savings at Retirement</p>
+                            <p class="result-value">$<span id="projectedSavings">0</span></p>
+                            <p class="result-subtitle" id="yearsToRetire">20 years to retirement</p>
+                        </div>
+
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <p class="result-card-value" id="monthlyIncome">$0</p>
+                                <p class="result-card-label">Monthly From Savings</p>
+                            </div>
+                            <div class="result-card">
+                                <p class="result-card-value" id="totalMonthly">$0</p>
+                                <p class="result-card-label">Total Monthly Income</p>
+                            </div>
+                            <div class="result-card">
+                                <p class="result-card-value" id="targetNest">$0</p>
+                                <p class="result-card-label">Target Nest Egg</p>
+                            </div>
+                            <div class="result-card">
+                                <p class="result-card-value" id="yearsLastValue">0</p>
+                                <p class="result-card-label">Years Savings Last</p>
+                            </div>
+                        </div>
+
+                        <div class="gap-section" id="gapSection">
+                            <div class="gap-title">
+                                <span class="material-symbols-outlined" id="gapIcon">check_circle</span>
+                                <span id="gapTitle">On Track!</span>
+                            </div>
+                            <p class="gap-text" id="gapText">
+                                Based on your current savings rate, you're projected to reach your retirement goals.
+                            </p>
+                        </div>
+
+                        <div class="account-comparison">
+                            <div class="account-header">Retirement Account Options for Self-Employed</div>
+                            <div class="account-row">
+                                <span class="account-name">SEP IRA</span>
+                                <span>Up to $69,000/yr</span>
+                                <span>Employer only</span>
+                            </div>
+                            <div class="account-row">
+                                <span class="account-name">Solo 401(k)</span>
+                                <span>Up to $69,000/yr</span>
+                                <span>Employee + Employer</span>
+                            </div>
+                            <div class="account-row">
+                                <span class="account-name">Roth IRA</span>
+                                <span>Up to $7,000/yr</span>
+                                <span>Tax-free growth</span>
+                            </div>
+                            <div class="account-row">
+                                <span class="account-name">SIMPLE IRA</span>
+                                <span>Up to $16,000/yr</span>
+                                <span>Lower admin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">trending_up</span>
+                        </div>
+                        <h3 class="cta-title">Track Your Progress</h3>
+                        <p class="cta-description">
+                            Monitor your path to retirement with C-Money's financial tracking tools.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calculate() {
+            const currentAge = parseFloat(document.getElementById('currentAge').value) || 45;
+            const retirementAge = parseFloat(document.getElementById('retirementAge').value) || 65;
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const annualReturn = parseFloat(document.getElementById('annualReturn').value) || 7;
+            const desiredIncome = parseFloat(document.getElementById('desiredIncome').value) || 5000;
+            const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
+
+            const yearsToRetirement = Math.max(0, retirementAge - currentAge);
+            const monthsToRetirement = yearsToRetirement * 12;
+            const monthlyReturn = annualReturn / 100 / 12;
+
+            // Future value of current savings
+            const fvCurrentSavings = currentSavings * Math.pow(1 + annualReturn / 100, yearsToRetirement);
+
+            // Future value of monthly contributions (annuity formula)
+            let fvContributions = 0;
+            if (monthlyReturn > 0 && monthsToRetirement > 0) {
+                fvContributions = monthlyContribution * ((Math.pow(1 + monthlyReturn, monthsToRetirement) - 1) / monthlyReturn);
+            } else {
+                fvContributions = monthlyContribution * monthsToRetirement;
+            }
+
+            const totalAtRetirement = fvCurrentSavings + fvContributions;
+
+            // Monthly need from savings
+            const monthlyNeedFromSavings = Math.max(0, desiredIncome - socialSecurity);
+            const annualNeedFromSavings = monthlyNeedFromSavings * 12;
+
+            // Target nest egg (4% rule: 25x annual need)
+            const targetNestEgg = annualNeedFromSavings * 25;
+
+            // How long will savings last (simplified)
+            let yearsLast = 0;
+            if (monthlyNeedFromSavings > 0) {
+                // Simplified: assume 4% withdrawal rate
+                yearsLast = totalAtRetirement / annualNeedFromSavings;
+            } else {
+                yearsLast = 100; // Indefinitely
+            }
+
+            // Monthly income from savings (4% rule)
+            const monthlyFromSavings = (totalAtRetirement * 0.04) / 12;
+            const totalMonthlyIncome = monthlyFromSavings + socialSecurity;
+
+            // Gap analysis
+            const shortfall = targetNestEgg - totalAtRetirement;
+            const additionalMonthlyNeeded = shortfall > 0 && monthsToRetirement > 0
+                ? shortfall / monthsToRetirement
+                : 0;
+
+            // Update UI
+            document.getElementById('projectedSavings').textContent = Math.round(totalAtRetirement).toLocaleString('en-US');
+            document.getElementById('yearsToRetire').textContent = yearsToRetirement + ' years to retirement';
+            document.getElementById('monthlyIncome').textContent = '$' + Math.round(monthlyFromSavings).toLocaleString('en-US');
+            document.getElementById('totalMonthly').textContent = '$' + Math.round(totalMonthlyIncome).toLocaleString('en-US');
+            document.getElementById('targetNest').textContent = '$' + Math.round(targetNestEgg / 1000).toLocaleString('en-US') + 'k';
+            document.getElementById('yearsLastValue').textContent = Math.min(yearsLast, 50).toFixed(0) + (yearsLast >= 50 ? '+' : '');
+
+            // Gap section
+            const gapSection = document.getElementById('gapSection');
+            const gapIcon = document.getElementById('gapIcon');
+            const gapTitle = document.getElementById('gapTitle');
+            const gapText = document.getElementById('gapText');
+
+            if (shortfall <= 0) {
+                gapSection.className = 'gap-section on-track';
+                gapIcon.textContent = 'check_circle';
+                gapTitle.textContent = 'On Track!';
+                gapText.innerHTML = `Great news! Based on your current savings rate, you're projected to have <strong>$${Math.round(totalAtRetirement).toLocaleString('en-US')}</strong> at retirement, which exceeds your target of <strong>$${Math.round(targetNestEgg).toLocaleString('en-US')}</strong>.`;
+            } else {
+                gapSection.className = 'gap-section shortfall';
+                gapIcon.textContent = 'warning';
+                gapTitle.textContent = 'Savings Gap';
+                gapText.innerHTML = `You're projected to have <strong>$${Math.round(totalAtRetirement).toLocaleString('en-US')}</strong>, but need <strong>$${Math.round(targetNestEgg).toLocaleString('en-US')}</strong> to retire comfortably. Consider saving an extra <strong>$${Math.round(additionalMonthlyNeeded).toLocaleString('en-US')}/month</strong> to close the gap.`;
+            }
+        }
+
+        // Auto-calculate on input change
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Margin Calculator | C-Money Free Tools</title>
+    <meta name="description" content="Free profit margin calculator for contractors. Know exactly how much you're clearing on every job. Account for labor, materials, and overhead in seconds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #d40b0b;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumbs span {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .breadcrumbs .current {
+            color: white;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+            text-underline-offset: 4px;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .page-title {
+                font-size: 3rem;
+            }
+        }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+            font-weight: 500;
+        }
+
+        /* Calculator Grid */
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .calculator-layout {
+                grid-template-columns: 1fr 350px;
+            }
+        }
+
+        /* Calculator Card */
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .calculator-inner {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .calculator-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-prefix,
+        .input-suffix {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+        }
+
+        .input-prefix {
+            left: 1rem;
+        }
+
+        .input-suffix {
+            right: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 3.5rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+
+        .form-input.has-prefix {
+            padding-left: 2.5rem;
+        }
+
+        .form-input.has-suffix {
+            padding-right: 2.5rem;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background-color: var(--background-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            opacity: 0.1;
+            font-size: 5rem;
+        }
+
+        .results-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .result-item {
+            margin-bottom: 2rem;
+        }
+
+        .result-item:last-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.25rem;
+        }
+
+        .result-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+        }
+
+        .result-value.primary {
+            color: var(--primary);
+        }
+
+        .result-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 1.5rem 0;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            height: 3.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 30px rgba(242, 13, 13, 0.3);
+        }
+
+        .calculate-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .calculate-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Why This Matters */
+        .content-section {
+            margin-top: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header .material-symbols-outlined {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-card {
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card-description {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+        .info-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        /* Sidebar CTA */
+        .sidebar-cta {
+            position: sticky;
+            top: 6rem;
+        }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(242, 13, 13, 0.3);
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 10rem;
+            height: 10rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            opacity: 0.85;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-price-box {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-price-amount {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .cta-price-period {
+            font-size: 0.875rem;
+            font-weight: 700;
+            opacity: 0.7;
+        }
+
+        .cta-price-note {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.6;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3.5rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .cta-features {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .cta-feature .material-symbols-outlined {
+            font-size: 1rem;
+        }
+
+        .trust-badge {
+            margin-top: 1.5rem;
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 5rem;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-logo-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span>/</span>
+            <span class="current">Profit Margin Calculator</span>
+        </nav>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Job Profit Margin Calculator</h1>
+            <p class="page-description">
+                Stop guessing. Know exactly how much you're clearing on every job. Account for labor, materials, and overhead in seconds.
+            </p>
+        </div>
+
+        <!-- Calculator Layout -->
+        <div class="calculator-layout">
+            <!-- Main Calculator -->
+            <div>
+                <div class="calculator-card">
+                    <div class="calculator-inner">
+                        <!-- Inputs -->
+                        <div>
+                            <div class="form-group">
+                                <label class="form-label">Material Cost ($)</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" id="materialCost" class="form-input has-prefix" placeholder="0.00" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Labor Cost ($)</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" id="laborCost" class="form-input has-prefix" placeholder="0.00" value="0">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Overhead (%)</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="overhead" class="form-input has-suffix" placeholder="10" value="10">
+                                        <span class="input-suffix">%</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Tax (%)</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="tax" class="form-input has-suffix" placeholder="0" value="0">
+                                        <span class="input-suffix">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quote Price ($)</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" id="quotePrice" class="form-input has-prefix" placeholder="0.00" value="0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div class="results-panel">
+                            <span class="material-symbols-outlined results-icon">payments</span>
+                            <div class="results-content">
+                                <div class="result-item">
+                                    <p class="result-label">Total Net Profit</p>
+                                    <p class="result-value primary" id="netProfit">$0.00</p>
+                                </div>
+                                <div class="result-divider"></div>
+                                <div class="result-item">
+                                    <p class="result-label">Profit Margin</p>
+                                    <p class="result-value" id="profitMargin">0.0%</p>
+                                </div>
+                                <button class="calculate-btn" onclick="calculateProfit()">
+                                    Update Calculation
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why This Matters -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <span class="material-symbols-outlined">error</span>
+                        <h2 class="section-title">Why This Matters</h2>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3 class="info-card-title">The Cost of "Working for Free"</h3>
+                            <p class="info-card-description">
+                                Most contractors fail to account for the "hidden killers": administrative time, fuel, vehicle maintenance, and small sundries. If your margin isn't calculated correctly, you're not just losing money—you're subsidizing your client's project.
+                            </p>
+                        </div>
+                        <div class="info-card">
+                            <h3 class="info-card-title">The Overhead Trap</h3>
+                            <p class="info-card-description">
+                                Overhead isn't just a number; it's the foundation of your business survival. A margin that looks good on paper (e.g., 20%) can quickly evaporate when shop rent and insurance premiums are factored in.
+                            </p>
+                        </div>
+                    </div>
+                    <p class="info-text">
+                        Successful contracting businesses target a minimum of 25% net profit margin. Anything less puts your business in the "danger zone" where a single delayed material delivery or one sick employee can turn a project into a net loss.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sidebar CTA -->
+            <aside class="sidebar-cta">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </div>
+                        <h3 class="cta-title">Ready to automate this?</h3>
+                        <p class="cta-description">
+                            Get the full C-Money Business Toolbox. Professional invoicing, real-time expenses, and tax automated.
+                        </p>
+                        <div class="cta-price-box">
+                            <div class="cta-price">
+                                <span class="cta-price-amount">$9.99</span>
+                                <span class="cta-price-period">/mo</span>
+                            </div>
+                            <p class="cta-price-note">Cancel anytime</p>
+                        </div>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                        <div class="cta-features">
+                            <div class="cta-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Instant Invoicing
+                            </div>
+                            <div class="cta-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Expense Tracking
+                            </div>
+                            <div class="cta-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Tax Estimation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="trust-badge">Trusted by 5,000+ Pros</p>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software Solutions Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calculateProfit() {
+            const materialCost = parseFloat(document.getElementById('materialCost').value) || 0;
+            const laborCost = parseFloat(document.getElementById('laborCost').value) || 0;
+            const overhead = parseFloat(document.getElementById('overhead').value) || 0;
+            const tax = parseFloat(document.getElementById('tax').value) || 0;
+            const quotePrice = parseFloat(document.getElementById('quotePrice').value) || 0;
+
+            // Calculate total costs
+            const baseCost = materialCost + laborCost;
+            const overheadCost = baseCost * (overhead / 100);
+            const totalCostBeforeTax = baseCost + overheadCost;
+            const taxCost = totalCostBeforeTax * (tax / 100);
+            const totalCost = totalCostBeforeTax + taxCost;
+
+            // Calculate profit
+            const netProfit = quotePrice - totalCost;
+            const profitMargin = quotePrice > 0 ? (netProfit / quotePrice) * 100 : 0;
+
+            // Update display
+            document.getElementById('netProfit').textContent = '$' + netProfit.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('profitMargin').textContent = profitMargin.toFixed(1) + '%';
+
+            // Update colors based on margin
+            const marginElement = document.getElementById('profitMargin');
+            if (profitMargin >= 25) {
+                marginElement.style.color = '#22c55e';
+            } else if (profitMargin >= 15) {
+                marginElement.style.color = '#eab308';
+            } else if (profitMargin > 0) {
+                marginElement.style.color = '#f97316';
+            } else {
+                marginElement.style.color = '#ef4444';
+            }
+        }
+
+        // Auto-calculate on input change
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', calculateProfit);
+        });
+
+        // Initial calculation
+        calculateProfit();
+    </script>
+</body>
+</html>

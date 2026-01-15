@@ -1,0 +1,1053 @@
+# C-MONEY FREE TOOLS - Product Requirements Document
+# Engineering as Marketing: SEO-Driven Tool Suite for Contractors
+
+## PROJECT OVERVIEW
+
+**Project Name:** C-Money Free Tools Suite
+**Purpose:** Build 18+ free web tools targeting contractor-specific Google searches to drive organic traffic to C-Money. Each tool solves a micro-problem, builds trust, and soft-sells the main C-Money Business Toolbox.
+
+**Tech Stack:**
+- Frontend: React + Tailwind CSS
+- Backend: Node.js / Express (or serverless functions)
+- AI: OpenAI API (GPT-4o-mini for cost efficiency, GPT-4o for complex generation)
+- Database: Firebase (for saving/sharing calculations if needed)
+- Hosting: Vercel or Firebase Hosting
+- Analytics: Google Analytics 4 + custom event tracking
+
+**Design Requirements:**
+- Mobile-first responsive design
+- Consistent C-Money branding (navy #0a1628, orange #ff6b35, cream #f8f6f3)
+- Each tool is a standalone page with its own SEO metadata
+- Soft CTA to C-Money on every tool page
+- Share functionality (copy link, share to social)
+- Print/PDF export where applicable
+
+---
+
+## DEVELOPMENT PHASES
+
+### PHASE 1: Calculator Tools (No AI) - Week 1-2
+### PHASE 2: AI-Powered Tools - Week 3-4
+### PHASE 3: Advanced Tools + Polish - Week 5-6
+### PHASE 4: Testing, SEO Optimization, Launch - Week 7-8
+
+---
+
+## PHASE 1: CALCULATOR TOOLS (NO AI REQUIRED)
+
+These tools are pure frontend calculators. Build these first to establish the framework.
+
+---
+
+### TOOL 1.1: Contractor Hourly Rate Calculator
+
+**Target Search:** "how much should I charge as a handyman", "contractor hourly rate calculator"
+
+**URL:** /tools/hourly-rate-calculator
+
+**Description:** Helps contractors calculate what hourly rate they need to charge to hit their income goals after expenses.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Desired Annual Income | currency | min: 0, max: 500000 | 75000 |
+| Annual Business Expenses | currency | min: 0 | 15000 |
+| Annual Vehicle Costs | currency | min: 0 | 8000 |
+| Annual Tool/Equipment Costs | currency | min: 0 | 3000 |
+| Annual Insurance Costs | currency | min: 0 | 4000 |
+| Estimated Tax Rate | percentage | 0-50 | 25 |
+| Billable Hours Per Week | number | 1-80 | 30 |
+| Weeks Worked Per Year | number | 1-52 | 48 |
+
+**Calculation Logic:**
+```
+totalExpenses = businessExpenses + vehicleCosts + toolCosts + insuranceCosts
+grossNeeded = (desiredIncome + totalExpenses) / (1 - taxRate/100)
+totalBillableHours = billableHoursPerWeek * weeksWorkedPerYear
+hourlyRate = grossNeeded / totalBillableHours
+```
+
+**Outputs:**
+- Recommended Hourly Rate (prominent display)
+- Breakdown: Gross revenue needed, tax set-aside, take-home after expenses
+- Comparison: "If you charge $X/hour, you'd make $Y/year"
+
+**UI Components:**
+- Slider inputs for quick adjustment
+- Real-time calculation (no submit button)
+- Results card with animated number transitions
+- "Save My Rate" button (stores to localStorage)
+- Share results button
+- Print/PDF export
+
+**CTA:** "Track every job and know your real hourly earnings with C-Money →"
+
+**SEO Metadata:**
+```
+title: "Contractor Hourly Rate Calculator | Free Tool | C-Money"
+description: "Calculate exactly what hourly rate you need to charge as a contractor to hit your income goals. Free calculator for handymen, electricians, plumbers, and more."
+keywords: "contractor hourly rate, handyman pricing calculator, how much to charge per hour, trade business calculator"
+```
+
+**Tests:**
+- [ ] Unit test: Calculation accuracy with known inputs
+- [ ] Edge case: Zero billable hours (should show error)
+- [ ] Edge case: 100% tax rate (should cap or warn)
+- [ ] UI test: All sliders update results in real-time
+- [ ] Mobile test: Inputs usable on small screens
+- [ ] A11y test: Screen reader announces results
+
+---
+
+### TOOL 1.2: Markup Calculator
+
+**Target Search:** "contractor markup calculator", "how to markup materials"
+
+**URL:** /tools/markup-calculator
+
+**Description:** Calculate customer price from job cost using markup or margin.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Job Cost | currency | min: 0 | 500 |
+| Calculation Method | toggle | markup OR margin | markup |
+| Markup Percentage | percentage | 0-500 | 50 |
+| Margin Percentage | percentage | 0-99 | 33 |
+
+**Calculation Logic:**
+```
+// If markup method:
+customerPrice = jobCost * (1 + markupPercent/100)
+profit = customerPrice - jobCost
+actualMargin = (profit / customerPrice) * 100
+
+// If margin method:
+customerPrice = jobCost / (1 - marginPercent/100)
+profit = customerPrice - jobCost
+actualMarkup = (profit / jobCost) * 100
+```
+
+**Outputs:**
+- Customer Price (large display)
+- Your Profit
+- Effective Margin % (if using markup)
+- Effective Markup % (if using margin)
+- Quick reference table: Common markups and their margins
+
+**Educational Content:**
+- Explainer: "Markup vs Margin - What's the difference?"
+- Table showing: 50% markup = 33% margin, 100% markup = 50% margin, etc.
+
+**CTA:** "Build estimates with built-in markup calculations in C-Money →"
+
+**Tests:**
+- [ ] Unit test: Markup to margin conversion accuracy
+- [ ] Unit test: Margin to markup conversion accuracy
+- [ ] Edge case: 100% margin (division by zero protection)
+- [ ] UI test: Toggle switches calculation method correctly
+
+---
+
+### TOOL 1.3: Job Profit Margin Calculator
+
+**Target Search:** "job profit margin calculator", "calculate profit on construction job"
+
+**URL:** /tools/profit-margin-calculator
+
+**Description:** Enter what you charged and what you spent—see your actual profit and margin.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Amount Charged to Customer | currency | min: 0 | 1500 |
+| Materials Cost | currency | min: 0 | 400 |
+| Subcontractor Cost | currency | min: 0 | 0 |
+| Labor Cost (if paying helpers) | currency | min: 0 | 0 |
+| Permit/Fees | currency | min: 0 | 0 |
+| Other Expenses | currency | min: 0 | 50 |
+| Hours Worked | number | min: 0.5 | 6 |
+
+**Calculation Logic:**
+```
+totalCosts = materials + subcontractor + labor + permits + other
+grossProfit = amountCharged - totalCosts
+profitMargin = (grossProfit / amountCharged) * 100
+effectiveHourlyRate = grossProfit / hoursWorked
+```
+
+**Outputs:**
+- Gross Profit ($$)
+- Profit Margin (%)
+- Your Effective Hourly Rate
+- Cost breakdown pie chart
+- Verdict: "Good job!" (>30%), "Decent" (15-30%), "Tight margins" (<15%)
+
+**CTA:** "Track profit on every job automatically with C-Money →"
+
+**Tests:**
+- [ ] Unit test: Profit calculation accuracy
+- [ ] Edge case: Charged less than costs (show loss in red)
+- [ ] Edge case: Zero hours worked
+- [ ] UI test: Pie chart renders correctly
+
+---
+
+### TOOL 1.4: Self-Employment Tax Calculator
+
+**Target Search:** "self employment tax calculator", "1099 tax calculator contractor"
+
+**URL:** /tools/self-employment-tax-calculator
+
+**Description:** Estimate your self-employment tax (Social Security + Medicare) and total tax burden.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Annual Net Self-Employment Income | currency | min: 0 | 80000 |
+| Filing Status | select | single, married_joint, married_separate, head_of_household | single |
+| Other Income (W-2, etc.) | currency | min: 0 | 0 |
+| State | select | all 50 states + DC | Colorado |
+| Estimated Deductions | currency | min: 0 | 13850 |
+
+**Calculation Logic:**
+```
+// 2024 rates
+seIncomeForTax = netSEIncome * 0.9235  // 92.35% is taxable
+socialSecurityTax = min(seIncomeForTax, 168600) * 0.124
+medicareTax = seIncomeForTax * 0.029
+additionalMedicare = max(0, seIncomeForTax - 200000) * 0.009
+totalSETax = socialSecurityTax + medicareTax + additionalMedicare
+
+// Deduct half of SE tax from income for income tax calculation
+adjustedIncome = netSEIncome + otherIncome - (totalSETax / 2) - deductions
+federalIncomeTax = calculateBrackets(adjustedIncome, filingStatus)
+stateTax = calculateStateTax(adjustedIncome, state)
+
+totalTax = totalSETax + federalIncomeTax + stateTax
+effectiveRate = totalTax / netSEIncome * 100
+quarterlyPayment = totalTax / 4
+```
+
+**Outputs:**
+- Total Estimated Tax
+- Self-Employment Tax portion
+- Federal Income Tax portion
+- State Tax portion
+- Effective Tax Rate
+- Quarterly Payment Amount (with due dates)
+- Monthly set-aside recommendation
+
+**Disclaimer:** "This is an estimate. Consult a tax professional for your specific situation."
+
+**CTA:** "Track income and set aside taxes automatically with C-Money →"
+
+**Tests:**
+- [ ] Unit test: SE tax calculation matches IRS worksheets
+- [ ] Unit test: Federal bracket calculations for each filing status
+- [ ] Unit test: State tax calculations (start with top 10 states)
+- [ ] Edge case: Income above Social Security wage base
+- [ ] Edge case: Additional Medicare threshold
+
+---
+
+### TOOL 1.5: Quarterly Tax Payment Estimator
+
+**Target Search:** "quarterly tax payment calculator", "estimated tax payments contractor"
+
+**URL:** /tools/quarterly-tax-calculator
+
+**Description:** Calculate your quarterly estimated tax payments and see due dates.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Expected Annual Income | currency | min: 0 | 80000 |
+| Expected Annual Expenses | currency | min: 0 | 20000 |
+| Filing Status | select | (same as above) | single |
+| State | select | all states | Colorado |
+
+**Outputs:**
+- Quarterly payment amounts (Q1, Q2, Q3, Q4)
+- Due dates for current year
+- Calendar view with reminders
+- "Add to Calendar" buttons (Google, Apple, Outlook)
+
+**CTA:** "Never miss a tax deadline with MUST ToDo™ nagging reminders →"
+
+**Tests:**
+- [ ] Unit test: Quarterly division accuracy
+- [ ] UI test: Calendar integration works
+- [ ] Date test: Due dates are correct for current year
+
+---
+
+### TOOL 1.6: Break-Even Calculator
+
+**Target Search:** "break even calculator business", "how many jobs to cover expenses"
+
+**URL:** /tools/break-even-calculator
+
+**Description:** How many jobs (or hours) do you need to cover your monthly expenses?
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Monthly Fixed Expenses | currency | min: 0 | 4000 |
+| Average Job Price | currency | min: 1 | 350 |
+| Average Job Cost | currency | min: 0 | 100 |
+| Average Hours Per Job | number | min: 0.5 | 4 |
+
+**Calculation Logic:**
+```
+profitPerJob = avgJobPrice - avgJobCost
+jobsToBreakEven = monthlyExpenses / profitPerJob
+hoursToBreakEven = jobsToBreakEven * avgHoursPerJob
+weeksToBreakEven = hoursToBreakEven / 40
+```
+
+**Outputs:**
+- Jobs needed per month to break even
+- Hours needed per month
+- Visual: Progress bar showing "X jobs to cover expenses, then profit"
+- Table: "If you do X jobs, you'll profit $Y"
+
+**CTA:** "See your real-time break-even status in C-Money dashboard →"
+
+---
+
+### TOOL 1.7: Materials Cost Estimator (Painting)
+
+**Target Search:** "painting estimate calculator", "how much paint do I need"
+
+**URL:** /tools/paint-calculator
+
+**Description:** Estimate paint needed and cost based on room/area dimensions.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Calculation Type | toggle | room OR total_sqft | room |
+| Room Length (ft) | number | min: 1 | 12 |
+| Room Width (ft) | number | min: 1 | 10 |
+| Ceiling Height (ft) | number | min: 6, max: 20 | 8 |
+| Number of Doors | number | min: 0 | 1 |
+| Number of Windows | number | min: 0 | 2 |
+| Total Wall Sq Ft (if not room) | number | min: 1 | 400 |
+| Number of Coats | select | 1, 2, 3 | 2 |
+| Paint Quality | select | economy, standard, premium | standard |
+| Include Ceiling | boolean | | false |
+| Include Trim | boolean | | false |
+
+**Calculation Logic:**
+```
+// Wall area for room
+wallArea = 2 * (length + width) * height
+doorArea = numDoors * 21  // avg door is 3x7 = 21 sqft
+windowArea = numWindows * 15  // avg window is ~15 sqft
+paintableWallArea = wallArea - doorArea - windowArea
+
+ceilingArea = includeCeiling ? length * width : 0
+trimLinearFt = includeTrim ? 2 * (length + width) + (numDoors * 17) + (numWindows * 12) : 0
+
+// Paint coverage (sq ft per gallon)
+coveragePerGallon = 350  // standard estimate
+gallonsNeeded = (paintableWallArea * numCoats) / coveragePerGallon
+
+// Pricing by quality
+pricePerGallon = { economy: 25, standard: 45, premium: 75 }
+paintCost = gallonsNeeded * pricePerGallon[quality]
+
+// Primer (if needed)
+primerGallons = paintableWallArea / 400
+primerCost = primerGallons * 30
+```
+
+**Outputs:**
+- Gallons of paint needed (rounded up)
+- Estimated paint cost
+- Primer recommendation
+- Paintable square footage
+- Time estimate (based on ~100 sqft/hour)
+- Materials checklist (tape, brushes, rollers, drop cloths)
+
+**CTA:** "Generate complete painting estimates in seconds with C-Money AI →"
+
+---
+
+### TOOL 1.8: Deck Cost Calculator
+
+**Target Search:** "deck cost calculator", "how much does a deck cost"
+
+**URL:** /tools/deck-cost-calculator
+
+**Description:** Estimate deck building costs by size and materials.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Deck Length (ft) | number | min: 4 | 16 |
+| Deck Width (ft) | number | min: 4 | 12 |
+| Decking Material | select | pressure_treated, cedar, composite, pvc | pressure_treated |
+| Railing | select | none, wood, metal, composite | wood |
+| Stairs | select | none, 3_steps, 5_steps, full_staircase | 3_steps |
+| Permits Required | boolean | | true |
+| Region | select | low_cost, medium_cost, high_cost | medium_cost |
+
+**Calculation Logic:**
+```
+sqft = length * width
+perimeterFt = 2 * (length + width)
+
+// Material costs per sqft (2024 estimates)
+deckingCosts = {
+  pressure_treated: { material: 8, labor: 15 },
+  cedar: { material: 14, labor: 18 },
+  composite: { material: 22, labor: 20 },
+  pvc: { material: 28, labor: 22 }
+}
+
+// Regional multipliers
+regionMultiplier = { low_cost: 0.8, medium_cost: 1.0, high_cost: 1.3 }
+
+baseCost = sqft * (deckingCosts[material].material + deckingCosts[material].labor)
+railingCost = calculateRailing(perimeterFt, railingType)
+stairsCost = calculateStairs(stairsType)
+permitCost = permitsRequired ? 250 : 0
+
+totalCost = (baseCost + railingCost + stairsCost + permitCost) * regionMultiplier[region]
+```
+
+**Outputs:**
+- Total Estimated Cost (range: low to high)
+- Cost breakdown: Materials, Labor, Permits
+- Cost per square foot
+- Material comparison table
+- Timeline estimate
+
+**CTA:** "Create detailed deck estimates for customers with C-Money →"
+
+---
+
+### TOOL 1.9: Fence Estimate Calculator
+
+**Target Search:** "fence cost calculator", "fence estimate per foot"
+
+**URL:** /tools/fence-calculator
+
+**Description:** Estimate fence installation costs by linear feet and style.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Total Linear Feet | number | min: 10 | 150 |
+| Fence Type | select | chain_link, wood_privacy, wood_picket, vinyl, aluminum, wrought_iron | wood_privacy |
+| Fence Height (ft) | select | 4, 5, 6, 8 | 6 |
+| Gates | number | min: 0 | 1 |
+| Gate Width (ft) | number | min: 3 | 4 |
+| Remove Old Fence | boolean | | false |
+| Region | select | low_cost, medium_cost, high_cost | medium_cost |
+
+**Outputs:**
+- Total Estimated Cost
+- Cost per linear foot
+- Materials breakdown
+- Post count estimate
+- Labor estimate
+
+**CTA:** "Build professional fence estimates instantly with C-Money →"
+
+---
+
+### TOOL 1.10: Contractor Retirement Calculator
+
+**Target Search:** "retirement calculator for self employed", "contractor retirement savings"
+
+**URL:** /tools/retirement-calculator
+
+**Description:** See if you're on track for retirement and what you need to save.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Current Age | number | 18-80 | 45 |
+| Desired Retirement Age | number | 50-80 | 65 |
+| Current Retirement Savings | currency | min: 0 | 50000 |
+| Monthly Contribution | currency | min: 0 | 500 |
+| Expected Annual Return | percentage | 0-15 | 7 |
+| Desired Monthly Retirement Income | currency | min: 0 | 5000 |
+| Expected Social Security (monthly) | currency | min: 0 | 1800 |
+
+**Calculation Logic:**
+```
+yearsToRetirement = retirementAge - currentAge
+monthsToRetirement = yearsToRetirement * 12
+monthlyReturn = annualReturn / 100 / 12
+
+// Future value of current savings
+fvCurrentSavings = currentSavings * (1 + annualReturn/100) ^ yearsToRetirement
+
+// Future value of monthly contributions (annuity)
+fvContributions = monthlyContribution * (((1 + monthlyReturn) ^ monthsToRetirement - 1) / monthlyReturn)
+
+totalAtRetirement = fvCurrentSavings + fvContributions
+
+// How long will it last? (4% rule baseline)
+monthlyNeedFromSavings = desiredMonthlyIncome - expectedSocialSecurity
+annualNeedFromSavings = monthlyNeedFromSavings * 12
+yearsOfRetirement = totalAtRetirement / annualNeedFromSavings  // simplified
+
+// What should they save?
+targetNest = annualNeedFromSavings * 25  // 4% rule
+shortfall = targetNest - totalAtRetirement
+additionalMonthlySavingsNeeded = shortfall / monthsToRetirement  // simplified
+```
+
+**Outputs:**
+- Projected retirement savings
+- Monthly income your savings can generate
+- Gap analysis: "You'll have $X, you need $Y"
+- Recommendation: "Save an extra $Z/month to retire comfortably"
+- Chart: Savings growth over time
+- Comparison: SEP IRA, Solo 401k, Roth IRA options
+
+**Educational Content:**
+- "Retirement Accounts for Self-Employed: SEP IRA vs Solo 401(k)"
+- "The 4% Rule Explained"
+
+**CTA:** "Track your path to retirement with C-Money financial tools →"
+
+---
+
+### TOOL 1.11: Truck Payment vs Income Calculator
+
+**Target Search:** "can I afford this truck", "truck payment calculator contractor"
+
+**URL:** /tools/truck-affordability-calculator
+
+**Description:** Should you buy that truck? See if the payment makes sense for your income.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Truck Price | currency | min: 0 | 45000 |
+| Down Payment | currency | min: 0 | 5000 |
+| Interest Rate (APR) | percentage | 0-25 | 7.5 |
+| Loan Term (months) | select | 36, 48, 60, 72, 84 | 60 |
+| Monthly Gross Income | currency | min: 1 | 8000 |
+| Current Monthly Debt Payments | currency | min: 0 | 500 |
+| Estimated Monthly Insurance | currency | min: 0 | 200 |
+| Estimated Monthly Fuel | currency | min: 0 | 400 |
+
+**Calculation Logic:**
+```
+loanAmount = truckPrice - downPayment
+monthlyPayment = loanAmount * (rate/12 * (1 + rate/12)^term) / ((1 + rate/12)^term - 1)
+
+totalMonthlyVehicleCost = monthlyPayment + insurance + fuel
+debtToIncomeRatio = (currentDebt + monthlyPayment) / monthlyIncome * 100
+vehicleCostToIncomeRatio = totalMonthlyVehicleCost / monthlyIncome * 100
+```
+
+**Outputs:**
+- Monthly payment
+- Total vehicle cost per month
+- Debt-to-income ratio
+- Verdict: "Comfortable" (<30% DTI), "Stretching" (30-40%), "Risky" (>40%)
+- Alternative: "A truck at $X would give you comfortable payments"
+- Total interest paid over loan term
+
+**CTA:** "Track all your business expenses including vehicle costs in C-Money →"
+
+---
+
+## PHASE 2: AI-POWERED TOOLS
+
+These tools require OpenAI API integration. Use GPT-4o-mini for cost efficiency.
+
+---
+
+### TOOL 2.1: Contractor Business Name Generator
+
+**Target Search:** "contractor business name ideas", "handyman business name generator"
+
+**URL:** /tools/business-name-generator
+
+**Description:** AI-powered business name generator for contractors.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Your First Name | text | 1-30 chars | |
+| Your Last Name | text | 1-30 chars | |
+| Trade/Service Type | multi-select | handyman, electrician, plumber, hvac, painter, carpenter, landscaper, general_contractor, roofing, flooring | |
+| Business Style | select | professional, friendly, clever, family, premium, local | professional |
+| Location/City | text | optional | |
+| Include Name in Business | boolean | | true |
+| Keywords to Include | text | optional, comma-separated | |
+
+**API Integration:**
+
+```javascript
+// OpenAI API Call
+const prompt = `Generate 10 unique business names for a ${tradeType} contractor.
+
+Requirements:
+- Style: ${businessStyle}
+- Location: ${location || 'not specified'}
+- ${includeOwnerName ? `Include variations with owner name: ${firstName} ${lastName}` : 'Do not include owner name'}
+- ${keywords ? `Try to incorporate: ${keywords}` : ''}
+
+For each name, provide:
+1. The business name
+2. A tagline (5-8 words)
+3. Why it works (1 sentence)
+4. Domain availability note (suggest .com variations)
+
+Return as JSON array:
+[{
+  "name": "...",
+  "tagline": "...",
+  "reasoning": "...",
+  "domainSuggestion": "..."
+}]`
+
+const response = await openai.chat.completions.create({
+  model: "gpt-4o-mini",
+  messages: [{ role: "user", content: prompt }],
+  temperature: 0.9,
+  max_tokens: 1500
+})
+```
+
+**Outputs:**
+- 10 generated business names
+- Tagline for each
+- Reasoning for each
+- "Check Domain Availability" links (to Namecheap/GoDaddy)
+- "Generate More" button
+- Favorite/save functionality
+
+**Rate Limiting:**
+- 5 generations per session (localStorage)
+- Encourage signup for more
+
+**CTA:** "Got your name? Now get the tools to run your business →"
+
+**Tests:**
+- [ ] API test: Valid response structure
+- [ ] API test: Error handling for rate limits
+- [ ] API test: Empty/invalid input handling
+- [ ] UI test: Loading state while generating
+- [ ] UI test: Results render correctly
+
+---
+
+### TOOL 2.2: Google Review Response Generator
+
+**Target Search:** "how to respond to google reviews", "review response generator"
+
+**URL:** /tools/review-response-generator
+
+**Description:** AI writes professional responses to customer reviews.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Review Type | select | positive_5star, positive_4star, neutral_3star, negative_2star, negative_1star | positive_5star |
+| Customer's Review Text | textarea | 10-2000 chars | |
+| Customer First Name | text | optional | |
+| Your Business Name | text | 1-50 chars | |
+| Response Tone | select | professional, warm, apologetic, appreciative | professional |
+| Key Points to Address | text | optional | |
+
+**API Integration:**
+
+```javascript
+const prompt = `Write a response to this ${reviewType} Google review for ${businessName}.
+
+Customer review: "${reviewText}"
+Customer name: ${customerName || 'the customer'}
+Tone: ${responseTone}
+${keyPoints ? `Be sure to address: ${keyPoints}` : ''}
+
+Guidelines:
+- Keep it under 150 words
+- Be genuine, not corporate
+- Thank them for specific things they mentioned
+- ${reviewType.includes('negative') ? 'Acknowledge their concern, offer to make it right, take it offline' : 'Reinforce the positive experience'}
+- End with a forward-looking statement
+- Sign with business name only (no personal name)
+
+Provide 2 response options.`
+
+const response = await openai.chat.completions.create({
+  model: "gpt-4o-mini",
+  messages: [{ role: "user", content: prompt }],
+  temperature: 0.7,
+  max_tokens: 500
+})
+```
+
+**Outputs:**
+- 2 response options
+- Copy button for each
+- Word count
+- "Regenerate" button
+- Tips for negative reviews
+
+**CTA:** "Spend less time on admin, more time on jobs → Try C-Money"
+
+---
+
+### TOOL 2.3: Service Description Generator
+
+**Target Search:** "contractor website copy", "service description examples"
+
+**URL:** /tools/service-description-generator
+
+**Description:** AI writes service descriptions for your website.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Service Type | select | (list of 30+ services) | |
+| Business Name | text | 1-50 chars | |
+| Location/Service Area | text | | |
+| Years in Business | number | 0-50 | |
+| Key Differentiators | textarea | optional | |
+| Tone | select | professional, friendly, premium, straightforward | professional |
+| Include Call-to-Action | boolean | | true |
+
+**Outputs:**
+- Short description (50 words) - for service cards
+- Medium description (100 words) - for service pages
+- Long description (200 words) - for detailed pages
+- SEO meta description (155 chars)
+- 5 bullet points of key benefits
+
+**CTA:** "Your website brings them in. C-Money helps you close them →"
+
+---
+
+### TOOL 2.4: Contractor Tagline Generator
+
+**Target Search:** "contractor tagline ideas", "business slogan generator"
+
+**URL:** /tools/tagline-generator
+
+**Description:** AI generates taglines and slogans for contractor businesses.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Business Name | text | 1-50 chars | |
+| Trade Type | select | (trade list) | |
+| Tagline Style | select | clever, trustworthy, premium, friendly, punny | trustworthy |
+| Values to Emphasize | multi-select | reliability, quality, speed, affordability, experience, local, family | |
+| Words to Include | text | optional | |
+| Words to Avoid | text | optional | |
+
+**Outputs:**
+- 15 tagline options grouped by style
+- Vote/favorite functionality
+- Social share cards with business name + tagline
+
+**CTA:** "Great tagline. Now you need the systems to back it up →"
+
+---
+
+### TOOL 2.5: Estimate Description Generator (PREMIUM PREVIEW)
+
+**Target Search:** "how to write estimates", "estimate template contractor"
+
+**URL:** /tools/estimate-helper
+
+**Description:** Preview of C-Money's AI estimate feature—generates scope of work descriptions.
+
+**Inputs:**
+| Field | Type | Validation | Default |
+|-------|------|------------|---------|
+| Job Type | select | (30+ job types) | |
+| Brief Description | textarea | 10-500 chars | |
+| Include Materials | boolean | | true |
+| Include Timeline | boolean | | true |
+| Include Warranty | boolean | | true |
+
+**Outputs:**
+- Professional scope of work description
+- Materials list (generic)
+- Estimated timeline
+- Warranty language
+- Terms and conditions snippet
+
+**IMPORTANT:** This is a LIMITED preview. Full functionality in C-Money.
+
+**CTA:** "This is just a taste. Get full AI estimates with pricing in C-Money →"
+
+---
+
+## PHASE 3: ADVANCED TOOLS + COMPARISON TOOLS
+
+---
+
+### TOOL 3.1: LLC vs Sole Proprietor Comparison Tool
+
+**Target Search:** "LLC vs sole proprietor contractor", "should I form an LLC"
+
+**URL:** /tools/llc-vs-sole-proprietor
+
+**Description:** Interactive comparison showing pros/cons and costs for your state.
+
+**Inputs:**
+| Field | Type | Default |
+|-------|------|---------|
+| State | select | Colorado |
+| Expected Annual Revenue | currency | 80000 |
+| Expected Annual Profit | currency | 60000 |
+| Risk Level of Work | select | low, medium, high | medium |
+| Number of Employees | select | 0, 1-5, 5+ | 0 |
+| Own Personal Assets | select | minimal, moderate, significant | moderate |
+
+**Outputs:**
+- Side-by-side comparison table
+- State-specific LLC costs
+- Tax implications for both
+- Liability protection explanation
+- Recommendation based on inputs
+- "Next Steps" checklist for LLC formation
+
+---
+
+### TOOL 3.2: Competitor Pricing Research Tool
+
+**Target Search:** "what do contractors charge in my area"
+
+**URL:** /tools/pricing-research
+
+**Description:** See average contractor rates by trade and region.
+
+**Data Source:** Compiled from BLS, HomeAdvisor, Angi, and public data. Updated quarterly.
+
+**Inputs:**
+| Field | Type |
+|-------|------|
+| Trade Type | select |
+| ZIP Code | text |
+| Experience Level | select: entry, mid, expert |
+
+**Outputs:**
+- Average hourly rate (low, median, high)
+- Average job prices for common jobs
+- Regional comparison
+- "You should charge" recommendation
+
+---
+
+## PHASE 4: TESTING & LAUNCH CHECKLIST
+
+### Unit Tests (Per Tool)
+- [ ] All calculations produce correct results
+- [ ] Edge cases handled (zero values, max values, negative numbers)
+- [ ] Input validation works correctly
+- [ ] Error messages are helpful
+
+### API Tests (AI Tools)
+- [ ] API calls succeed with valid input
+- [ ] Rate limiting works correctly
+- [ ] Error handling for API failures
+- [ ] Response parsing handles variations
+- [ ] Timeout handling (30s max)
+
+### UI Tests
+- [ ] Mobile responsive (320px - 768px)
+- [ ] Tablet responsive (768px - 1024px)
+- [ ] Desktop responsive (1024px+)
+- [ ] All inputs accessible via keyboard
+- [ ] Loading states display correctly
+- [ ] Results animate/appear smoothly
+- [ ] Copy buttons work
+- [ ] Share functionality works
+- [ ] Print/PDF export works where applicable
+
+### SEO Tests
+- [ ] Unique title tag (under 60 chars)
+- [ ] Unique meta description (under 155 chars)
+- [ ] H1 contains primary keyword
+- [ ] Structured data (JSON-LD) validates
+- [ ] Open Graph tags present
+- [ ] Canonical URL set
+- [ ] Page loads under 3 seconds
+- [ ] Mobile-friendly test passes
+
+### Analytics
+- [ ] Page view tracking
+- [ ] Tool usage events (calculation performed, AI generated)
+- [ ] CTA click tracking
+- [ ] Share/copy tracking
+- [ ] Error tracking
+
+### Cross-Tool Requirements
+- [ ] Consistent header/footer
+- [ ] Consistent CTA placement
+- [ ] Tools index page with all tools
+- [ ] Category filtering on index
+- [ ] Search functionality on index
+- [ ] Related tools suggestions
+- [ ] Breadcrumb navigation
+
+---
+
+## FILE STRUCTURE
+
+```
+/tools
+  /components
+    ToolLayout.jsx          # Shared layout wrapper
+    InputSlider.jsx         # Reusable slider input
+    InputCurrency.jsx       # Currency input with formatting
+    InputPercentage.jsx     # Percentage input
+    ResultCard.jsx          # Styled result display
+    ShareButton.jsx         # Social share functionality
+    CTABanner.jsx           # C-Money promotion
+    LoadingSpinner.jsx      # AI loading state
+  /calculators
+    HourlyRateCalculator.jsx
+    MarkupCalculator.jsx
+    ProfitMarginCalculator.jsx
+    SelfEmploymentTaxCalculator.jsx
+    QuarterlyTaxCalculator.jsx
+    BreakEvenCalculator.jsx
+    PaintCalculator.jsx
+    DeckCostCalculator.jsx
+    FenceCalculator.jsx
+    RetirementCalculator.jsx
+    TruckAffordabilityCalculator.jsx
+  /ai-tools
+    BusinessNameGenerator.jsx
+    ReviewResponseGenerator.jsx
+    ServiceDescriptionGenerator.jsx
+    TaglineGenerator.jsx
+    EstimateHelper.jsx
+  /comparison
+    LLCvsSoleProp.jsx
+    PricingResearch.jsx
+  /lib
+    calculations.js         # All calculation logic (testable)
+    taxData.js              # Tax brackets, state rates
+    materialCosts.js        # Material pricing data
+    openai.js               # OpenAI API wrapper
+    analytics.js            # Event tracking
+  /tests
+    calculations.test.js
+    api.test.js
+    components.test.js
+  index.jsx                 # Tools directory page
+```
+
+---
+
+## API CONFIGURATION
+
+```javascript
+// /lib/openai.js
+import OpenAI from 'openai'
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+export async function generateWithAI(prompt, options = {}) {
+  const {
+    model = 'gpt-4o-mini',
+    temperature = 0.7,
+    maxTokens = 1000
+  } = options
+
+  try {
+    const response = await openai.chat.completions.create({
+      model,
+      messages: [{ role: 'user', content: prompt }],
+      temperature,
+      max_tokens: maxTokens
+    })
+    return { success: true, content: response.choices[0].message.content }
+  } catch (error) {
+    console.error('OpenAI Error:', error)
+    return { success: false, error: error.message }
+  }
+}
+
+// Rate limiting (server-side)
+const rateLimiter = new Map()
+const RATE_LIMIT = 10 // requests per hour per IP
+```
+
+---
+
+## ENVIRONMENT VARIABLES
+
+```
+OPENAI_API_KEY=sk-...
+NEXT_PUBLIC_GA_ID=G-...
+NEXT_PUBLIC_SITE_URL=https://constructionmoney.app
+```
+
+---
+
+## LAUNCH PRIORITIES
+
+**Launch Wave 1 (MVP):**
+1. Hourly Rate Calculator
+2. Markup Calculator
+3. Self-Employment Tax Calculator
+4. Business Name Generator (AI)
+5. Review Response Generator (AI)
+
+**Launch Wave 2:**
+6. Profit Margin Calculator
+7. Break-Even Calculator
+8. Paint Calculator
+9. Tagline Generator (AI)
+10. Service Description Generator (AI)
+
+**Launch Wave 3:**
+11. Deck Cost Calculator
+12. Fence Calculator
+13. Retirement Calculator
+14. Quarterly Tax Calculator
+15. Truck Affordability Calculator
+
+**Launch Wave 4:**
+16. LLC vs Sole Prop Tool
+17. Pricing Research Tool
+18. Estimate Helper (AI preview)
+
+---
+
+## SUCCESS METRICS
+
+- **Traffic:** 1,000 monthly visitors per tool within 6 months
+- **Engagement:** Average 2+ calculations per session
+- **Conversion:** 2% click-through to C-Money signup
+- **SEO:** Page 1 ranking for primary keyword per tool
+- **Shares:** 100+ shares per tool per month
+
+---
+
+## NOTES FOR CLAUDE CODE
+
+1. Build each tool as a standalone component that can be independently deployed and tested
+2. All calculation logic should be in separate pure functions for easy unit testing
+3. Use React Query or SWR for AI tool API calls with caching
+4. Implement proper loading and error states for all AI tools
+5. Mobile-first: design for 375px width first, then scale up
+6. Every tool needs its own SEO metadata - don't use generic descriptions
+7. CTA should be contextual to the tool, not generic "Try C-Money"
+8. Rate limit AI tools on both client (localStorage) and server (IP-based)
+9. Cache AI responses where appropriate (business names can be cached longer)
+10. Implement proper error boundaries so one broken tool doesn't crash the site
+
+---
+
+END OF PRD

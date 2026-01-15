@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Story | C-Money - Built by a Contractor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#dc2626", // Red-600 for a bold, dependable look
+                        "primary-dark": "#991b1b",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#0f0d0c",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            @apply selection:bg-primary selection:text-white;
+        }
+        .narrative-highlight {
+            @apply text-primary font-bold;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<header class="sticky top-0 z-50 w-full border-b border-solid border-slate-200 dark:border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-20 h-16 flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">C-Money</h2>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-xs font-bold uppercase tracking-wider" href="#">Tools</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-xs font-bold uppercase tracking-wider" href="#">Pricing</a>
+<a class="text-primary text-xs font-black uppercase tracking-wider border-b-2 border-primary" href="#">Our Story</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded bg-primary text-white text-xs font-black uppercase tracking-widest h-10 px-4 transition-all hover:bg-primary-dark active:scale-95">
+                    Get Started
+                </button>
+<button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center rounded h-10 px-4 bg-slate-200 dark:bg-white/10 text-slate-900 dark:text-white text-xs font-black uppercase tracking-widest hover:bg-slate-300 dark:hover:bg-white/20">
+                    Log In
+                </button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1100px] mx-auto py-12 px-6 lg:px-20">
+<section class="mb-24">
+<div class="@container">
+<div class="flex flex-col gap-12 @[864px]:flex-row @[864px]:items-center">
+<div class="w-full bg-center bg-no-repeat aspect-square @[480px]:aspect-video @[864px]:aspect-[4/5] bg-cover rounded-sm shadow-[20px_20px_0px_0px_rgba(220,38,38,1)] grayscale contrast-125" data-alt="Rugged Denver contractor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDI3PMU_keAVgipSyu-wkdYPOQLtxTpxAYFpFGO_e1apb5Un8hbzlyscjx8Zt8dCVtJBdJFza0XEAVuNXGHIMwQt7Xsyif-uhqbp35DBEbMT9KIg3_jOrixtM6ut9FsIlO9sGZ_lBiFxNdiR2sZ2Gi7Z2F5E-a_YZdeDwGQVinT1Jj1KF7RTm7FhNR2QGXIUJ_4lViVxYN6HztmZyZh5BJMxCaYP9cwnT4ZuTnA4pfV4SRzDCuYlxdx__baZZgbrh3dTiVTR4rKeAc");'>
+</div>
+<div class="flex flex-col gap-8 @[864px]:w-full">
+<div class="flex flex-col gap-4">
+<span class="bg-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest w-fit">Based in Denver, CO</span>
+<h1 class="text-slate-900 dark:text-white text-5xl font-black leading-[1.1] tracking-tighter @[480px]:text-7xl">
+                            Built by a <span class="text-primary">Contractor</span> Who Needed Better Software.
+                        </h1>
+<p class="text-slate-600 dark:text-slate-400 text-xl leading-relaxed font-medium">
+                            I spent <span class="narrative-highlight">20 years in corporate America</span> building systems for giants. Then I picked up a tool belt as a <span class="narrative-highlight">Denver handyman</span> and realized the software for "the rest of us" was broken.
+                        </p>
+</div>
+<div class="flex items-start gap-4 border-l-[6px] border-primary pl-6 py-4 bg-primary/5">
+<p class="italic text-slate-800 dark:text-slate-200 text-lg font-medium leading-relaxed">
+                            "The software was either <span class="text-primary font-bold">$150/mo</span> and impossible to use, or free and completely useless. I built C-Money to bridge that gap with grit."
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24 py-16 border-y-2 border-slate-200 dark:border-white/10">
+<div class="max-w-[800px] mx-auto">
+<h2 class="text-slate-900 dark:text-white text-3xl font-black mb-16 text-center uppercase tracking-tighter italic">The Blueprint</h2>
+<div class="grid grid-cols-[40px_1fr] gap-x-8">
+<div class="flex flex-col items-center gap-1">
+<div class="text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl font-bold">corporate_fare</span>
+</div>
+<div class="w-1 bg-primary/20 h-24 grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-16">
+<p class="text-slate-900 dark:text-white text-2xl font-black uppercase tracking-tight">Corporate Efficiency</p>
+<p class="text-slate-600 dark:text-slate-400 text-lg mt-3 leading-relaxed">
+                        I specialized in making massive machines run smooth. But I was disconnected from the <span class="text-primary font-bold">real work</span> that actually keeps the world turning.
+                    </p>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl font-bold">handyman</span>
+</div>
+<div class="w-1 bg-primary/20 h-24 grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-16">
+<p class="text-slate-900 dark:text-white text-2xl font-black uppercase tracking-tight text-primary">The Handyman Reality</p>
+<p class="text-slate-600 dark:text-slate-400 text-lg mt-3 leading-relaxed">
+                        Leaving the desk for a tool belt in Colorado was a wake-up call. Under a sink or on a roof, <span class="narrative-highlight">feature-rich bloat</span> is just noise. You need answers, and you need them now.
+                    </p>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="text-white bg-primary flex items-center justify-center rounded-sm p-1">
+<span class="material-symbols-outlined text-3xl">currency_exchange</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-slate-900 dark:text-white text-2xl font-black uppercase tracking-tight">C-Money is Born</p>
+<p class="text-slate-600 dark:text-slate-400 text-lg mt-3 leading-relaxed">
+                        Taking corporate logic and applying it to <span class="narrative-highlight">Denver grit</span>. Simple software that costs less than a lunch special—<span class="text-primary font-black underline decoration-2 underline-offset-4">$9.99/mo</span>.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24">
+<h2 class="text-slate-900 dark:text-white text-4xl font-black mb-10 uppercase tracking-tighter">What C-Money Is <span class="text-primary">&amp;</span> Isn't</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white dark:bg-white/5 p-8 border-l-8 border-primary shadow-sm">
+<div class="flex items-center gap-3 text-primary mb-4">
+<span class="material-symbols-outlined font-black">check_circle</span>
+<p class="text-xl font-black uppercase tracking-tight">What It Is</p>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                    Fast, mobile-first, and <span class="font-bold underline decoration-primary/40 underline-offset-4">built explicitly for the job site</span>. It tracks your cash, manages your bids, and keeps your schedule straight.
+                </p>
+</div>
+<div class="bg-white dark:bg-white/5 p-8 border-l-8 border-slate-300 dark:border-white/10 shadow-sm opacity-80">
+<div class="flex items-center gap-3 text-slate-500 mb-4">
+<span class="material-symbols-outlined font-black">cancel</span>
+<p class="text-xl font-black uppercase tracking-tight">What It Isn't</p>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                    Bloated, expensive, or designed for accountants. No 50 sub-menus or "advanced inventory reconciliation" features you'll never touch.
+                </p>
+</div>
+<div class="bg-white dark:bg-white/5 p-8 border-l-8 border-primary shadow-sm">
+<div class="flex items-center gap-3 text-primary mb-4">
+<span class="material-symbols-outlined font-black">construction</span>
+<p class="text-xl font-black uppercase tracking-tight">Field Ready</p>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                    Buttons large enough for <span class="font-bold">gloved hands</span>. High-contrast interface for outdoor use under the Colorado sun.
+                </p>
+</div>
+<div class="bg-white dark:bg-white/5 p-8 border-l-8 border-slate-300 dark:border-white/10 shadow-sm opacity-80">
+<div class="flex items-center gap-3 text-slate-500 mb-4">
+<span class="material-symbols-outlined font-black">trending_down</span>
+<p class="text-xl font-black uppercase tracking-tight">Zero Corporate Bloat</p>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                    No hidden fees. No upsells. No sales calls. Just simple, <span class="font-bold">dependable</span> tools for the independent business owner.
+                </p>
+</div>
+</div>
+</section>
+<section class="mb-24">
+<div class="bg-primary text-white p-12 relative overflow-hidden rounded-sm">
+<div class="absolute -right-16 -bottom-16 opacity-10 rotate-12">
+<span class="material-symbols-outlined text-[300px] font-black">precision_manufacturing</span>
+</div>
+<div class="relative z-10 max-w-[800px]">
+<h3 class="bg-white text-primary px-3 py-1 text-xs font-black uppercase tracking-[0.2em] mb-8 w-fit">The Mission</h3>
+<p class="text-4xl md:text-5xl font-black leading-[1.1] mb-8 tracking-tighter">
+                    Empowering the independent contractor to reclaim their time and professionalize their business without the "SaaS Tax."
+                </p>
+<div class="w-24 h-2 bg-white mb-8"></div>
+<p class="text-white/90 text-xl font-medium leading-relaxed mb-10">
+                    We believe that the backbone of the economy shouldn't be squeezed for every penny by software companies. C-Money will always be affordable, always be simple, and always be <span class="underline decoration-2 underline-offset-8">built with Denver grit.</span>
+</p>
+<div class="flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-4 bg-black/20 p-4 rounded backdrop-blur-sm border border-white/10">
+<div class="size-12 rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined font-black">location_on</span>
+</div>
+<div>
+<p class="font-black text-lg uppercase leading-tight">Denver, CO</p>
+<p class="text-white/70 text-sm font-bold uppercase tracking-wider">Operational HQ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="text-center py-24 bg-slate-900 dark:bg-white/5 border-2 border-primary rounded-sm mb-12 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<h2 class="text-white text-5xl font-black mb-6 uppercase tracking-tighter">Simplify Your Hustle.</h2>
+<p class="text-slate-300 text-xl mb-12 max-w-[650px] mx-auto font-medium">
+            Join the hundreds of Denver contractors who have switched to the toolbox that actually fits. No nonsense. No bloat.
+        </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6 px-6">
+<button class="w-full sm:w-auto min-w-[240px] h-16 bg-primary text-white rounded text-lg font-black uppercase tracking-widest hover:bg-primary-dark transition-all shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)] active:translate-y-1 active:shadow-none">
+                Get Started — $9.99/mo
+            </button>
+<button class="w-full sm:w-auto min-w-[240px] h-16 bg-transparent text-white border-2 border-white/20 rounded text-lg font-black uppercase tracking-widest hover:bg-white/10 transition-all">
+                The Feature List
+            </button>
+</div>
+<p class="text-slate-500 mt-8 text-xs font-bold uppercase tracking-[0.2em]">14-Day Trial • No Card Required</p>
+</section>
+</main>
+<footer class="border-t border-slate-200 dark:border-white/10 py-16">
+<div class="max-w-[1280px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary font-black text-3xl">token</span>
+<span class="font-black text-slate-900 dark:text-white uppercase tracking-tighter text-xl italic">C-Money Toolbox</span>
+</div>
+<p class="text-slate-500 text-xs font-bold uppercase tracking-widest text-center">
+            © 2024 C-Money LLC. Built with grit in Denver, Colorado.
+        </p>
+<div class="flex gap-8">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined font-bold">language</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined font-bold">mail</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined font-bold">share</span></a>
+</div>
+</div>
+</footer>
+
+</body></html>

@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-Money | Two Features That'll Change How You Run Your Business</title>
+    <meta name="description" content="Revolutionizing business management with AI speed and relentless productivity tools designed for those who work hard. Get in for $9.99/month.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --background-dark: #121212;
+            --charcoal-light: #1E1E1E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .industrial-grid {
+            background-image: radial-gradient(circle, #333 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 1rem 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .header {
+                padding: 1rem 10rem;
+            }
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.5rem;
+            height: 2.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(242, 13, 13, 0.9);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 1.5rem;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 5rem 10rem;
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(18, 18, 18, 0.5), var(--background-dark));
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 960px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(242, 13, 13, 0.3);
+            background-color: rgba(242, 13, 13, 0.1);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+        }
+
+        .hero-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 42rem;
+            font-weight: 400;
+            line-height: 1.75;
+        }
+
+        @media (min-width: 768px) {
+            .hero-description {
+                font-size: 1.25rem;
+            }
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-btn {
+            width: 100%;
+            max-width: 28rem;
+            height: 3.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(242, 13, 13, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .hero-btn {
+                font-size: 1.125rem;
+            }
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-btn:active {
+            transform: scale(0.98);
+        }
+
+        .hero-note {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* AI Estimates Section */
+        .ai-section {
+            padding: 6rem 1.5rem;
+            background-color: rgba(30, 30, 30, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (min-width: 1024px) {
+            .ai-section {
+                padding: 6rem 10rem;
+            }
+        }
+
+        .ai-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .ai-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .ai-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        .section-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            line-height: 1.75;
+        }
+
+        .problem-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .problem-solution-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .problem-card, .solution-card {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .problem-card {
+            background-color: var(--background-dark);
+        }
+
+        .solution-card {
+            background-color: rgba(242, 13, 13, 0.05);
+            border-color: rgba(242, 13, 13, 0.2);
+        }
+
+        .card-icon {
+            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .solution-card .card-icon {
+            color: var(--primary);
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .phone-mockup {
+            position: relative;
+        }
+
+        .phone-glow {
+            position: absolute;
+            inset: -1rem;
+            background-color: rgba(242, 13, 13, 0.2);
+            border-radius: 1.5rem;
+            filter: blur(40px);
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        .phone-mockup:hover .phone-glow {
+            opacity: 1;
+        }
+
+        .phone-frame {
+            position: relative;
+            background-color: var(--background-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            max-width: 20rem;
+            margin: 0 auto;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .phone-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--background-dark), transparent, transparent);
+        }
+
+        .phone-status {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: var(--primary);
+            border-radius: 9999px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            height: 0.5rem;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 75%;
+        }
+
+        .status-info {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* MUST ToDo Section */
+        .todo-section {
+            padding: 6rem 1.5rem;
+            background-color: var(--background-dark);
+        }
+
+        @media (min-width: 1024px) {
+            .todo-section {
+                padding: 6rem 10rem;
+            }
+        }
+
+        .todo-header {
+            max-width: 1280px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .todo-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .todo-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        .todo-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .nagging-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .nagging-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .nagging-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background-color: var(--charcoal-light);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.3s ease;
+        }
+
+        .nagging-card:hover {
+            border-color: rgba(242, 13, 13, 0.3);
+        }
+
+        .nagging-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .nagging-icon {
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .nagging-card:hover .nagging-icon {
+            background-color: rgba(242, 13, 13, 0.1);
+        }
+
+        .nagging-card:hover .nagging-icon .material-symbols-outlined {
+            color: var(--primary);
+        }
+
+        .nagging-card.featured .nagging-icon {
+            background-color: rgba(242, 13, 13, 0.2);
+        }
+
+        .nagging-card.featured .nagging-icon .material-symbols-outlined {
+            color: var(--primary);
+        }
+
+        .nagging-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .nagging-card.featured .nagging-card-title {
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .nagging-card-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .watermark {
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .watermark-text {
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.1em;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .watermark-text {
+                font-size: 8.75rem;
+            }
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 1.5rem;
+            background-color: rgba(30, 30, 30, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-section {
+                padding: 6rem 10rem;
+            }
+        }
+
+        .pricing-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .pricing-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .pricing-title span {
+            color: var(--primary);
+        }
+
+        .pricing-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            line-height: 1.75;
+        }
+
+        .progress-tracker {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .progress-labels {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .progress-labels span:last-child {
+            color: var(--primary);
+        }
+
+        .progress-track {
+            height: 1rem;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.25rem;
+        }
+
+        .progress-track-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 9999px;
+            width: 84.2%;
+            box-shadow: 0 0 15px rgba(242, 13, 13, 0.5);
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .feature-item .material-symbols-outlined {
+            color: var(--primary);
+            font-size: 0.875rem;
+        }
+
+        .pricing-card-wrapper {
+            position: relative;
+            max-width: 20rem;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .pricing-card-bg {
+            position: absolute;
+            inset: 0;
+            background-color: var(--primary);
+            transform: rotate(3deg);
+            border-radius: 1rem;
+            opacity: 0.1;
+            filter: blur(20px);
+        }
+
+        .pricing-card {
+            position: relative;
+            background-color: var(--background-dark);
+            border: 2px solid var(--primary);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.625rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+        }
+
+        .pricing-tier {
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-currency {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .pricing-amount {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+
+        .pricing-period {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.125rem;
+            font-weight: 700;
+            align-self: flex-end;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 800;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .pricing-note {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.625rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 5rem 1.5rem;
+            background-color: var(--background-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        @media (min-width: 1024px) {
+            .footer {
+                padding: 5rem 10rem;
+            }
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.875rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .footer-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .footer-btn {
+            height: 3rem;
+            padding: 0 2.5rem;
+            font-weight: 700;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .footer-btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-btn-secondary {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-badges {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            opacity: 0.4;
+            filter: grayscale(100%);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .trust-divider {
+            width: 0.25rem;
+            height: 0.25rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="material-symbols-outlined logo-icon" style="font-size: 1.875rem;">database</span>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="#ai-estimates" class="nav-link">AI Estimates</a>
+                <a href="#must-todo" class="nav-link">MUST ToDo&trade;</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+            </nav>
+            <a href="#pricing" class="btn btn-primary">Join Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero industrial-grid">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-badge">The Relentless Toolbox</span>
+                <h1 class="hero-title">
+                    Two Features That'll Change <br>How You Run Your Business
+                </h1>
+                <p class="hero-description">
+                    Revolutionizing business management with AI speed and relentless productivity tools designed for those who work hard.
+                </p>
+                <div class="hero-cta">
+                    <button class="hero-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
+                        Get In For $9.99/Month — First 1,000 Users Only
+                    </button>
+                    <p class="hero-note">Locked-in founder pricing for early adopters</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Estimates Section -->
+        <section class="ai-section" id="ai-estimates">
+            <div class="ai-grid">
+                <div class="ai-content">
+                    <div>
+                        <p class="section-label">Phase One</p>
+                        <h2 class="section-title">Instant AI Estimates</h2>
+                        <p class="section-description">
+                            Transition from manual guesswork to professional quotes in seconds. Stop wasting hours on paperwork and start winning more jobs with AI precision.
+                        </p>
+                    </div>
+                    <div class="problem-solution-grid">
+                        <div class="problem-card">
+                            <div class="card-icon">
+                                <span class="material-symbols-outlined">error_outline</span>
+                            </div>
+                            <p class="card-title">The Problem</p>
+                            <p class="card-description">Hours of manual calculation, human error, and delayed responses that cost you the contract.</p>
+                        </div>
+                        <div class="solution-card">
+                            <div class="card-icon">
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </div>
+                            <p class="card-title">The Solution</p>
+                            <p class="card-description">Instant, accurate quotes generated by AI directly on your smartphone as you walk the site.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-mockup">
+                    <div class="phone-glow"></div>
+                    <div class="phone-frame">
+                        <div class="phone-screen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhK1y2Ohco-l5yPOVJXHKh7561tCMKEU_qELe1fuMLC79dQBIm-uTELGRPDuK7V1TSZivrLRaU7HMhbTMnvKAlj3Q6bBuQGIziPojqurbXZn5RRTGR6sk_BUqJfr-_xXyhDGUDSSqxmMjgHMsf04vog5RENXD2j0XVid70jO5OgDX9S04oju29JsFm-nSoZ5dMJPvNdYu_EY4g4GI5KCYUpkRBueAUXzJqAuT7Ud8xLXaJrf6JWsEyhuxlBtJV1dQOvW-j8rJ_9as');">
+                            <div class="phone-overlay"></div>
+                            <div class="phone-status">
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span class="status-text">AI Calculating...</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <p class="status-info">Professional Quote #4928 - Ready in 2s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MUST ToDo Section -->
+        <section class="todo-section" id="must-todo">
+            <div class="todo-header">
+                <p class="section-label" style="margin-bottom: 1rem;">Phase Two</p>
+                <h2 class="todo-title">MUST ToDo&trade; with Nagging</h2>
+                <p class="todo-description">The world's first task manager that refuses to be ignored. We don't just list tasks; we force you to finish them.</p>
+            </div>
+            <div class="nagging-grid">
+                <div class="nagging-card">
+                    <div class="nagging-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.875rem; color: rgba(255, 255, 255, 0.4);">notifications</span>
+                    </div>
+                    <h4 class="nagging-card-title">Subtle Reminder</h4>
+                    <p class="nagging-card-description">A gentle nudge at the start of your day to keep priorities visible.</p>
+                </div>
+                <div class="nagging-card featured">
+                    <div class="nagging-icon">
+                        <span class="material-symbols-outlined animate-bounce" style="font-size: 1.875rem;">notifications_active</span>
+                    </div>
+                    <h4 class="nagging-card-title">Persistent</h4>
+                    <p class="nagging-card-description">The bell won't stop until you tap "In Progress." It's time to focus.</p>
+                </div>
+                <div class="nagging-card">
+                    <div class="nagging-icon">
+                        <span class="material-symbols-outlined" style="font-size: 1.875rem; color: rgba(255, 255, 255, 0.4);">crisis_alert</span>
+                    </div>
+                    <h4 class="nagging-card-title">Relentless</h4>
+                    <p class="nagging-card-description">High-intensity alerts that override silence. Getting things done is no longer optional.</p>
+                </div>
+            </div>
+            <div class="watermark">
+                <p class="watermark-text">Get Sh*t Done</p>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section industrial-grid" id="pricing">
+            <div class="pricing-grid">
+                <div class="pricing-content">
+                    <h2 class="pricing-title">Lock In the <br><span>Founder Rate</span> Forever.</h2>
+                    <p class="pricing-description">
+                        We're building the most aggressive tool for high-performers. The first 1,000 users get full access at our pilot price, locked in for the life of the account.
+                    </p>
+                    <div class="progress-tracker">
+                        <div class="progress-labels">
+                            <span>Status: Limited Spots Remaining</span>
+                            <span>842 / 1,000 claimed</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-track-fill"></div>
+                        </div>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="material-symbols-outlined">check</span>
+                            <span>Full AI Estimator Access</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="material-symbols-outlined">check</span>
+                            <span>Unlimited MUST ToDo&trade; Boards</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="material-symbols-outlined">check</span>
+                            <span>Relentless Nagging Integration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pricing-card-wrapper">
+                    <div class="pricing-card-bg"></div>
+                    <div class="pricing-card">
+                        <span class="pricing-badge">Early Adopter Card</span>
+                        <p class="pricing-tier">Founder Tier</p>
+                        <div class="pricing-price">
+                            <span class="pricing-currency">$</span>
+                            <span class="pricing-amount">9.99</span>
+                            <span class="pricing-period">/mo</span>
+                        </div>
+                        <button class="pricing-btn">CLAIM YOUR SPOT</button>
+                        <p class="pricing-note">Price increases to $29.99/mo after the first 1,000 seats. Cancel anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">Ready to Work Smarter?</h3>
+            <div class="footer-buttons">
+                <button class="footer-btn footer-btn-primary">Start Today</button>
+                <button class="footer-btn footer-btn-secondary">View Demo</button>
+            </div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span class="material-symbols-outlined">security</span>
+                    <span>Enterprise Encrypted</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-badge">
+                    <span class="material-symbols-outlined">verified_user</span>
+                    <span>Secure Payments</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2024 C-Money AI. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Estimate Helper | Free Tool | C-Money</title>
+    <meta name="description" content="AI-powered tool to help contractors write professional job estimates. Generate clear scope of work descriptions and professional proposals.">
+    <meta name="keywords" content="job estimate template, contractor proposal generator, scope of work template, quote generator">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .btn-secondary {
+            background-color: var(--input-bg);
+            color: white;
+            border: 1px solid var(--border-color);
+        }
+        .btn-secondary:hover { background-color: var(--card-bg); }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current { color: white; font-weight: 600; }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input, .form-select { height: 3rem; }
+
+        .form-textarea {
+            min-height: 6rem;
+            padding: 1rem;
+            resize: vertical;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .input-prefix {
+            position: relative;
+        }
+
+        .input-prefix .form-input {
+            padding-left: 1.75rem;
+        }
+
+        .input-prefix::before {
+            content: '$';
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+        }
+
+        .generate-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1rem;
+        }
+
+        /* Results */
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text { color: rgba(255, 255, 255, 0.6); }
+
+        .estimate-preview {
+            background-color: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .estimate-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .estimate-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .estimate-type {
+            text-align: right;
+        }
+
+        .estimate-type-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .estimate-type-number {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .estimate-body {
+            padding: 1.5rem;
+            color: #333;
+        }
+
+        .estimate-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .estimate-meta-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .estimate-meta-section p {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .estimate-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .estimate-section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .estimate-section-content {
+            font-size: 0.875rem;
+            color: #444;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .estimate-line-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .line-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.875rem;
+        }
+
+        .line-item:last-child {
+            border-bottom: none;
+        }
+
+        .line-item-desc {
+            color: #333;
+        }
+
+        .line-item-amount {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .estimate-total {
+            background-color: #f5f5f5;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .estimate-total-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .estimate-total-amount {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .estimate-footer {
+            padding: 1rem 1.5rem;
+            background-color: #fafafa;
+            font-size: 0.75rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-actions .btn {
+            flex: 1;
+        }
+
+        .rate-limit-notice {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .tips-card {
+            margin-top: 1.5rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .tips-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tips-list {
+            list-style: none;
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tips-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .tips-list li:last-child { border-bottom: none; }
+
+        .tips-list .material-symbols-outlined {
+            font-size: 1rem;
+            color: var(--success);
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @media print {
+            body { background: white; }
+            .header, .breadcrumbs, .page-header, .sidebar, .footer,
+            .section-title, .form-grid, .generate-btn, .result-actions,
+            .rate-limit-notice, .ai-badge { display: none !important; }
+            .calculator-layout { display: block; }
+            .calculator-card { border: none; padding: 0; background: none; }
+            .results-section { border: none; margin: 0; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Estimate Helper</span>
+        </nav>
+
+        <div class="page-header">
+            <div class="ai-badge">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">auto_awesome</span>
+                AI-Powered
+            </div>
+            <h1 class="page-title">Job Estimate Helper</h1>
+            <p class="page-description">
+                Generate professional job estimates and scope of work descriptions. Perfect for proposals and quotes.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">request_quote</span>
+                        Job Details
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Your Business Name</label>
+                            <input type="text" id="businessName" class="form-input" placeholder="Smith Electric" maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Customer Name</label>
+                            <input type="text" id="customerName" class="form-input" placeholder="John & Jane Doe" maxlength="50">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Project Address</label>
+                            <input type="text" id="projectAddress" class="form-input" placeholder="123 Main St, Denver, CO 80202">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Service Type</label>
+                            <select id="serviceType" class="form-select">
+                                <option value="electrical">Electrical</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="hvac">HVAC</option>
+                                <option value="painting">Painting</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="landscaping">Landscaping</option>
+                                <option value="roofing">Roofing</option>
+                                <option value="flooring">Flooring</option>
+                                <option value="handyman">General Handyman</option>
+                                <option value="remodeling">Remodeling</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Project Size</label>
+                            <select id="projectSize" class="form-select">
+                                <option value="small">Small (1-2 hours)</option>
+                                <option value="medium" selected>Medium (Half day)</option>
+                                <option value="large">Large (Full day+)</option>
+                                <option value="major">Major (Multi-day)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Describe the Work</label>
+                            <textarea id="workDescription" class="form-textarea" placeholder="Describe what the customer needs done. Be as specific as possible..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Estimated Labor</label>
+                            <div class="input-prefix">
+                                <input type="number" id="laborCost" class="form-input" placeholder="500" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Estimated Materials</label>
+                            <div class="input-prefix">
+                                <input type="number" id="materialsCost" class="form-input" placeholder="200" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Estimate Valid For</label>
+                            <select id="validDays" class="form-select">
+                                <option value="15">15 Days</option>
+                                <option value="30" selected>30 Days</option>
+                                <option value="60">60 Days</option>
+                                <option value="90">90 Days</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Include Warranty?</label>
+                            <select id="includeWarranty" class="form-select">
+                                <option value="none">No Warranty</option>
+                                <option value="30">30-Day Workmanship</option>
+                                <option value="90" selected>90-Day Workmanship</option>
+                                <option value="365">1-Year Warranty</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary generate-btn" id="generateBtn" onclick="generateEstimate()">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Generate Estimate
+                    </button>
+
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">description</span>
+                            Your Estimate
+                        </h2>
+
+                        <div id="loadingState" class="loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="loading-text">Creating professional estimate...</p>
+                        </div>
+
+                        <div id="resultsContainer"></div>
+
+                        <div class="result-actions" id="resultActions" style="display: none;">
+                            <button class="btn btn-primary" onclick="window.print()">
+                                <span class="material-symbols-outlined">print</span>
+                                Print / PDF
+                            </button>
+                            <button class="btn btn-secondary" onclick="copyEstimate()">
+                                <span class="material-symbols-outlined">content_copy</span>
+                                Copy Text
+                            </button>
+                        </div>
+
+                        <div class="rate-limit-notice" id="rateLimitNotice" style="display: none;">
+                            You've used all 5 free estimates. Sign up for C-Money for unlimited estimates!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">receipt_long</span>
+                        </div>
+                        <h3 class="cta-title">Professional Estimates</h3>
+                        <p class="cta-description">
+                            C-Money includes full invoicing, estimates, and payment tracking. Just $9.99/mo.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tips-card">
+                    <h3 class="tips-title">
+                        <span class="material-symbols-outlined" style="color: var(--warning);">lightbulb</span>
+                        Estimate Tips
+                    </h3>
+                    <ul class="tips-list">
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Be specific about what's included (and excluded)
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Include a clear timeline when possible
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Set expiration dates to create urgency
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Follow up within 48 hours of sending
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let generationCount = parseInt(localStorage.getItem('estimateGenCount') || '0');
+        const maxGenerations = 5;
+
+        const scopeTemplates = {
+            electrical: {
+                small: [
+                    "Install new {work_detail}. This includes all necessary wiring, connections, and testing to ensure safe operation in accordance with local electrical codes.",
+                    "Repair/replace {work_detail}. Work includes diagnosis of the issue, necessary repairs, and verification of proper function."
+                ],
+                medium: [
+                    "Complete {work_detail} project including:\n• Assessment of current electrical configuration\n• Installation of new components as specified\n• All required wiring and connections\n• Testing and inspection\n• Cleanup of work area",
+                    "{work_detail}. Scope includes material procurement, professional installation, code-compliant wiring, and post-installation testing."
+                ],
+                large: [
+                    "Comprehensive {work_detail} project:\n\nPhase 1 - Preparation\n• Site assessment and planning\n• Material procurement\n• Safety preparation\n\nPhase 2 - Installation\n• Complete electrical work as specified\n• All necessary wiring upgrades\n• Component installation\n\nPhase 3 - Completion\n• Testing and inspection\n• Customer walkthrough\n• Final cleanup"
+                ]
+            },
+            plumbing: {
+                small: [
+                    "Repair/service {work_detail}. Includes diagnosis, parts, and labor to restore proper function.",
+                    "Install new {work_detail}. Work includes shutoff of water supply, removal of old fixture if applicable, installation, and leak testing."
+                ],
+                medium: [
+                    "{work_detail} - complete project including:\n• Water shutoff and drainage as needed\n• Removal of existing fixtures if applicable\n• Installation of new components\n• Connection to existing plumbing\n• Leak testing and verification\n• Area cleanup",
+                    "Professional {work_detail} service. Scope covers all labor, standard fittings, and workmanship to complete the project properly."
+                ],
+                large: [
+                    "{work_detail} - comprehensive service:\n\nWork Includes:\n• Full assessment of plumbing needs\n• All necessary pipe work and connections\n• Fixture installation\n• System testing\n• Code compliance verification\n• Complete cleanup\n\nMaterials include standard fittings and supplies. Specialty fixtures to be selected by customer."
+                ]
+            },
+            painting: {
+                small: [
+                    "{work_detail} - includes surface preparation, primer (if needed), and two coats of quality paint in customer-selected color.",
+                    "Paint {work_detail}. Work includes prep, protection of surrounding areas, and professional paint application."
+                ],
+                medium: [
+                    "{work_detail} painting project:\n• Surface preparation (cleaning, sanding, patching)\n• Primer application where needed\n• Two coats of quality paint\n• Trim and detail work\n• Protection and cleanup",
+                    "Complete {work_detail} with professional-grade materials. Includes all prep work, premium paint, and attention to detail."
+                ],
+                large: [
+                    "{work_detail} - full painting project:\n\nPreparation:\n• Move and protect furniture\n• Repair surface imperfections\n• Sand and clean surfaces\n• Apply primer where needed\n\nPainting:\n• Two coats of premium paint\n• Cut-in and detail work\n• Trim and accent work\n\nFinish:\n• Touch-ups and inspection\n• Furniture replacement\n• Complete cleanup"
+                ]
+            },
+            handyman: {
+                small: [
+                    "{work_detail}. Work performed professionally with quality materials.",
+                    "Complete {work_detail} as discussed. Includes labor and standard materials."
+                ],
+                medium: [
+                    "{work_detail} - project scope:\n• Assessment of work needed\n• Material procurement if needed\n• Professional completion of all tasks\n• Quality check and cleanup",
+                    "Perform {work_detail}. All work completed to customer satisfaction with quality materials."
+                ],
+                large: [
+                    "{work_detail} - comprehensive scope:\n\nIncluded Work:\n• All tasks as discussed during consultation\n• Material procurement and delivery\n• Professional installation/repair\n• Quality inspection\n• Site cleanup\n\nThis estimate covers all labor and standard materials needed to complete the project."
+                ]
+            }
+        };
+
+        function generateEstimate() {
+            if (generationCount >= maxGenerations) {
+                document.getElementById('rateLimitNotice').style.display = 'block';
+                document.getElementById('resultActions').style.display = 'none';
+                return;
+            }
+
+            const businessName = document.getElementById('businessName').value || 'Your Company';
+            const customerName = document.getElementById('customerName').value || 'Valued Customer';
+            const projectAddress = document.getElementById('projectAddress').value || 'Project Address';
+            const serviceType = document.getElementById('serviceType').value;
+            const projectSize = document.getElementById('projectSize').value;
+            const workDescription = document.getElementById('workDescription').value || 'General service work';
+            const laborCost = parseFloat(document.getElementById('laborCost').value) || 0;
+            const materialsCost = parseFloat(document.getElementById('materialsCost').value) || 0;
+            const validDays = document.getElementById('validDays').value;
+            const includeWarranty = document.getElementById('includeWarranty').value;
+
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('resultActions').style.display = 'none';
+
+            setTimeout(() => {
+                const estimate = generateEstimateContent(
+                    businessName, customerName, projectAddress, serviceType,
+                    projectSize, workDescription, laborCost, materialsCost,
+                    validDays, includeWarranty
+                );
+                displayEstimate(estimate);
+
+                generationCount++;
+                localStorage.setItem('estimateGenCount', generationCount.toString());
+
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('resultActions').style.display = 'flex';
+
+                if (generationCount >= maxGenerations) {
+                    document.getElementById('rateLimitNotice').style.display = 'block';
+                }
+            }, 2000);
+        }
+
+        function generateEstimateContent(business, customer, address, service, size, work, labor, materials, validDays, warranty) {
+            const today = new Date();
+            const validUntil = new Date(today.getTime() + parseInt(validDays) * 24 * 60 * 60 * 1000);
+            const estimateNumber = 'EST-' + Date.now().toString().slice(-6);
+
+            // Generate scope of work
+            const templates = scopeTemplates[service] || scopeTemplates.handyman;
+            const sizeTemplates = templates[size] || templates.medium || templates.small;
+            let scope = sizeTemplates[Math.floor(Math.random() * sizeTemplates.length)];
+            scope = scope.replace(/{work_detail}/g, work.toLowerCase());
+
+            // Generate warranty text
+            let warrantyText = '';
+            if (warranty !== 'none') {
+                const warrantyDays = parseInt(warranty);
+                if (warrantyDays >= 365) {
+                    warrantyText = 'This work is backed by our 1-Year Workmanship Warranty. If any issues arise related to our work within this period, we will address them at no additional cost.';
+                } else {
+                    warrantyText = `This work is backed by our ${warrantyDays}-Day Workmanship Warranty. If any issues arise related to our work within this period, we will address them at no additional cost.`;
+                }
+            }
+
+            const total = labor + materials;
+
+            return {
+                businessName: business,
+                customerName: customer,
+                projectAddress: address,
+                estimateNumber: estimateNumber,
+                date: today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                validUntil: validUntil.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                scope: scope,
+                labor: labor,
+                materials: materials,
+                total: total,
+                warranty: warrantyText
+            };
+        }
+
+        function displayEstimate(est) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = `
+                <div class="estimate-preview" id="estimateContent">
+                    <div class="estimate-header">
+                        <div class="estimate-logo">${est.businessName}</div>
+                        <div class="estimate-type">
+                            <div class="estimate-type-label">ESTIMATE</div>
+                            <div class="estimate-type-number">${est.estimateNumber}</div>
+                        </div>
+                    </div>
+                    <div class="estimate-body">
+                        <div class="estimate-meta">
+                            <div class="estimate-meta-section">
+                                <h4>Prepared For</h4>
+                                <p>${est.customerName}<br>${est.projectAddress}</p>
+                            </div>
+                            <div class="estimate-meta-section">
+                                <h4>Date</h4>
+                                <p>${est.date}<br><span style="color: #999;">Valid Until: ${est.validUntil}</span></p>
+                            </div>
+                        </div>
+
+                        <div class="estimate-section">
+                            <h4 class="estimate-section-title">Scope of Work</h4>
+                            <div class="estimate-section-content">${est.scope}</div>
+                        </div>
+
+                        ${est.warranty ? `
+                        <div class="estimate-section">
+                            <h4 class="estimate-section-title">Warranty</h4>
+                            <div class="estimate-section-content">${est.warranty}</div>
+                        </div>
+                        ` : ''}
+
+                        <div class="estimate-line-items">
+                            <div class="line-item">
+                                <span class="line-item-desc">Labor</span>
+                                <span class="line-item-amount">$${est.labor.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                            </div>
+                            <div class="line-item">
+                                <span class="line-item-desc">Materials</span>
+                                <span class="line-item-amount">$${est.materials.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="estimate-total">
+                        <span class="estimate-total-label">Total Estimate</span>
+                        <span class="estimate-total-amount">$${est.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                    </div>
+                    <div class="estimate-footer">
+                        This estimate is valid for the period indicated. Pricing subject to change based on actual conditions found during work.
+                        Payment terms: 50% deposit, balance due upon completion.
+                    </div>
+                </div>
+            `;
+
+            // Store for copying
+            window.currentEstimate = est;
+        }
+
+        function copyEstimate() {
+            const est = window.currentEstimate;
+            const text = `
+ESTIMATE - ${est.estimateNumber}
+${est.businessName}
+Date: ${est.date}
+Valid Until: ${est.validUntil}
+
+PREPARED FOR:
+${est.customerName}
+${est.projectAddress}
+
+SCOPE OF WORK:
+${est.scope}
+
+${est.warranty ? 'WARRANTY:\n' + est.warranty + '\n\n' : ''}
+PRICING:
+Labor: $${est.labor.toFixed(2)}
+Materials: $${est.materials.toFixed(2)}
+TOTAL: $${est.total.toFixed(2)}
+
+This estimate is valid for the period indicated. Pricing subject to change based on actual conditions found during work.
+Payment terms: 50% deposit, balance due upon completion.
+            `.trim();
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Estimate copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

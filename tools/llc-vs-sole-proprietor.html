@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLC vs Sole Proprietor Comparison | Free Tool | C-Money</title>
+    <meta name="description" content="Compare LLC vs Sole Proprietorship for your contractor business. Interactive tool to help you choose the right business structure.">
+    <meta name="keywords" content="LLC vs sole proprietor, contractor business structure, should I form an LLC, sole proprietorship advantages">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+            --blue: #3b82f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current { color: white; font-weight: 600; }
+
+        .page-header { margin-bottom: 2rem; text-align: center; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .comparison-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .comparison-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        /* Quiz Section */
+        .quiz-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .quiz-card { padding: 2rem; } }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-dot {
+            flex: 1;
+            height: 4px;
+            background-color: var(--border-color);
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        .progress-dot.active { background-color: var(--primary); }
+        .progress-dot.completed { background-color: var(--success); }
+
+        .quiz-question {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background-color: var(--input-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(242, 13, 13, 0.05);
+        }
+
+        .quiz-option-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .quiz-option-text {
+            flex: 1;
+        }
+
+        .quiz-option-label {
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .quiz-option-desc {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-title.llc { color: var(--blue); }
+        .result-title.sole { color: var(--warning); }
+
+        .result-explanation {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .restart-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .restart-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+        }
+
+        .comparison-table-header {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-header-cell {
+            padding: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .table-header-cell:not(:first-child) {
+            text-align: center;
+        }
+
+        .table-header-cell.llc { color: var(--blue); }
+        .table-header-cell.sole { color: var(--warning); }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-row:last-child { border-bottom: none; }
+
+        .row-label {
+            padding: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .row-value {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row-value .material-symbols-outlined {
+            font-size: 1.25rem;
+        }
+
+        .row-value.good { color: var(--success); }
+        .row-value.bad { color: #ef4444; }
+        .row-value.neutral { color: rgba(255, 255, 255, 0.5); }
+
+        /* Pros/Cons */
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .pros-cons-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .structure-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .structure-card-header {
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .structure-card-header.llc {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+        }
+
+        .structure-card-header.sole {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), transparent);
+        }
+
+        .structure-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+
+        .structure-icon.llc { background-color: var(--blue); }
+        .structure-icon.sole { background-color: var(--warning); }
+
+        .structure-name {
+            font-size: 1.125rem;
+            font-weight: 800;
+        }
+
+        .structure-card-body {
+            padding: 1.25rem;
+        }
+
+        .pros-cons-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .pros-cons-section:last-child { margin-bottom: 0; }
+
+        .pros-cons-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .pros-cons-label.pros { color: var(--success); }
+        .pros-cons-label.cons { color: #ef4444; }
+
+        .pros-cons-list {
+            list-style: none;
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pros-cons-list li {
+            padding: 0.375rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .pros-cons-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .pros-cons-list.pros li::before { background-color: var(--success); }
+        .pros-cons-list.cons li::before { background-color: #ef4444; }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .disclaimer-card {
+            margin-top: 1.5rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.25rem;
+        }
+
+        .disclaimer-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--warning);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .disclaimer-text {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">LLC vs Sole Proprietor</span>
+        </nav>
+
+        <div class="page-header">
+            <h1 class="page-title">LLC vs Sole Proprietorship</h1>
+            <p class="page-description">
+                Which business structure is right for your contracting business? Take the quiz and compare the options.
+            </p>
+        </div>
+
+        <div class="comparison-layout">
+            <div>
+                <!-- Quiz Section -->
+                <div class="quiz-card" id="quizCard">
+                    <div class="quiz-header">
+                        <h2 class="quiz-title">Find Your Best Structure</h2>
+                        <p class="quiz-subtitle">Answer 5 quick questions to get a personalized recommendation</p>
+                    </div>
+
+                    <div class="quiz-progress" id="quizProgress">
+                        <div class="progress-dot active"></div>
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot"></div>
+                        <div class="progress-dot"></div>
+                    </div>
+
+                    <div id="quizContent">
+                        <!-- Questions will be rendered here -->
+                    </div>
+
+                    <div id="quizResult" style="display: none;">
+                        <!-- Result will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="comparison-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">compare_arrows</span>
+                            Side-by-Side Comparison
+                        </h2>
+                    </div>
+                    <div class="comparison-table">
+                        <div class="comparison-table-header">
+                            <div class="table-header-cell">Feature</div>
+                            <div class="table-header-cell llc">LLC</div>
+                            <div class="table-header-cell sole">Sole Prop</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">shield</span>
+                                Personal Liability Protection
+                            </div>
+                            <div class="row-value good">
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </div>
+                            <div class="row-value bad">
+                                <span class="material-symbols-outlined">cancel</span>
+                            </div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">speed</span>
+                                Ease of Setup
+                            </div>
+                            <div class="row-value neutral">Medium</div>
+                            <div class="row-value good">Very Easy</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">payments</span>
+                                Startup Cost
+                            </div>
+                            <div class="row-value neutral">$50-$500</div>
+                            <div class="row-value good">$0-$50</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">event_repeat</span>
+                                Annual Fees
+                            </div>
+                            <div class="row-value neutral">$0-$800/yr</div>
+                            <div class="row-value good">None</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">description</span>
+                                Tax Filing
+                            </div>
+                            <div class="row-value neutral">Schedule C (or elect corp)</div>
+                            <div class="row-value neutral">Schedule C</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">badge</span>
+                                Professional Image
+                            </div>
+                            <div class="row-value good">
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </div>
+                            <div class="row-value neutral">-</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">account_balance</span>
+                                Easier to Get Loans
+                            </div>
+                            <div class="row-value good">
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </div>
+                            <div class="row-value neutral">-</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="row-label">
+                                <span class="material-symbols-outlined" style="font-size: 1rem; color: var(--primary);">groups</span>
+                                Can Have Partners
+                            </div>
+                            <div class="row-value good">
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </div>
+                            <div class="row-value bad">
+                                <span class="material-symbols-outlined">cancel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pros/Cons Cards -->
+                <div class="pros-cons-grid">
+                    <div class="structure-card">
+                        <div class="structure-card-header llc">
+                            <div class="structure-icon llc">
+                                <span class="material-symbols-outlined" style="color: white;">verified</span>
+                            </div>
+                            <h3 class="structure-name">LLC</h3>
+                        </div>
+                        <div class="structure-card-body">
+                            <div class="pros-cons-section">
+                                <div class="pros-cons-label pros">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">thumb_up</span>
+                                    Pros
+                                </div>
+                                <ul class="pros-cons-list pros">
+                                    <li>Personal assets protected from business lawsuits</li>
+                                    <li>More professional image with "LLC" in name</li>
+                                    <li>Easier to open business bank accounts & credit</li>
+                                    <li>Can add partners or investors later</li>
+                                    <li>Pass-through taxation (avoid double taxation)</li>
+                                </ul>
+                            </div>
+                            <div class="pros-cons-section">
+                                <div class="pros-cons-label cons">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">thumb_down</span>
+                                    Cons
+                                </div>
+                                <ul class="pros-cons-list cons">
+                                    <li>State filing fees ($50-$500 to form)</li>
+                                    <li>Annual fees in some states</li>
+                                    <li>More paperwork to maintain</li>
+                                    <li>Separate business records required</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="structure-card">
+                        <div class="structure-card-header sole">
+                            <div class="structure-icon sole">
+                                <span class="material-symbols-outlined" style="color: white;">person</span>
+                            </div>
+                            <h3 class="structure-name">Sole Proprietorship</h3>
+                        </div>
+                        <div class="structure-card-body">
+                            <div class="pros-cons-section">
+                                <div class="pros-cons-label pros">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">thumb_up</span>
+                                    Pros
+                                </div>
+                                <ul class="pros-cons-list pros">
+                                    <li>Free or nearly free to start</li>
+                                    <li>Simplest business structure</li>
+                                    <li>No annual filing requirements</li>
+                                    <li>Complete control of business</li>
+                                    <li>Easy tax filing on personal return</li>
+                                </ul>
+                            </div>
+                            <div class="pros-cons-section">
+                                <div class="pros-cons-label cons">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">thumb_down</span>
+                                    Cons
+                                </div>
+                                <ul class="pros-cons-list cons">
+                                    <li>Personally liable for all business debts</li>
+                                    <li>Home, car, savings at risk in lawsuit</li>
+                                    <li>Harder to get business loans</li>
+                                    <li>Cannot add partners without restructuring</li>
+                                    <li>Less professional appearance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">handshake</span>
+                        </div>
+                        <h3 class="cta-title">Structure Decided?</h3>
+                        <p class="cta-description">
+                            C-Money helps you manage your business regardless of structure. Just $9.99/mo.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+
+                <div class="disclaimer-card">
+                    <h3 class="disclaimer-title">
+                        <span class="material-symbols-outlined" style="font-size: 1rem;">info</span>
+                        Disclaimer
+                    </h3>
+                    <p class="disclaimer-text">
+                        This tool provides general information only and is not legal or tax advice. Business structure decisions have significant legal and tax implications. We strongly recommend consulting with a lawyer, accountant, or business advisor before making your decision.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "How much do you expect to earn in your first year?",
+                options: [
+                    { text: "Under $50,000", desc: "Part-time or just starting out", value: "sole" },
+                    { text: "$50,000 - $100,000", desc: "Full-time contractor income", value: "neutral" },
+                    { text: "Over $100,000", desc: "Established or growing quickly", value: "llc" }
+                ]
+            },
+            {
+                question: "How concerned are you about personal liability?",
+                options: [
+                    { text: "Very concerned", desc: "I want my personal assets protected", value: "llc" },
+                    { text: "Somewhat concerned", desc: "I have good insurance", value: "neutral" },
+                    { text: "Not concerned", desc: "Low-risk work, trusted clients", value: "sole" }
+                ]
+            },
+            {
+                question: "Do you plan to hire employees or partners?",
+                options: [
+                    { text: "Yes, soon", desc: "Planning to grow the team", value: "llc" },
+                    { text: "Maybe someday", desc: "Open to it but not immediately", value: "neutral" },
+                    { text: "No, staying solo", desc: "Want to keep it simple", value: "sole" }
+                ]
+            },
+            {
+                question: "How important is a professional business image?",
+                options: [
+                    { text: "Very important", desc: "Want 'LLC' in my business name", value: "llc" },
+                    { text: "Somewhat important", desc: "Depends on the client", value: "neutral" },
+                    { text: "Not important", desc: "My work speaks for itself", value: "sole" }
+                ]
+            },
+            {
+                question: "How do you feel about paperwork and fees?",
+                options: [
+                    { text: "Worth it for protection", desc: "Happy to pay for peace of mind", value: "llc" },
+                    { text: "Prefer to keep it simple", desc: "Less paperwork is better", value: "sole" },
+                    { text: "Depends on the cost", desc: "Need to weigh the benefits", value: "neutral" }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            const container = document.getElementById('quizContent');
+
+            container.innerHTML = `
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+                    ${q.options.map((opt, i) => `
+                        <div class="quiz-option" onclick="selectAnswer(${i}, '${opt.value}')">
+                            <div class="quiz-option-icon">
+                                <span class="material-symbols-outlined">${i === 0 ? 'looks_one' : i === 1 ? 'looks_two' : 'looks_3'}</span>
+                            </div>
+                            <div class="quiz-option-text">
+                                <div class="quiz-option-label">${opt.text}</div>
+                                <div class="quiz-option-desc">${opt.desc}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active', 'completed');
+                if (i < currentQuestion) {
+                    dot.classList.add('completed');
+                } else if (i === currentQuestion) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function selectAnswer(optionIndex, value) {
+            // Highlight selection
+            document.querySelectorAll('.quiz-option').forEach((opt, i) => {
+                opt.classList.toggle('selected', i === optionIndex);
+            });
+
+            // Store answer
+            answers[currentQuestion] = value;
+
+            // Move to next question after brief delay
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    renderQuestion();
+                } else {
+                    showResult();
+                }
+            }, 300);
+        }
+
+        function showResult() {
+            // Calculate recommendation
+            const llcScore = answers.filter(a => a === 'llc').length;
+            const soleScore = answers.filter(a => a === 'sole').length;
+
+            let recommendation, explanation;
+            if (llcScore > soleScore) {
+                recommendation = 'llc';
+                explanation = "Based on your answers, an LLC may be the better choice for you. You're concerned about liability protection, professional image, or future growth - all areas where an LLC provides benefits.";
+            } else if (soleScore > llcScore) {
+                recommendation = 'sole';
+                explanation = "Based on your answers, a Sole Proprietorship might work well for you right now. You prefer simplicity and are comfortable with the trade-offs. You can always form an LLC later if your situation changes.";
+            } else {
+                recommendation = 'neutral';
+                explanation = "Your situation could go either way! Consider your personal risk tolerance and budget. Many contractors start as sole proprietors and form an LLC once they're established and earning more.";
+            }
+
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('quizResult').innerHTML = `
+                <div class="quiz-result">
+                    <div class="result-badge">
+                        <span class="material-symbols-outlined">insights</span>
+                        Our Recommendation
+                    </div>
+                    <h3 class="result-title ${recommendation}">${recommendation === 'llc' ? 'Form an LLC' : recommendation === 'sole' ? 'Sole Proprietorship' : 'Either Could Work'}</h3>
+                    <p class="result-explanation">${explanation}</p>
+                    <button class="restart-btn" onclick="restartQuiz()">
+                        <span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">refresh</span>
+                        Take Quiz Again
+                    </button>
+                </div>
+            `;
+
+            // Mark all progress as completed
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                dot.classList.add('completed');
+                dot.classList.remove('active');
+            });
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            answers = [];
+            document.getElementById('quizResult').style.display = 'none';
+            document.getElementById('quizContent').style.display = 'block';
+            renderQuestion();
+        }
+
+        // Initialize quiz
+        renderQuestion();
+    </script>
+</body>
+</html>

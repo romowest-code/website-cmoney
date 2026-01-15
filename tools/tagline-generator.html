@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Tagline Generator | Free Tool | C-Money</title>
+    <meta name="description" content="AI-powered tagline and slogan generator for contractors. Create memorable business taglines for your handyman, plumbing, electrical, or HVAC business.">
+    <meta name="keywords" content="business tagline generator, contractor slogan ideas, handyman taglines, plumber slogans">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current { color: white; font-weight: 600; }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            height: 3rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .emphasis-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .emphasis-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .emphasis-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .emphasis-btn.active {
+            background-color: rgba(242, 13, 13, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .generate-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1rem;
+        }
+
+        /* Results */
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text { color: rgba(255, 255, 255, 0.6); }
+
+        .tagline-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .tagline-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .tagline-card {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tagline-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .tagline-card.featured {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.1), rgba(242, 13, 13, 0.05));
+            border-color: rgba(242, 13, 13, 0.3);
+        }
+
+        .tagline-featured-badge {
+            position: absolute;
+            top: -0.5rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--primary);
+            border-radius: 9999px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tagline-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .tagline-card.featured .tagline-text {
+            font-size: 1.375rem;
+        }
+
+        .tagline-category {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .tagline-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .icon-btn.copied, .icon-btn.favorited {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .generate-more-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .rate-limit-notice {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .examples-card {
+            margin-top: 1.5rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .examples-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .examples-list {
+            list-style: none;
+            font-size: 0.8125rem;
+        }
+
+        .examples-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .examples-list li:last-child { border-bottom: none; }
+
+        .example-tagline {
+            color: white;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .example-brand {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Tagline Generator</span>
+        </nav>
+
+        <div class="page-header">
+            <div class="ai-badge">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">auto_awesome</span>
+                AI-Powered
+            </div>
+            <h1 class="page-title">Business Tagline Generator</h1>
+            <p class="page-description">
+                Create memorable slogans and taglines that make your business stand out. Perfect for trucks, business cards, and ads.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">format_quote</span>
+                        Your Business
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Business Name</label>
+                            <input type="text" id="businessName" class="form-input" placeholder="Smith Electric" maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Trade/Service</label>
+                            <select id="tradeType" class="form-select">
+                                <option value="electrician">Electrician</option>
+                                <option value="plumber">Plumber</option>
+                                <option value="hvac">HVAC</option>
+                                <option value="handyman">Handyman</option>
+                                <option value="painter">Painter</option>
+                                <option value="carpenter">Carpenter</option>
+                                <option value="landscaper">Landscaper</option>
+                                <option value="roofer">Roofer</option>
+                                <option value="general_contractor">General Contractor</option>
+                                <option value="cleaner">Cleaner</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Location (Optional)</label>
+                            <input type="text" id="location" class="form-input" placeholder="Denver" maxlength="30">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tagline Style</label>
+                            <select id="taglineStyle" class="form-select">
+                                <option value="professional">Professional</option>
+                                <option value="clever">Clever & Punny</option>
+                                <option value="trustworthy">Trust & Reliability</option>
+                                <option value="action">Action-Oriented</option>
+                                <option value="friendly">Friendly & Warm</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">What Do You Want to Emphasize?</label>
+                            <div class="emphasis-buttons" id="emphasisButtons">
+                                <button type="button" class="emphasis-btn active" data-value="quality">Quality</button>
+                                <button type="button" class="emphasis-btn" data-value="speed">Speed</button>
+                                <button type="button" class="emphasis-btn" data-value="price">Fair Prices</button>
+                                <button type="button" class="emphasis-btn" data-value="experience">Experience</button>
+                                <button type="button" class="emphasis-btn" data-value="local">Local Focus</button>
+                                <button type="button" class="emphasis-btn" data-value="family">Family Values</button>
+                                <button type="button" class="emphasis-btn" data-value="availability">Availability</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary generate-btn" id="generateBtn" onclick="generateTaglines()">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Generate Taglines
+                    </button>
+
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">lightbulb</span>
+                            Your Taglines
+                        </h2>
+
+                        <div id="loadingState" class="loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="loading-text">Crafting catchy taglines...</p>
+                        </div>
+
+                        <div id="resultsContainer" class="tagline-grid"></div>
+
+                        <button class="btn btn-primary generate-more-btn" id="generateMoreBtn" onclick="generateTaglines()" style="display: none;">
+                            <span class="material-symbols-outlined">refresh</span>
+                            Generate More Taglines
+                        </button>
+
+                        <div class="rate-limit-notice" id="rateLimitNotice" style="display: none;">
+                            You've used all 5 free generations. Sign up for C-Money for unlimited taglines!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">local_shipping</span>
+                        </div>
+                        <h3 class="cta-title">Ready for the Truck?</h3>
+                        <p class="cta-description">
+                            C-Money helps you manage invoices, scheduling, and customers. Just $9.99/mo.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+
+                <div class="examples-card">
+                    <h3 class="examples-title">
+                        <span class="material-symbols-outlined" style="color: var(--warning);">star</span>
+                        Famous Taglines
+                    </h3>
+                    <ul class="examples-list">
+                        <li>
+                            <div class="example-tagline">"Just Do It"</div>
+                            <div class="example-brand">Nike</div>
+                        </li>
+                        <li>
+                            <div class="example-tagline">"Think Different"</div>
+                            <div class="example-brand">Apple</div>
+                        </li>
+                        <li>
+                            <div class="example-tagline">"The Ultimate Driving Machine"</div>
+                            <div class="example-brand">BMW</div>
+                        </li>
+                        <li>
+                            <div class="example-tagline">"I'm Lovin' It"</div>
+                            <div class="example-brand">McDonald's</div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let generationCount = parseInt(localStorage.getItem('taglineGenCount') || '0');
+        const maxGenerations = 5;
+        let selectedEmphasis = ['quality'];
+
+        // Emphasis button functionality
+        document.querySelectorAll('.emphasis-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                updateSelectedEmphasis();
+            });
+        });
+
+        function updateSelectedEmphasis() {
+            selectedEmphasis = [];
+            document.querySelectorAll('.emphasis-btn.active').forEach(btn => {
+                selectedEmphasis.push(btn.dataset.value);
+            });
+            if (selectedEmphasis.length === 0) {
+                selectedEmphasis = ['quality'];
+                document.querySelector('.emphasis-btn[data-value="quality"]').classList.add('active');
+            }
+        }
+
+        const taglineTemplates = {
+            electrician: {
+                professional: ["Powering excellence", "Your trusted power partner", "Expert solutions, every circuit", "Precision electrical services"],
+                clever: ["We're positively charged about service", "Watt you need, when you need it", "Current events: We solve them", "Ohm sweet ohm - safe wiring guaranteed", "We keep you in the light"],
+                trustworthy: ["Trusted since day one", "Reliability you can count on", "Your power, our priority", "Dependable electrical solutions"],
+                action: ["Lighting up your world", "Powering your tomorrow", "Get connected today", "Switch to the best"],
+                friendly: ["Your neighborhood electricians", "Here when you need us", "Friendly service, expert results", "Making homes brighter"]
+            },
+            plumber: {
+                professional: ["Professional plumbing solutions", "Expert service, every job", "Quality plumbing, guaranteed", "Your plumbing professionals"],
+                clever: ["We're #1 in the #2 business", "Don't get tanked, call us!", "We fix leaks, not wallets", "Flushed with success", "Going with the flow since day one"],
+                trustworthy: ["Trusted for generations", "Reliable solutions that last", "Plumbing you can trust", "Dependable service, always"],
+                action: ["Solving problems, saving water", "Fast fixes, lasting results", "Get flowing again today", "Your pipes, our priority"],
+                friendly: ["Your friendly local plumbers", "We're here to help", "Neighbors helping neighbors", "Service with a smile"]
+            },
+            hvac: {
+                professional: ["Climate control experts", "Comfort is our specialty", "Professional HVAC solutions", "Your comfort partners"],
+                clever: ["We're cool under pressure", "Keeping you chill year-round", "Hot about cold, cold about hot", "The temperature trendsetters"],
+                trustworthy: ["Trusted comfort solutions", "Reliable in every season", "Comfort you can count on", "Your trusted HVAC team"],
+                action: ["Breathe easy with us", "Stay comfortable, stay happy", "Perfect climate, every time", "Your comfort awaits"],
+                friendly: ["Your neighborhood comfort crew", "Keeping families comfortable", "Here for your comfort", "Friendly service, cool results"]
+            },
+            handyman: {
+                professional: ["Complete home solutions", "Professional repairs, every time", "Your home maintenance experts", "Quality craftsmanship guaranteed"],
+                clever: ["Honey-do? We do!", "We fix it so you don't have to", "Your weekend, reclaimed", "Master of all trades", "We nail it every time"],
+                trustworthy: ["Trusted home repairs", "Reliable handyman services", "Dependable home solutions", "The name you can trust"],
+                action: ["Getting it done right", "Fixing homes, one task at a time", "Your to-do list, done", "Let's get it fixed"],
+                friendly: ["Your friendly fixer-upper", "Here to help with anything", "Like having a handy neighbor", "Service with care"]
+            },
+            painter: {
+                professional: ["Professional painting excellence", "Expert color, flawless finish", "Quality painting services", "Precision in every stroke"],
+                clever: ["We've got you covered", "Color us reliable", "Brushing up your world", "Making walls talk", "Stroke of genius"],
+                trustworthy: ["Trusted painting pros", "Colors that last", "Quality you can see", "Painters you can trust"],
+                action: ["Transform your space today", "Bringing your vision to life", "Fresh paint, fresh start", "Color your world"],
+                friendly: ["Your neighborhood painters", "Painting homes with care", "Friendly painters, beautiful results", "Making homes beautiful"]
+            },
+            carpenter: {
+                professional: ["Master craftsmanship", "Precision woodworking", "Expert carpentry services", "Quality built to last"],
+                clever: ["Nailed it!", "Wood you believe our quality?", "Building dreams, one board at a time", "Saw it. Built it. Nailed it."],
+                trustworthy: ["Trusted craftsmanship", "Reliable carpentry solutions", "Built on trust", "Quality you can depend on"],
+                action: ["Building better spaces", "Crafting your vision", "Let's build something great", "Your project, our passion"],
+                friendly: ["Your friendly carpenters", "Neighbors building for neighbors", "Crafted with care", "Building relationships"]
+            },
+            landscaper: {
+                professional: ["Professional landscape design", "Expert outdoor solutions", "Quality grounds maintenance", "Your landscape professionals"],
+                clever: ["We dig what we do", "Grass roots excellence", "Lawn and order", "Growing with you", "We're a cut above"],
+                trustworthy: ["Trusted landscape care", "Reliable outdoor services", "Quality you can grow with", "Dependable grounds care"],
+                action: ["Transform your outdoor space", "Creating curb appeal", "Your yard, reimagined", "Grow with us"],
+                friendly: ["Your neighborhood landscapers", "Caring for your space", "Green thumbs, happy clients", "Friendly outdoor experts"]
+            },
+            roofer: {
+                professional: ["Professional roofing excellence", "Expert roof solutions", "Quality above all", "Your roofing professionals"],
+                clever: ["Raising the roof on quality", "We've got you covered", "Head and shoulders above", "The top choice in roofing"],
+                trustworthy: ["Trusted from the top down", "Reliable roofing services", "Quality overhead", "Protection you can trust"],
+                action: ["Protecting what matters", "Shelter done right", "Your roof, our priority", "Covering all your needs"],
+                friendly: ["Your neighborhood roofers", "Friendly service from above", "Keeping families safe", "A roof over your head"]
+            },
+            general_contractor: {
+                professional: ["Building excellence", "Professional construction services", "Quality construction guaranteed", "Your construction partners"],
+                clever: ["We build it, you love it", "Construction with conviction", "Blueprint for success", "Building beyond expectations"],
+                trustworthy: ["Trusted builders", "Construction you can count on", "Built on integrity", "Quality in every detail"],
+                action: ["Building your vision", "From plans to reality", "Let's build together", "Your dream, our mission"],
+                friendly: ["Your neighborhood builders", "Building relationships, not just structures", "Friendly builders, quality work", "Partners in building"]
+            },
+            cleaner: {
+                professional: ["Professional cleaning services", "Expert clean, every time", "Quality cleaning solutions", "Your cleaning professionals"],
+                clever: ["We make dirt disappear", "Clean sweep champions", "Spotless reputation", "Dirt's worst nightmare"],
+                trustworthy: ["Trusted cleaning services", "Reliable clean you can see", "Dependable cleaning crew", "Trust us with your space"],
+                action: ["Sparkling results, guaranteed", "A cleaner tomorrow starts today", "Fresh and clean, every time", "Transform your space"],
+                friendly: ["Your friendly cleaners", "Cleaning with care", "Like having a cleaning fairy", "Happy to help, happy to clean"]
+            }
+        };
+
+        const emphasisTaglines = {
+            quality: ["Quality first, always", "Excellence in every detail", "Crafted with care"],
+            speed: ["Fast response guaranteed", "Quick service, quality results", "When time matters"],
+            price: ["Honest pricing, always", "Fair prices, quality work", "Value you can trust"],
+            experience: ["{years} years of excellence", "Experienced professionals", "Expertise you can trust"],
+            local: ["Proudly serving {location}", "Your local experts", "Community focused"],
+            family: ["Family owned & operated", "Treating you like family", "A family tradition"],
+            availability: ["24/7 when you need us", "Always here for you", "Day or night, we're ready"]
+        };
+
+        function generateTaglines() {
+            if (generationCount >= maxGenerations) {
+                document.getElementById('rateLimitNotice').style.display = 'block';
+                document.getElementById('generateMoreBtn').style.display = 'none';
+                return;
+            }
+
+            const businessName = document.getElementById('businessName').value || 'Your Business';
+            const tradeType = document.getElementById('tradeType').value;
+            const location = document.getElementById('location').value;
+            const taglineStyle = document.getElementById('taglineStyle').value;
+
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('generateMoreBtn').style.display = 'none';
+
+            setTimeout(() => {
+                const taglines = generateTaglinesList(businessName, tradeType, location, taglineStyle, selectedEmphasis);
+                displayResults(taglines);
+
+                generationCount++;
+                localStorage.setItem('taglineGenCount', generationCount.toString());
+
+                document.getElementById('loadingState').style.display = 'none';
+
+                if (generationCount < maxGenerations) {
+                    document.getElementById('generateMoreBtn').style.display = 'block';
+                } else {
+                    document.getElementById('rateLimitNotice').style.display = 'block';
+                }
+            }, 1500);
+        }
+
+        function generateTaglinesList(business, trade, location, style, emphasis) {
+            const tradeTemplates = taglineTemplates[trade] || taglineTemplates.handyman;
+            const styleTaglines = tradeTemplates[style] || tradeTemplates.professional;
+
+            const taglines = [];
+
+            // Get style-based taglines
+            const shuffledStyle = [...styleTaglines].sort(() => Math.random() - 0.5);
+            shuffledStyle.slice(0, 4).forEach((t, i) => {
+                taglines.push({
+                    text: t,
+                    category: style.charAt(0).toUpperCase() + style.slice(1),
+                    featured: i === 0
+                });
+            });
+
+            // Get emphasis-based taglines
+            emphasis.forEach(emp => {
+                const empTaglines = emphasisTaglines[emp];
+                if (empTaglines) {
+                    const randomTagline = empTaglines[Math.floor(Math.random() * empTaglines.length)];
+                    let processed = randomTagline
+                        .replace('{location}', location || 'the community')
+                        .replace('{years}', Math.floor(Math.random() * 20) + 5);
+                    taglines.push({
+                        text: processed,
+                        category: emp.charAt(0).toUpperCase() + emp.slice(1).replace('_', ' '),
+                        featured: false
+                    });
+                }
+            });
+
+            // Add business name variations
+            if (business && business !== 'Your Business') {
+                const nameVariations = [
+                    `${business} - ${shuffledStyle[0]}`,
+                    `${business}: Where quality meets service`
+                ];
+                const randomVar = nameVariations[Math.floor(Math.random() * nameVariations.length)];
+                taglines.push({
+                    text: randomVar,
+                    category: 'With Business Name',
+                    featured: false
+                });
+            }
+
+            return taglines.slice(0, 8);
+        }
+
+        function displayResults(taglines) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = taglines.map((tagline, index) => `
+                <div class="tagline-card ${tagline.featured ? 'featured' : ''}">
+                    ${tagline.featured ? '<span class="tagline-featured-badge">Top Pick</span>' : ''}
+                    <p class="tagline-text">"${tagline.text}"</p>
+                    <p class="tagline-category">${tagline.category}</p>
+                    <div class="tagline-actions">
+                        <button class="icon-btn" onclick="copyTagline(this, '${tagline.text.replace(/'/g, "\\'")}')" title="Copy">
+                            <span class="material-symbols-outlined" style="font-size: 1rem;">content_copy</span>
+                        </button>
+                        <button class="icon-btn" onclick="toggleFavorite(this)" title="Save">
+                            <span class="material-symbols-outlined" style="font-size: 1rem;">favorite</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function copyTagline(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.classList.add('copied');
+                btn.querySelector('.material-symbols-outlined').textContent = 'check';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
+                }, 2000);
+            });
+        }
+
+        function toggleFavorite(btn) {
+            btn.classList.toggle('favorited');
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (btn.classList.contains('favorited')) {
+                icon.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                icon.style.fontVariationSettings = "'FILL' 0";
+            }
+        }
+    </script>
+</body>
+</html>

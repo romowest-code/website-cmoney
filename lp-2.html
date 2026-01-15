@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-Money | Founder Rate $9.99/mo - Limited to 1,000 Users</title>
+    <meta name="description" content="Lock in the founder rate forever. AI estimates and relentless task management for contractors who get sh*t done. Only 158 spots left.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --background-dark: #0a0a0a;
+            --charcoal-light: #161616;
+            --card-bg: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.125rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .spots-counter {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(242, 13, 13, 0.1);
+            border: 1px solid rgba(242, 13, 13, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            .spots-counter {
+                display: flex;
+            }
+        }
+
+        .spots-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: var(--primary);
+            border-radius: 9999px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #d40b0b;
+            transform: scale(1.02);
+        }
+
+        /* Hero - Urgency Focused */
+        .hero {
+            padding: 4rem 1.5rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(242, 13, 13, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .urgency-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            border-radius: 0.25rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-price {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-price-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-price-value {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .hero-price-currency {
+            font-size: 2rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .hero-price-amount {
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: var(--primary);
+            text-shadow: 0 0 60px rgba(242, 13, 13, 0.5);
+        }
+
+        @media (min-width: 768px) {
+            .hero-price-amount {
+                font-size: 8rem;
+            }
+        }
+
+        .hero-price-period {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            margin-left: 0.5rem;
+        }
+
+        .hero-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+
+        .hero-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-btn {
+            width: 100%;
+            max-width: 400px;
+            height: 4rem;
+            font-size: 1.125rem;
+            font-weight: 800;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 40px rgba(242, 13, 13, 0.4);
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 60px rgba(242, 13, 13, 0.6);
+        }
+
+        .hero-note {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            padding: 3rem 1.5rem;
+            background-color: var(--charcoal-light);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-header span:first-child {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .progress-header span:last-child {
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            height: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #ff4444);
+            border-radius: 9999px;
+            width: 84.2%;
+            box-shadow: 0 0 20px rgba(242, 13, 13, 0.5);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 5rem 1.5rem;
+        }
+
+        .features-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            letter-spacing: -0.025em;
+        }
+
+        @media (min-width: 768px) {
+            .features-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(242, 13, 13, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .feature-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(242, 13, 13, 0.1);
+            border-radius: 0.75rem;
+            color: var(--primary);
+        }
+
+        .feature-card-label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+        }
+
+        .feature-card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.025em;
+        }
+
+        .feature-card-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .feature-card-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .feature-card-item .material-symbols-outlined {
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        /* Watermark Section */
+        .watermark-section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .watermark-text {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 1;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .watermark-text {
+                font-size: 8rem;
+            }
+        }
+
+        /* What You Get */
+        .benefits-section {
+            padding: 4rem 1.5rem;
+            background-color: var(--charcoal-light);
+        }
+
+        .benefits-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefits-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background-color: var(--background-dark);
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+
+        .benefit-item .material-symbols-outlined {
+            color: var(--primary);
+        }
+
+        /* Final CTA */
+        .cta-section {
+            padding: 5rem 1.5rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cta-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .cta-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 0 60px rgba(242, 13, 13, 0.2);
+        }
+
+        .cta-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-price-currency {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-price-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .cta-price-period {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1rem;
+            font-weight: 800;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 1rem;
+        }
+
+        .cta-btn:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .cta-note {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0.4;
+        }
+
+        .footer-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="material-symbols-outlined logo-icon" style="font-size: 1.5rem;">database</span>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <div class="header-cta">
+                <div class="spots-counter">
+                    <span class="spots-dot"></span>
+                    <span>158 spots left</span>
+                </div>
+                <a href="#cta" class="btn btn-primary">Claim Your Spot</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero - Price Focused -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="urgency-banner">
+                    <span class="material-symbols-outlined" style="font-size: 1.25rem;">timer</span>
+                    Only 158 Founder Spots Remaining
+                </div>
+                <div class="hero-price">
+                    <p class="hero-price-label">Lock in forever at</p>
+                    <div class="hero-price-value">
+                        <span class="hero-price-currency">$</span>
+                        <span class="hero-price-amount">9.99</span>
+                        <span class="hero-price-period">/mo</span>
+                    </div>
+                </div>
+                <h1 class="hero-title">AI Estimates + Relentless Task Management</h1>
+                <p class="hero-description">
+                    The contractor toolbox that won't let you fail. Built for those who get sh*t done.
+                </p>
+                <button class="hero-btn" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})">
+                    GET FOUNDER ACCESS NOW
+                </button>
+                <p class="hero-note">Price increases to $29.99/mo after first 1,000 users</p>
+            </div>
+        </section>
+
+        <!-- Progress Bar -->
+        <section class="progress-section">
+            <div class="progress-content">
+                <div class="progress-header">
+                    <span>Founder seats claimed</span>
+                    <span>842 / 1,000</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features-section">
+            <div class="features-content">
+                <h2 class="features-title">Two Game-Changing Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-card-header">
+                            <div class="feature-card-icon">
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">auto_awesome</span>
+                            </div>
+                            <span class="feature-card-label">Feature 01</span>
+                        </div>
+                        <h3 class="feature-card-title">Instant AI Estimates</h3>
+                        <p class="feature-card-description">
+                            Stop wasting hours on quotes. Our AI generates professional estimates in seconds while you walk the job site.
+                        </p>
+                        <div class="feature-card-list">
+                            <div class="feature-card-item">
+                                <span class="material-symbols-outlined">check</span>
+                                <span>Generate quotes in under 10 seconds</span>
+                            </div>
+                            <div class="feature-card-item">
+                                <span class="material-symbols-outlined">check</span>
+                                <span>Professional PDF exports</span>
+                            </div>
+                            <div class="feature-card-item">
+                                <span class="material-symbols-outlined">check</span>
+                                <span>Smart material calculations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-header">
+                            <div class="feature-card-icon">
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">notifications_active</span>
+                            </div>
+                            <span class="feature-card-label">Feature 02</span>
+                        </div>
+                        <h3 class="feature-card-title">MUST ToDo&trade; with Nagging</h3>
+                        <p class="feature-card-description">
+                            The task manager that refuses to be ignored. We'll nag you until the work gets done.
+                        </p>
+                        <div class="feature-card-list">
+                            <div class="feature-card-item">
+                                <span class="material-symbols-outlined">check</span>
+                                <span>Escalating reminder system</span>
+                            </div>
+                            <div class="feature-card-item">
+                                <span class="material-symbols-outlined">check</span>
+                                <span>Won't stop until you start</span>
+                            </div>
+                            <div class="feature-card-item">
+                                <span class="material-symbols-outlined">check</span>
+                                <span>Unlimited task boards</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watermark -->
+        <section class="watermark-section">
+            <p class="watermark-text">Get Sh*t Done</p>
+        </section>
+
+        <!-- Benefits -->
+        <section class="benefits-section">
+            <div class="benefits-content">
+                <h2 class="benefits-title">Everything Included at $9.99/mo</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Full AI Estimator</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Unlimited MUST ToDo Boards</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Relentless Nagging</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Mobile App Access</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Price Locked Forever</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Cancel Anytime</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section" id="cta">
+            <div class="cta-content">
+                <h2 class="cta-title">Don't Miss the Founder Rate</h2>
+                <p class="cta-description">
+                    Once 1,000 seats are claimed, the price goes to $29.99/mo. Lock in $9.99 forever.
+                </p>
+                <div class="cta-card">
+                    <div class="cta-price">
+                        <span class="cta-price-currency">$</span>
+                        <span class="cta-price-amount">9.99</span>
+                        <span class="cta-price-period">/mo</span>
+                    </div>
+                    <button class="cta-btn">CLAIM YOUR FOUNDER SPOT</button>
+                    <p class="cta-note">7-day free trial &bull; No credit card required &bull; Cancel anytime</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-trust">
+                <div class="footer-trust-item">
+                    <span class="material-symbols-outlined">security</span>
+                    <span>Enterprise Encrypted</span>
+                </div>
+                <div class="footer-trust-item">
+                    <span class="material-symbols-outlined">verified_user</span>
+                    <span>Secure Payments</span>
+                </div>
+            </div>
+            <p class="footer-copyright">&copy; 2024 C-Money AI. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

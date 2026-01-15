@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Response Generator | Free Tool | C-Money</title>
+    <meta name="description" content="AI-powered tool to craft professional responses to customer reviews. Generate perfect replies to 5-star praise or handle negative feedback gracefully.">
+    <meta name="keywords" content="review response generator, respond to customer reviews, contractor review replies, Google review response">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current {
+            color: white;
+            font-weight: 600;
+        }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input, .form-select { height: 3rem; }
+
+        .form-textarea {
+            min-height: 8rem;
+            padding: 1rem;
+            resize: vertical;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .star-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            transition: transform 0.2s ease;
+        }
+
+        .star-btn:hover { transform: scale(1.1); }
+
+        .star-btn .material-symbols-outlined {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color 0.2s ease;
+        }
+
+        .star-btn.active .material-symbols-outlined {
+            color: #fbbf24;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .generate-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1rem;
+        }
+
+        /* Results */
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .response-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .response-card {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .response-card:hover {
+            border-color: var(--primary);
+        }
+
+        .response-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .response-tone {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(242, 13, 13, 0.1);
+            border: 1px solid rgba(242, 13, 13, 0.2);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .response-card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .icon-btn.copied {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .response-text {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .response-word-count {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .generate-more-btn {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .rate-limit-notice {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .tips-card {
+            margin-top: 1.5rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .tips-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tips-list {
+            list-style: none;
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tips-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .tips-list li:last-child { border-bottom: none; }
+
+        .tips-list .material-symbols-outlined {
+            font-size: 1rem;
+            color: var(--success);
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Review Response Generator</span>
+        </nav>
+
+        <div class="page-header">
+            <div class="ai-badge">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">auto_awesome</span>
+                AI-Powered
+            </div>
+            <h1 class="page-title">Review Response Generator</h1>
+            <p class="page-description">
+                Craft professional, thoughtful responses to customer reviews in seconds. Works for 5-star praise or negative feedback.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">rate_review</span>
+                        Customer Review
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Customer Name</label>
+                            <input type="text" id="customerName" class="form-input" placeholder="Jane D." maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Star Rating</label>
+                            <div class="star-rating" id="starRating">
+                                <button type="button" class="star-btn active" data-rating="1">
+                                    <span class="material-symbols-outlined">star</span>
+                                </button>
+                                <button type="button" class="star-btn active" data-rating="2">
+                                    <span class="material-symbols-outlined">star</span>
+                                </button>
+                                <button type="button" class="star-btn active" data-rating="3">
+                                    <span class="material-symbols-outlined">star</span>
+                                </button>
+                                <button type="button" class="star-btn active" data-rating="4">
+                                    <span class="material-symbols-outlined">star</span>
+                                </button>
+                                <button type="button" class="star-btn active" data-rating="5">
+                                    <span class="material-symbols-outlined">star</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Review Text</label>
+                            <textarea id="reviewText" class="form-textarea" placeholder="Paste the customer's review here..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Your Business Name</label>
+                            <input type="text" id="businessName" class="form-input" placeholder="Smith Plumbing" maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Response Tone</label>
+                            <select id="responseTone" class="form-select">
+                                <option value="professional">Professional</option>
+                                <option value="warm">Warm & Friendly</option>
+                                <option value="apologetic">Apologetic</option>
+                                <option value="brief">Brief & Direct</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Key Points to Address (Optional)</label>
+                            <input type="text" id="keyPoints" class="form-input" placeholder="e.g., mention warranty, offer callback, clarify pricing">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary generate-btn" id="generateBtn" onclick="generateResponses()">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Generate Responses
+                    </button>
+
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">edit_note</span>
+                            Response Options
+                        </h2>
+
+                        <div id="loadingState" class="loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="loading-text">Crafting thoughtful responses...</p>
+                        </div>
+
+                        <div id="resultsContainer" class="response-cards"></div>
+
+                        <button class="btn btn-primary generate-more-btn" id="generateMoreBtn" onclick="generateResponses()" style="display: none;">
+                            <span class="material-symbols-outlined">refresh</span>
+                            Generate Different Responses
+                        </button>
+
+                        <div class="rate-limit-notice" id="rateLimitNotice" style="display: none;">
+                            You've used all 5 free generations. Sign up for C-Money for unlimited responses!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">stars</span>
+                        </div>
+                        <h3 class="cta-title">Build Your Reputation</h3>
+                        <p class="cta-description">
+                            C-Money helps you request reviews, track ratings, and respond faster. Just $9.99/mo.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tips-card">
+                    <h3 class="tips-title">
+                        <span class="material-symbols-outlined" style="color: var(--warning);">lightbulb</span>
+                        Response Tips
+                    </h3>
+                    <ul class="tips-list">
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Respond within 24-48 hours for best impact
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Always thank reviewers for their time
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            For negative reviews, take the conversation offline
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Personalize by mentioning specific details
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let generationCount = parseInt(localStorage.getItem('reviewGenCount') || '0');
+        const maxGenerations = 5;
+        let currentRating = 5;
+
+        // Star rating functionality
+        document.querySelectorAll('.star-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                currentRating = parseInt(this.dataset.rating);
+                updateStars();
+            });
+        });
+
+        function updateStars() {
+            document.querySelectorAll('.star-btn').forEach(btn => {
+                const rating = parseInt(btn.dataset.rating);
+                if (rating <= currentRating) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        const responseTemplates = {
+            positive: {
+                professional: [
+                    "Thank you for the wonderful {rating}-star review, {customer}! We're delighted to hear about your positive experience with {business}. {specific}Your satisfaction is our top priority, and we look forward to serving you again in the future.",
+                    "We truly appreciate you taking the time to share your experience, {customer}. At {business}, we strive to deliver exceptional service on every job. {specific}Thank you for trusting us with your project!",
+                    "{customer}, thank you for the kind words and {rating}-star rating! {specific}We're proud to have earned your trust. If you ever need our services again, we'll be here."
+                ],
+                warm: [
+                    "Wow, {customer}! This review just made our day! There's nothing better than knowing we've made a customer happy. {specific}Thank you so much for choosing {business} - we can't wait to help you again!",
+                    "{customer}, you just put a huge smile on our faces! {specific}We loved working on your project and are so glad you're happy with the results. Thanks for being an awesome customer!",
+                    "This means the world to us, {customer}! {specific}Reviews like yours remind us why we love what we do. Thank you for the {rating} stars and for trusting {business}!"
+                ],
+                brief: [
+                    "Thank you, {customer}! We appreciate the {rating}-star review. {specific}Looking forward to working with you again.",
+                    "Thanks for the great review, {customer}! {specific}We're glad you're happy with our work.",
+                    "Appreciate the kind words, {customer}! {specific}Thank you for choosing {business}."
+                ]
+            },
+            negative: {
+                professional: [
+                    "{customer}, thank you for bringing this to our attention. At {business}, we take all feedback seriously and are sorry to hear your experience didn't meet expectations. {specific}We'd like the opportunity to make this right. Please contact us directly at your earliest convenience so we can address your concerns.",
+                    "We appreciate you sharing your experience, {customer}. This isn't the standard we hold ourselves to at {business}. {specific}We take full responsibility and would like to discuss how we can resolve this matter. Please reach out to us directly.",
+                    "{customer}, we sincerely apologize for falling short of your expectations. {specific}Your feedback helps us improve, and we'd like the chance to make things right. Please contact us so we can discuss this further."
+                ],
+                apologetic: [
+                    "We're truly sorry, {customer}. Your experience is not what we strive for at {business}, and we take full responsibility. {specific}Please give us another chance to show you the quality service we're known for. We'd love to speak with you directly to resolve this.",
+                    "{customer}, we sincerely apologize for letting you down. {specific}This feedback is difficult to hear, but important for us to receive. We want to make this right. Please reach out to us - we're committed to turning this experience around.",
+                    "We owe you an apology, {customer}. {specific}This isn't the {business} standard, and we're truly sorry. Please contact us directly - we'd like to understand what went wrong and make it right."
+                ],
+                brief: [
+                    "We're sorry to hear this, {customer}. {specific}Please contact us directly so we can address your concerns.",
+                    "{customer}, thank you for the feedback. {specific}We'd like to make this right. Please reach out to us.",
+                    "We apologize for your experience, {customer}. {specific}Let's discuss this offline - please contact us directly."
+                ]
+            },
+            neutral: {
+                professional: [
+                    "Thank you for your feedback, {customer}. We appreciate you taking the time to share your experience with {business}. {specific}We're always looking for ways to improve and would welcome the opportunity to exceed your expectations next time.",
+                    "{customer}, we appreciate your honest review. {specific}Your feedback helps us continue to grow and improve. We hope to serve you again and deliver an even better experience.",
+                    "Thanks for sharing your thoughts, {customer}. {specific}At {business}, we value all customer feedback. We'd love the chance to earn a 5-star rating on your next project!"
+                ],
+                warm: [
+                    "Thanks for the feedback, {customer}! {specific}We're glad we could help, and we're taking note of how we can do even better next time. Hope to see you again soon!",
+                    "{customer}, we appreciate you sharing your experience! {specific}We're always working to improve, and your feedback helps. Looking forward to wowing you on the next job!",
+                    "Thank you, {customer}! {specific}We hear you, and we're committed to making your next experience a 5-star one. Thanks for giving us a shot!"
+                ],
+                brief: [
+                    "Thanks for the feedback, {customer}. {specific}We appreciate your business.",
+                    "{customer}, we appreciate your review. {specific}Hope to serve you again soon.",
+                    "Thank you for your honest feedback, {customer}. {specific}We're always working to improve."
+                ]
+            }
+        };
+
+        function generateResponses() {
+            if (generationCount >= maxGenerations) {
+                document.getElementById('rateLimitNotice').style.display = 'block';
+                document.getElementById('generateMoreBtn').style.display = 'none';
+                return;
+            }
+
+            const customerName = document.getElementById('customerName').value || 'Valued Customer';
+            const reviewText = document.getElementById('reviewText').value;
+            const businessName = document.getElementById('businessName').value || 'our team';
+            const responseTone = document.getElementById('responseTone').value;
+            const keyPoints = document.getElementById('keyPoints').value;
+
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('generateMoreBtn').style.display = 'none';
+
+            // Simulate API delay
+            setTimeout(() => {
+                const responses = generateResponsesList(customerName, currentRating, reviewText, businessName, responseTone, keyPoints);
+                displayResults(responses, responseTone);
+
+                generationCount++;
+                localStorage.setItem('reviewGenCount', generationCount.toString());
+
+                document.getElementById('loadingState').style.display = 'none';
+
+                if (generationCount < maxGenerations) {
+                    document.getElementById('generateMoreBtn').style.display = 'block';
+                } else {
+                    document.getElementById('rateLimitNotice').style.display = 'block';
+                }
+            }, 1500);
+        }
+
+        function generateResponsesList(customer, rating, reviewText, business, tone, keyPoints) {
+            // Determine sentiment category
+            let sentiment = 'neutral';
+            if (rating >= 4) sentiment = 'positive';
+            else if (rating <= 2) sentiment = 'negative';
+
+            // Use apologetic tone for negative reviews if professional was selected
+            let useTone = tone;
+            if (sentiment === 'negative' && tone === 'warm') {
+                useTone = 'apologetic';
+            }
+            if (tone === 'apologetic' && sentiment !== 'negative') {
+                useTone = 'professional';
+            }
+
+            const templates = responseTemplates[sentiment][useTone] || responseTemplates[sentiment].professional;
+
+            // Generate specific reference from review text
+            let specificRef = '';
+            if (reviewText && reviewText.length > 10) {
+                specificRef = generateSpecificReference(reviewText, sentiment);
+            }
+
+            // Add key points if provided
+            if (keyPoints) {
+                specificRef += generateKeyPointsResponse(keyPoints, sentiment);
+            }
+
+            // Generate responses from templates
+            const responses = templates.map(template => {
+                return template
+                    .replace(/{customer}/g, customer)
+                    .replace(/{rating}/g, rating.toString())
+                    .replace(/{business}/g, business)
+                    .replace(/{specific}/g, specificRef ? specificRef + ' ' : '');
+            });
+
+            return responses;
+        }
+
+        function generateSpecificReference(reviewText, sentiment) {
+            const lowerReview = reviewText.toLowerCase();
+            const references = [];
+
+            // Positive specifics
+            if (sentiment === 'positive') {
+                if (lowerReview.includes('clean') || lowerReview.includes('tidy')) {
+                    references.push("We're glad you noticed our commitment to keeping your space clean!");
+                }
+                if (lowerReview.includes('time') || lowerReview.includes('punctual') || lowerReview.includes('schedule')) {
+                    references.push("We know your time is valuable, and we always strive to be punctual.");
+                }
+                if (lowerReview.includes('price') || lowerReview.includes('cost') || lowerReview.includes('value')) {
+                    references.push("We work hard to provide great value for quality work.");
+                }
+                if (lowerReview.includes('professional')) {
+                    references.push("Professionalism is at the core of everything we do.");
+                }
+            }
+
+            // Negative specifics
+            if (sentiment === 'negative') {
+                if (lowerReview.includes('late') || lowerReview.includes('time')) {
+                    references.push("We understand how frustrating scheduling issues can be.");
+                }
+                if (lowerReview.includes('price') || lowerReview.includes('cost') || lowerReview.includes('expensive')) {
+                    references.push("We'd like to discuss our pricing and ensure you understand the value provided.");
+                }
+                if (lowerReview.includes('quality') || lowerReview.includes('work')) {
+                    references.push("We stand behind our work and want to address any quality concerns.");
+                }
+                if (lowerReview.includes('communication') || lowerReview.includes('call') || lowerReview.includes('respond')) {
+                    references.push("Clear communication is important to us, and we apologize for any breakdown.");
+                }
+            }
+
+            return references.length > 0 ? references[0] : '';
+        }
+
+        function generateKeyPointsResponse(keyPoints, sentiment) {
+            const points = keyPoints.toLowerCase();
+            let response = '';
+
+            if (points.includes('warranty')) {
+                response += sentiment === 'negative'
+                    ? "We'd like to remind you that your work is covered by our warranty."
+                    : "Remember, your work is backed by our comprehensive warranty.";
+            }
+            if (points.includes('callback') || points.includes('call back')) {
+                response += " We'd be happy to schedule a follow-up visit.";
+            }
+            if (points.includes('discount') || points.includes('future')) {
+                response += " We'd love to offer you a discount on your next service.";
+            }
+
+            return response ? ' ' + response : '';
+        }
+
+        function displayResults(responses, tone) {
+            const toneLabels = {
+                professional: 'Professional',
+                warm: 'Warm & Friendly',
+                apologetic: 'Apologetic',
+                brief: 'Brief'
+            };
+
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = responses.map((response, index) => `
+                <div class="response-card">
+                    <div class="response-card-header">
+                        <span class="response-tone">
+                            Option ${index + 1}
+                        </span>
+                        <div class="response-card-actions">
+                            <button class="icon-btn" onclick="copyResponse(this, ${index})" title="Copy to clipboard">
+                                <span class="material-symbols-outlined" style="font-size: 1rem;">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="response-text" id="response-${index}">${response}</p>
+                    <p class="response-word-count">${response.split(' ').length} words</p>
+                </div>
+            `).join('');
+        }
+
+        function copyResponse(btn, index) {
+            const responseText = document.getElementById(`response-${index}`).textContent;
+            navigator.clipboard.writeText(responseText).then(() => {
+                btn.classList.add('copied');
+                btn.querySelector('.material-symbols-outlined').textContent = 'check';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

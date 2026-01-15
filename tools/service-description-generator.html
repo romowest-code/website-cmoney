@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Description Generator | Free Tool | C-Money</title>
+    <meta name="description" content="AI-powered tool to write professional service descriptions for your contractor website, Google Business profile, and marketing materials.">
+    <meta name="keywords" content="service description generator, contractor website copy, Google Business description, handyman service descriptions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current { color: white; font-weight: 600; }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input, .form-select { height: 3rem; }
+
+        .form-textarea {
+            min-height: 6rem;
+            padding: 1rem;
+            resize: vertical;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        @media (min-width: 640px) {
+            .checkbox-group { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .checkbox-label input {
+            width: 1.125rem;
+            height: 1.125rem;
+            accent-color: var(--primary);
+        }
+
+        .generate-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1rem;
+        }
+
+        /* Results */
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text { color: rgba(255, 255, 255, 0.6); }
+
+        .description-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .description-card {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .description-card:hover { border-color: var(--primary); }
+
+        .description-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .description-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .description-card-actions { display: flex; gap: 0.5rem; }
+
+        .icon-btn {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .icon-btn.copied {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .description-card-body { padding: 1.25rem; }
+
+        .description-text {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        .description-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .generate-more-btn {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .rate-limit-notice {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .use-cases-card {
+            margin-top: 1.5rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .use-cases-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .use-cases-list {
+            list-style: none;
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .use-cases-list li {
+            padding: 0.625rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .use-cases-list li:last-child { border-bottom: none; }
+
+        .use-cases-list .material-symbols-outlined {
+            font-size: 1.125rem;
+            color: var(--primary);
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Service Description Generator</span>
+        </nav>
+
+        <div class="page-header">
+            <div class="ai-badge">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">auto_awesome</span>
+                AI-Powered
+            </div>
+            <h1 class="page-title">Service Description Generator</h1>
+            <p class="page-description">
+                Create professional service descriptions for your website, Google Business profile, and marketing materials.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">edit_document</span>
+                        Service Details
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Business Name</label>
+                            <input type="text" id="businessName" class="form-input" placeholder="Smith Plumbing" maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Service Type</label>
+                            <select id="serviceType" class="form-select">
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="hvac">HVAC</option>
+                                <option value="painting">Painting</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="landscaping">Landscaping</option>
+                                <option value="roofing">Roofing</option>
+                                <option value="flooring">Flooring</option>
+                                <option value="handyman">General Handyman</option>
+                                <option value="remodeling">Remodeling</option>
+                                <option value="cleaning">Cleaning</option>
+                                <option value="pressure_washing">Pressure Washing</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Location/Service Area</label>
+                            <input type="text" id="location" class="form-input" placeholder="Denver, CO and surrounding areas">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Years in Business</label>
+                            <input type="number" id="yearsInBusiness" class="form-input" placeholder="10" min="0" max="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Description Purpose</label>
+                            <select id="descriptionPurpose" class="form-select">
+                                <option value="website">Website/Homepage</option>
+                                <option value="google">Google Business Profile</option>
+                                <option value="social">Social Media Bio</option>
+                                <option value="flyer">Flyer/Print Ad</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tone</label>
+                            <select id="tone" class="form-select">
+                                <option value="professional">Professional</option>
+                                <option value="friendly">Friendly & Approachable</option>
+                                <option value="premium">Premium/High-End</option>
+                                <option value="local">Local Community Focus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Key Selling Points (Check all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="licensed" checked> Licensed & Insured
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="free_estimates"> Free Estimates
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="24_7"> 24/7 Emergency
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="same_day"> Same-Day Service
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="warranty"> Work Guaranteed
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="family"> Family Owned
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Specific Services Offered (Optional)</label>
+                            <textarea id="specificServices" class="form-textarea" placeholder="e.g., Water heater installation, drain cleaning, leak repair, bathroom remodels..."></textarea>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary generate-btn" id="generateBtn" onclick="generateDescriptions()">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Generate Descriptions
+                    </button>
+
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">description</span>
+                            Your Descriptions
+                        </h2>
+
+                        <div id="loadingState" class="loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="loading-text">Writing professional descriptions...</p>
+                        </div>
+
+                        <div id="resultsContainer" class="description-cards"></div>
+
+                        <button class="btn btn-primary generate-more-btn" id="generateMoreBtn" onclick="generateDescriptions()" style="display: none;">
+                            <span class="material-symbols-outlined">refresh</span>
+                            Generate New Versions
+                        </button>
+
+                        <div class="rate-limit-notice" id="rateLimitNotice" style="display: none;">
+                            You've used all 5 free generations. Sign up for C-Money for unlimited descriptions!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">web</span>
+                        </div>
+                        <h3 class="cta-title">Need a Website?</h3>
+                        <p class="cta-description">
+                            C-Money includes a professional website builder designed for contractors. Just $9.99/mo.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+
+                <div class="use-cases-card">
+                    <h3 class="use-cases-title">
+                        <span class="material-symbols-outlined" style="color: var(--warning);">tips_and_updates</span>
+                        Where to Use
+                    </h3>
+                    <ul class="use-cases-list">
+                        <li>
+                            <span class="material-symbols-outlined">language</span>
+                            Website homepage & about page
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">store</span>
+                            Google Business Profile
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">share</span>
+                            Facebook & social bios
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">print</span>
+                            Business cards & flyers
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">mail</span>
+                            Email signatures
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let generationCount = parseInt(localStorage.getItem('descGenCount') || '0');
+        const maxGenerations = 5;
+
+        const serviceLabels = {
+            plumbing: 'Plumbing',
+            electrical: 'Electrical',
+            hvac: 'HVAC',
+            painting: 'Painting',
+            carpentry: 'Carpentry',
+            landscaping: 'Landscaping',
+            roofing: 'Roofing',
+            flooring: 'Flooring',
+            handyman: 'Handyman',
+            remodeling: 'Remodeling',
+            cleaning: 'Cleaning',
+            pressure_washing: 'Pressure Washing'
+        };
+
+        const purposeLabels = {
+            website: 'Website',
+            google: 'Google Business',
+            social: 'Social Media',
+            flyer: 'Print/Flyer'
+        };
+
+        const templates = {
+            website: {
+                professional: [
+                    "{business} provides expert {service} services to homeowners and businesses in {location}. {experience}Our licensed and insured team delivers quality workmanship on every project, from {services_short}. {selling_points}Contact us today for a consultation.",
+                    "Looking for reliable {service} services in {location}? {business} has been the trusted choice for {experience_phrase}. {selling_points}Our skilled technicians handle everything from {services_short}. Get in touch for your next project.",
+                    "Welcome to {business}, your {location} source for professional {service} services. {experience}We take pride in delivering exceptional results, whether you need {services_short}. {selling_points}"
+                ],
+                friendly: [
+                    "Hey there! {business} is your friendly neighborhood {service} team serving {location}. {experience}We're here to help with all your needs, from {services_short}. {selling_points}Give us a call - we'd love to help!",
+                    "At {business}, we treat every home like it's our own. Serving {location}, our {service} team {experience_phrase}. {selling_points}Need help with {services_short}? We've got you covered!",
+                    "Welcome to {business}! We're a local {service} company serving {location} with a smile. {experience}{selling_points}From {services_short}, we're here when you need us."
+                ],
+                premium: [
+                    "{business} delivers exceptional {service} solutions for discerning clients in {location}. {experience}Our master craftsmen specialize in {services_short}, delivering results that exceed expectations. {selling_points}Experience the difference.",
+                    "Elevate your space with {business}, the premier {service} provider in {location}. {experience}From {services_short}, we bring uncompromising quality to every project. {selling_points}",
+                    "When only the best will do, {location} homeowners choose {business} for their {service} needs. {experience}We specialize in {services_short}. {selling_points}Schedule your consultation today."
+                ],
+                local: [
+                    "{business} is proud to serve our {location} community with top-quality {service} services. {experience}As your neighbors, we understand what local homeowners need. {selling_points}We handle {services_short} with care.",
+                    "For {experience_phrase}, {business} has been {location}'s trusted {service} provider. {selling_points}We're more than contractors - we're part of this community. From {services_short}, we're here for you.",
+                    "Supporting {location} one project at a time! {business} is your locally-owned {service} company. {experience}{selling_points}Let us help with {services_short}."
+                ]
+            },
+            google: {
+                professional: [
+                    "{business} offers professional {service} services in {location}. {experience}{selling_points_short}Services include {services_short}. Call today for a quote!",
+                    "{location}'s trusted {service} experts. {experience}{selling_points_short}We specialize in {services_short}. Contact {business} today.",
+                    "Expert {service} services by {business}. Serving {location}. {experience}{selling_points_short}{services_short}."
+                ],
+                friendly: [
+                    "Your friendly local {service} pros! {business} serves {location} with quality work and fair prices. {selling_points_short}We do {services_short}. Call us!",
+                    "{business} - {location}'s go-to {service} team! {experience}{selling_points_short}From {services_short}, we've got you covered.",
+                    "Need {service} help in {location}? {business} is here! {selling_points_short}We handle {services_short} with a smile."
+                ]
+            },
+            social: {
+                professional: [
+                    "{service} services | {location} | {selling_points_short}{experience_short}",
+                    "{business} | Professional {service} | Serving {location} | {selling_points_short}",
+                    "{location} {service} Experts | {selling_points_short}{experience_short}"
+                ],
+                friendly: [
+                    "Your neighborhood {service} pros! Serving {location} with quality & care. {selling_points_short}",
+                    "{business} | Friendly {service} service in {location} | {selling_points_short}",
+                    "Making {location} homes better, one project at a time! {service} services by {business}."
+                ]
+            },
+            flyer: {
+                professional: [
+                    "{business}\n\nProfessional {service} Services\nServing {location}\n\n{experience}{selling_points_list}\n\nServices:\n{services_list}\n\nCall Today for a Free Estimate!",
+                    "QUALITY {service_upper} SERVICES\n\n{business}\n{location}\n\n{experience}{selling_points_list}\n\n{services_list}\n\nContact Us Today!",
+                    "{business}\nYour Trusted {service} Professionals\n\n{selling_points_list}\n\nWe Specialize In:\n{services_list}\n\n{experience}Serving {location}"
+                ],
+                friendly: [
+                    "Need {service} Help?\n\nCall {business}!\n\nWe serve {location} with:\n{services_list}\n\n{selling_points_list}\n\n{experience}Give Us a Call Today!",
+                    "{business}\nYour Friendly {service} Neighbors\n\n{selling_points_list}\n\n{services_list}\n\nServing {location}\n{experience}",
+                    "Hello, {location}!\n\n{business} is here for all your {service} needs.\n\n{selling_points_list}\n\nServices:\n{services_list}"
+                ]
+            }
+        };
+
+        function generateDescriptions() {
+            if (generationCount >= maxGenerations) {
+                document.getElementById('rateLimitNotice').style.display = 'block';
+                document.getElementById('generateMoreBtn').style.display = 'none';
+                return;
+            }
+
+            const businessName = document.getElementById('businessName').value || 'Our Company';
+            const serviceType = document.getElementById('serviceType').value;
+            const location = document.getElementById('location').value || 'your area';
+            const yearsInBusiness = document.getElementById('yearsInBusiness').value;
+            const descriptionPurpose = document.getElementById('descriptionPurpose').value;
+            const tone = document.getElementById('tone').value;
+            const specificServices = document.getElementById('specificServices').value;
+
+            // Get selected selling points
+            const sellingPoints = [];
+            document.querySelectorAll('.checkbox-group input:checked').forEach(cb => {
+                sellingPoints.push(cb.value);
+            });
+
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('generateMoreBtn').style.display = 'none';
+
+            setTimeout(() => {
+                const descriptions = generateDescriptionsList(
+                    businessName, serviceType, location, yearsInBusiness,
+                    descriptionPurpose, tone, sellingPoints, specificServices
+                );
+                displayResults(descriptions, descriptionPurpose);
+
+                generationCount++;
+                localStorage.setItem('descGenCount', generationCount.toString());
+
+                document.getElementById('loadingState').style.display = 'none';
+
+                if (generationCount < maxGenerations) {
+                    document.getElementById('generateMoreBtn').style.display = 'block';
+                } else {
+                    document.getElementById('rateLimitNotice').style.display = 'block';
+                }
+            }, 1800);
+        }
+
+        function generateDescriptionsList(business, service, location, years, purpose, tone, sellingPoints, specificServices) {
+            const serviceLabel = serviceLabels[service] || service;
+
+            // Build experience phrases
+            let experience = '';
+            let experiencePhrase = '';
+            let experienceShort = '';
+            if (years && parseInt(years) > 0) {
+                experience = `With ${years}+ years of experience, `;
+                experiencePhrase = `has served the community for over ${years} years`;
+                experienceShort = `${years}+ years experience`;
+            }
+
+            // Build selling points
+            const spTexts = {
+                licensed: 'Licensed & Insured',
+                free_estimates: 'Free Estimates',
+                '24_7': '24/7 Emergency Service',
+                same_day: 'Same-Day Service Available',
+                warranty: 'Work Guaranteed',
+                family: 'Family Owned & Operated'
+            };
+
+            let sellingPointsText = '';
+            let sellingPointsShort = '';
+            let sellingPointsList = '';
+            if (sellingPoints.length > 0) {
+                const spStrings = sellingPoints.map(sp => spTexts[sp]);
+                sellingPointsText = spStrings.join('. ') + '. ';
+                sellingPointsShort = spStrings.slice(0, 2).join(' | ');
+                sellingPointsList = spStrings.map(s => '✓ ' + s).join('\n');
+            }
+
+            // Build services
+            const defaultServices = {
+                plumbing: ['leak repair', 'drain cleaning', 'water heater service'],
+                electrical: ['wiring repairs', 'panel upgrades', 'lighting installation'],
+                hvac: ['AC repair', 'heating service', 'system installation'],
+                painting: ['interior painting', 'exterior painting', 'cabinet refinishing'],
+                carpentry: ['custom woodwork', 'deck building', 'trim work'],
+                landscaping: ['lawn care', 'garden design', 'hardscaping'],
+                roofing: ['roof repair', 'new installations', 'inspections'],
+                flooring: ['hardwood installation', 'tile work', 'carpet installation'],
+                handyman: ['repairs', 'installations', 'home improvements'],
+                remodeling: ['kitchen remodels', 'bathroom renovations', 'room additions'],
+                cleaning: ['deep cleaning', 'move-in/out cleaning', 'regular maintenance'],
+                pressure_washing: ['driveway cleaning', 'deck restoration', 'house washing']
+            };
+
+            let services = specificServices || defaultServices[service]?.join(', ') || 'various services';
+            let servicesShort = services.length > 60 ? services.substring(0, 60) + '...' : services;
+            let servicesList = services.split(',').map(s => '• ' + s.trim()).join('\n');
+
+            // Get templates for purpose and tone
+            const purposeTemplates = templates[purpose] || templates.website;
+            const toneTemplates = purposeTemplates[tone] || purposeTemplates.professional || Object.values(purposeTemplates)[0];
+
+            // Generate descriptions
+            return toneTemplates.map(template => {
+                return template
+                    .replace(/{business}/g, business)
+                    .replace(/{service}/g, serviceLabel)
+                    .replace(/{service_upper}/g, serviceLabel.toUpperCase())
+                    .replace(/{location}/g, location)
+                    .replace(/{experience}/g, experience)
+                    .replace(/{experience_phrase}/g, experiencePhrase)
+                    .replace(/{experience_short}/g, experienceShort)
+                    .replace(/{selling_points}/g, sellingPointsText)
+                    .replace(/{selling_points_short}/g, sellingPointsShort)
+                    .replace(/{selling_points_list}/g, sellingPointsList)
+                    .replace(/{services_short}/g, servicesShort)
+                    .replace(/{services_list}/g, servicesList);
+            });
+        }
+
+        function displayResults(descriptions, purpose) {
+            const container = document.getElementById('resultsContainer');
+            const purposeLabel = purposeLabels[purpose] || purpose;
+
+            container.innerHTML = descriptions.map((desc, index) => `
+                <div class="description-card">
+                    <div class="description-card-header">
+                        <span class="description-type">
+                            <span class="material-symbols-outlined" style="font-size: 1rem;">article</span>
+                            ${purposeLabel} Version ${index + 1}
+                        </span>
+                        <div class="description-card-actions">
+                            <button class="icon-btn" onclick="copyDescription(this, ${index})" title="Copy to clipboard">
+                                <span class="material-symbols-outlined" style="font-size: 1rem;">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="description-card-body">
+                        <p class="description-text" id="desc-${index}">${desc}</p>
+                        <div class="description-meta">
+                            <span>${desc.length} characters</span>
+                            <span>${desc.split(' ').filter(w => w).length} words</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function copyDescription(btn, index) {
+            const descText = document.getElementById(`desc-${index}`).textContent;
+            navigator.clipboard.writeText(descText).then(() => {
+                btn.classList.add('copied');
+                btn.querySelector('.material-symbols-outlined').textContent = 'check';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Business Name Generator | Free Tool | C-Money</title>
+    <meta name="description" content="AI-powered business name generator for contractors. Get unique name ideas for your handyman, plumbing, electrical, or HVAC business.">
+    <meta name="keywords" content="contractor business name ideas, handyman business name generator, plumber business name, electrician company name">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current {
+            color: white;
+            font-weight: 600;
+        }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            height: 3rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .checkbox-label input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--primary);
+        }
+
+        .generate-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1rem;
+        }
+
+        /* Results */
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .name-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .name-card {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .name-card:hover {
+            border-color: var(--primary);
+        }
+
+        .name-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .name-card-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .name-card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .icon-btn.favorited {
+            background-color: rgba(242, 13, 13, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .name-card-tagline {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .name-card-reasoning {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .name-card-domain {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            color: var(--success);
+            background-color: rgba(34, 197, 94, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .generate-more-btn {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .rate-limit-notice {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Business Name Generator</span>
+        </nav>
+
+        <div class="page-header">
+            <div class="ai-badge">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">auto_awesome</span>
+                AI-Powered
+            </div>
+            <h1 class="page-title">Business Name Generator</h1>
+            <p class="page-description">
+                Get unique, professional business name ideas for your contracting business. Powered by AI.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">tune</span>
+                        Your Details
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" id="firstName" class="form-input" placeholder="John" maxlength="30">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" id="lastName" class="form-input" placeholder="Smith" maxlength="30">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Trade/Service Type</label>
+                            <select id="tradeType" class="form-select">
+                                <option value="handyman">Handyman</option>
+                                <option value="electrician">Electrician</option>
+                                <option value="plumber">Plumber</option>
+                                <option value="hvac">HVAC</option>
+                                <option value="painter">Painter</option>
+                                <option value="carpenter">Carpenter</option>
+                                <option value="landscaper">Landscaper</option>
+                                <option value="general_contractor">General Contractor</option>
+                                <option value="roofing">Roofing</option>
+                                <option value="flooring">Flooring</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Business Style</label>
+                            <select id="businessStyle" class="form-select">
+                                <option value="professional">Professional</option>
+                                <option value="friendly">Friendly</option>
+                                <option value="clever">Clever/Catchy</option>
+                                <option value="family">Family Business</option>
+                                <option value="premium">Premium/High-End</option>
+                                <option value="local">Local Focus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Location/City (Optional)</label>
+                            <input type="text" id="location" class="form-input" placeholder="Denver, CO">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">&nbsp;</label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="includeName" checked>
+                                Include my name in suggestions
+                            </label>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Keywords to Include (Optional)</label>
+                            <input type="text" id="keywords" class="form-input" placeholder="quality, reliable, fast">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary generate-btn" id="generateBtn" onclick="generateNames()">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Generate Business Names
+                    </button>
+
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">lightbulb</span>
+                            Name Ideas
+                        </h2>
+
+                        <div id="loadingState" class="loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="loading-text">Generating creative names...</p>
+                        </div>
+
+                        <div id="resultsContainer" class="name-cards"></div>
+
+                        <button class="btn btn-primary generate-more-btn" id="generateMoreBtn" onclick="generateNames()" style="display: none;">
+                            <span class="material-symbols-outlined">refresh</span>
+                            Generate More Names
+                        </button>
+
+                        <div class="rate-limit-notice" id="rateLimitNotice" style="display: none;">
+                            You've used all 5 free generations. Sign up for C-Money to generate unlimited names!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                        </div>
+                        <h3 class="cta-title">Got Your Name?</h3>
+                        <p class="cta-description">
+                            Now get the tools to run your business. Invoicing, scheduling, and more for just $9.99/mo.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let generationCount = parseInt(localStorage.getItem('nameGenCount') || '0');
+        const maxGenerations = 5;
+
+        const nameTemplates = {
+            handyman: {
+                professional: [
+                    { suffix: "Home Services", tagline: "Your home, our expertise" },
+                    { suffix: "Property Solutions", tagline: "Solutions for every space" },
+                    { suffix: "Home Repair Pros", tagline: "Professional repairs, lasting results" }
+                ],
+                friendly: [
+                    { suffix: "Handy Helpers", tagline: "Neighbors helping neighbors" },
+                    { suffix: "Fix-It Friends", tagline: "Your go-to home helpers" },
+                    { suffix: "Home Buddies", tagline: "Making houses into homes" }
+                ],
+                clever: [
+                    { suffix: "Hammer Time Services", tagline: "Can't touch this quality" },
+                    { suffix: "The Fixer Upper", tagline: "We fix what life breaks" },
+                    { suffix: "Handy Dandy Co.", tagline: "Dandy solutions, handy prices" }
+                ]
+            },
+            electrician: {
+                professional: [
+                    { suffix: "Electric", tagline: "Powering your world safely" },
+                    { suffix: "Electrical Services", tagline: "Licensed. Insured. Reliable." },
+                    { suffix: "Power Solutions", tagline: "Your electrical experts" }
+                ],
+                friendly: [
+                    { suffix: "Sparky's Electric", tagline: "Lighting up your life" },
+                    { suffix: "Bright Ideas Electric", tagline: "Brilliant solutions, fair prices" }
+                ],
+                clever: [
+                    { suffix: "Current Events Electric", tagline: "Staying current since day one" },
+                    { suffix: "Ohm Sweet Ohm", tagline: "Resistance is futile to quality" },
+                    { suffix: "Watt's Up Electric", tagline: "Shocking quality, grounded prices" }
+                ]
+            },
+            plumber: {
+                professional: [
+                    { suffix: "Plumbing", tagline: "Flow with confidence" },
+                    { suffix: "Plumbing Solutions", tagline: "Expert plumbing, honest pricing" },
+                    { suffix: "Pipe & Drain Pros", tagline: "Your plumbing professionals" }
+                ],
+                friendly: [
+                    { suffix: "Plumbing Pals", tagline: "Friends you can count on" },
+                    { suffix: "Happy Pipes Plumbing", tagline: "Keeping your pipes happy" }
+                ],
+                clever: [
+                    { suffix: "Drain Surgeons", tagline: "Precision plumbing care" },
+                    { suffix: "The Pipe Whisperer", tagline: "We speak fluent plumbing" },
+                    { suffix: "Royal Flush Plumbing", tagline: "A winning hand every time" }
+                ]
+            },
+            hvac: {
+                professional: [
+                    { suffix: "Heating & Cooling", tagline: "Comfort in every season" },
+                    { suffix: "Climate Control", tagline: "Your comfort, our priority" },
+                    { suffix: "HVAC Solutions", tagline: "Expert climate management" }
+                ],
+                friendly: [
+                    { suffix: "Comfort Crew HVAC", tagline: "Your comfort is our mission" },
+                    { suffix: "Cool Breeze HVAC", tagline: "Bringing comfort home" }
+                ],
+                clever: [
+                    { suffix: "Chill Factor HVAC", tagline: "We've got the cool factor" },
+                    { suffix: "Hot & Cold Heroes", tagline: "Saving you from extremes" }
+                ]
+            },
+            painter: {
+                professional: [
+                    { suffix: "Painting", tagline: "Color your world beautifully" },
+                    { suffix: "Painting Professionals", tagline: "Precision in every stroke" },
+                    { suffix: "Coating Solutions", tagline: "Professional finishes, lasting beauty" }
+                ],
+                friendly: [
+                    { suffix: "Happy Brush Painting", tagline: "Spreading color and joy" },
+                    { suffix: "Color Me Beautiful", tagline: "Transforming spaces with care" }
+                ],
+                clever: [
+                    { suffix: "Stroke of Genius", tagline: "Brilliant colors, genius results" },
+                    { suffix: "The Paint Whisperer", tagline: "We speak in colors" }
+                ]
+            },
+            general_contractor: {
+                professional: [
+                    { suffix: "Construction", tagline: "Building excellence" },
+                    { suffix: "Contracting", tagline: "Quality construction, on time" },
+                    { suffix: "Builders", tagline: "From vision to reality" }
+                ],
+                friendly: [
+                    { suffix: "Build Squad", tagline: "Your building partners" },
+                    { suffix: "Dream Builders", tagline: "Building your dreams" }
+                ],
+                clever: [
+                    { suffix: "Nailed It Construction", tagline: "We nail it every time" },
+                    { suffix: "Blueprint Masters", tagline: "Mastering your vision" }
+                ]
+            }
+        };
+
+        function generateNames() {
+            if (generationCount >= maxGenerations) {
+                document.getElementById('rateLimitNotice').style.display = 'block';
+                document.getElementById('generateMoreBtn').style.display = 'none';
+                return;
+            }
+
+            const firstName = document.getElementById('firstName').value || 'John';
+            const lastName = document.getElementById('lastName').value || 'Smith';
+            const tradeType = document.getElementById('tradeType').value;
+            const businessStyle = document.getElementById('businessStyle').value;
+            const location = document.getElementById('location').value;
+            const includeName = document.getElementById('includeName').checked;
+            const keywords = document.getElementById('keywords').value;
+
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('generateMoreBtn').style.display = 'none';
+
+            // Simulate API delay
+            setTimeout(() => {
+                const names = generateNamesList(firstName, lastName, tradeType, businessStyle, location, includeName, keywords);
+                displayResults(names);
+
+                generationCount++;
+                localStorage.setItem('nameGenCount', generationCount.toString());
+
+                document.getElementById('loadingState').style.display = 'none';
+
+                if (generationCount < maxGenerations) {
+                    document.getElementById('generateMoreBtn').style.display = 'block';
+                } else {
+                    document.getElementById('rateLimitNotice').style.display = 'block';
+                }
+            }, 1500);
+        }
+
+        function generateNamesList(firstName, lastName, trade, style, location, includeName, keywords) {
+            const names = [];
+            const templates = nameTemplates[trade] || nameTemplates.handyman;
+            const styleTemplates = templates[style] || templates.professional;
+
+            // Generate name variations
+            if (includeName) {
+                names.push({
+                    name: `${lastName} ${styleTemplates[0]?.suffix || 'Services'}`,
+                    tagline: styleTemplates[0]?.tagline || "Quality you can trust",
+                    reasoning: `Classic and professional - putting your family name front and center builds trust.`,
+                    domain: `${lastName.toLowerCase()}${trade}.com`
+                });
+
+                names.push({
+                    name: `${firstName} ${lastName} ${styleTemplates[1]?.suffix || 'Co.'}`,
+                    tagline: "Personal service, professional results",
+                    reasoning: `Full name adds a personal touch that customers appreciate.`,
+                    domain: `${firstName.toLowerCase()}${lastName.toLowerCase()}.com`
+                });
+            }
+
+            if (location) {
+                const cityName = location.split(',')[0].trim();
+                names.push({
+                    name: `${cityName} ${styleTemplates[0]?.suffix || 'Services'}`,
+                    tagline: `${cityName}'s trusted professionals`,
+                    reasoning: `Local focus helps with SEO and builds community trust.`,
+                    domain: `${cityName.toLowerCase().replace(/\s+/g, '')}${trade}.com`
+                });
+            }
+
+            // Add more creative names
+            const creativeNames = [
+                {
+                    name: `Pro ${trade.charAt(0).toUpperCase() + trade.slice(1).replace('_', ' ')} Solutions`,
+                    tagline: "Professional solutions, every time",
+                    reasoning: "Clear and professional, immediately tells customers what you do.",
+                    domain: `pro${trade}solutions.com`
+                },
+                {
+                    name: `${trade.charAt(0).toUpperCase() + trade.slice(1).replace('_', ' ')} Masters`,
+                    tagline: "Mastering the craft since day one",
+                    reasoning: "Conveys expertise and mastery of your trade.",
+                    domain: `${trade}masters.com`
+                },
+                {
+                    name: `Elite ${trade.charAt(0).toUpperCase() + trade.slice(1).replace('_', ' ')} Group`,
+                    tagline: "Excellence is our standard",
+                    reasoning: "Premium positioning for quality-focused customers.",
+                    domain: `elite${trade}group.com`
+                },
+                {
+                    name: `Trusted ${trade.charAt(0).toUpperCase() + trade.slice(1).replace('_', ' ')} Pros`,
+                    tagline: "Trust built one job at a time",
+                    reasoning: "Emphasizes reliability and trustworthiness.",
+                    domain: `trusted${trade}pros.com`
+                }
+            ];
+
+            names.push(...creativeNames);
+
+            // Shuffle and return top 6
+            return names.sort(() => Math.random() - 0.5).slice(0, 6);
+        }
+
+        function displayResults(names) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = names.map((name, index) => `
+                <div class="name-card">
+                    <div class="name-card-header">
+                        <h3 class="name-card-title">${name.name}</h3>
+                        <div class="name-card-actions">
+                            <button class="icon-btn" onclick="toggleFavorite(this)" title="Save">
+                                <span class="material-symbols-outlined" style="font-size: 1rem;">favorite</span>
+                            </button>
+                            <button class="icon-btn" onclick="copyName('${name.name}')" title="Copy">
+                                <span class="material-symbols-outlined" style="font-size: 1rem;">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="name-card-tagline">"${name.tagline}"</p>
+                    <p class="name-card-reasoning">${name.reasoning}</p>
+                    <a href="https://www.namecheap.com/domains/registration/results/?domain=${name.domain}" target="_blank" class="name-card-domain">
+                        <span class="material-symbols-outlined" style="font-size: 0.875rem;">language</span>
+                        Check ${name.domain}
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        function toggleFavorite(btn) {
+            btn.classList.toggle('favorited');
+        }
+
+        function copyName(name) {
+            navigator.clipboard.writeText(name);
+            alert('Copied: ' + name);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quarterly Tax Payment Calculator | Free Tool | C-Money</title>
+    <meta name="description" content="Calculate your quarterly estimated tax payments and see due dates. Free estimated tax calculator for contractors and self-employed.">
+    <meta name="keywords" content="quarterly tax payment calculator, estimated tax payments contractor, 1099 quarterly taxes, self employed tax deadlines">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f20d0d;
+            --primary-dark: #d40b0b;
+            --background-dark: #121212;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --border-color: #2a2a2a;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon { width: 2rem; height: 2rem; color: var(--primary); }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+
+        .nav { display: none; align-items: center; gap: 2rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(242, 13, 13, 0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs .current {
+            color: white;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+            text-underline-offset: 4px;
+        }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) { .page-title { font-size: 2.5rem; } }
+        .page-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .calculator-layout { grid-template-columns: 1fr 320px; }
+        }
+
+        .calculator-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        @media (min-width: 768px) { .calculator-card { padding: 2rem; } }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .input-wrapper { position: relative; }
+        .input-prefix, .input-suffix {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .input-prefix { left: 1rem; }
+        .input-suffix { right: 1rem; }
+
+        .form-input, .form-select {
+            width: 100%;
+            height: 3rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.1);
+        }
+        .form-input.has-prefix { padding-left: 2rem; }
+        .form-input.has-suffix { padding-right: 2.5rem; }
+        .form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .result-main {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.1) 0%, rgba(242, 13, 13, 0.05) 100%);
+            border: 1px solid rgba(242, 13, 13, 0.2);
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -0.025em;
+        }
+        @media (min-width: 768px) { .result-value { font-size: 4rem; } }
+
+        .result-value small {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Calendar Grid */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .calendar-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .calendar-card {
+            background-color: var(--input-bg);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .calendar-card.upcoming {
+            border: 2px solid var(--primary);
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.1) 0%, var(--input-bg) 100%);
+        }
+
+        .calendar-quarter {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .calendar-amount {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .calendar-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .calendar-date .material-symbols-outlined {
+            font-size: 1rem;
+        }
+
+        .calendar-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--warning);
+            color: black;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            border-radius: 0.25rem;
+            text-transform: uppercase;
+        }
+
+        .add-calendar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .add-calendar-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .monthly-setaside {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .monthly-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .monthly-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--success);
+        }
+
+        .monthly-hint {
+            margin-top: 0.5rem;
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sidebar CTA */
+        .sidebar { position: sticky; top: 6rem; }
+
+        .cta-card {
+            background-color: var(--primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -2rem;
+            bottom: -2rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .cta-content { position: relative; z-index: 10; }
+
+        .cta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cta-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-description {
+            opacity: 0.85;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            width: 100%;
+            height: 3rem;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover { background-color: #f5f5f5; }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-logo-icon { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; }
+        .footer-copyright { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"/>
+                    <path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519Z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <span class="logo-text">C-Money</span>
+            </a>
+            <nav class="nav">
+                <a href="../free-tools.html" class="nav-link active">Free Tools</a>
+                <a href="../features.html" class="nav-link">Features</a>
+                <a href="../pricing.html" class="nav-link">Pricing</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <a href="../pricing.html" class="btn btn-primary">Get Full Toolbox</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs">
+            <a href="../free-tools.html">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">home</span>
+                Free Tools
+            </a>
+            <span style="color: rgba(255,255,255,0.3);">/</span>
+            <span class="current">Quarterly Tax Calculator</span>
+        </nav>
+
+        <div class="page-header">
+            <h1 class="page-title">Quarterly Tax Payment Calculator</h1>
+            <p class="page-description">
+                Calculate your quarterly estimated tax payments and never miss a deadline.
+            </p>
+        </div>
+
+        <div class="calculator-layout">
+            <div>
+                <div class="calculator-card">
+                    <h2 class="section-title">
+                        <span class="material-symbols-outlined">tune</span>
+                        Your Income
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Expected Annual Income</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="annualIncome" class="form-input has-prefix" value="80000" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Expected Annual Expenses</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="annualExpenses" class="form-input has-prefix" value="20000" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Filing Status</label>
+                            <select id="filingStatus" class="form-select">
+                                <option value="single">Single</option>
+                                <option value="married_joint">Married Filing Jointly</option>
+                                <option value="married_separate">Married Filing Separately</option>
+                                <option value="head_household">Head of Household</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <select id="state" class="form-select">
+                                <option value="none">No State Income Tax</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="CA">California</option>
+                                <option value="CO" selected>Colorado</option>
+                                <option value="FL">Florida (No Income Tax)</option>
+                                <option value="GA">Georgia</option>
+                                <option value="IL">Illinois</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="OH">Ohio</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="TX">Texas (No Income Tax)</option>
+                                <option value="WA">Washington (No Income Tax)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="results-section">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">event</span>
+                            Payment Schedule
+                        </h2>
+
+                        <div class="result-main">
+                            <p class="result-label">Annual Tax Estimate</p>
+                            <p class="result-value">$<span id="annualTax">0</span></p>
+                        </div>
+
+                        <div class="calendar-grid">
+                            <div class="calendar-card" id="q1Card">
+                                <div class="calendar-quarter">Q1 Payment</div>
+                                <div class="calendar-amount" id="q1Amount">$0</div>
+                                <div class="calendar-date">
+                                    <span class="material-symbols-outlined">calendar_today</span>
+                                    <span id="q1Date">April 15, 2025</span>
+                                </div>
+                                <a href="#" class="add-calendar-btn" id="q1Cal">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                                    Add to Calendar
+                                </a>
+                            </div>
+                            <div class="calendar-card" id="q2Card">
+                                <div class="calendar-quarter">Q2 Payment</div>
+                                <div class="calendar-amount" id="q2Amount">$0</div>
+                                <div class="calendar-date">
+                                    <span class="material-symbols-outlined">calendar_today</span>
+                                    <span id="q2Date">June 15, 2025</span>
+                                </div>
+                                <a href="#" class="add-calendar-btn" id="q2Cal">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                                    Add to Calendar
+                                </a>
+                            </div>
+                            <div class="calendar-card" id="q3Card">
+                                <div class="calendar-quarter">Q3 Payment</div>
+                                <div class="calendar-amount" id="q3Amount">$0</div>
+                                <div class="calendar-date">
+                                    <span class="material-symbols-outlined">calendar_today</span>
+                                    <span id="q3Date">September 15, 2025</span>
+                                </div>
+                                <a href="#" class="add-calendar-btn" id="q3Cal">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                                    Add to Calendar
+                                </a>
+                            </div>
+                            <div class="calendar-card" id="q4Card">
+                                <div class="calendar-quarter">Q4 Payment</div>
+                                <div class="calendar-amount" id="q4Amount">$0</div>
+                                <div class="calendar-date">
+                                    <span class="material-symbols-outlined">calendar_today</span>
+                                    <span id="q4Date">January 15, 2026</span>
+                                </div>
+                                <a href="#" class="add-calendar-btn" id="q4Cal">
+                                    <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                                    Add to Calendar
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="monthly-setaside">
+                            <p class="monthly-label">Set Aside Each Month</p>
+                            <p class="monthly-value" id="monthlySetaside">$0</p>
+                            <p class="monthly-hint">Put this amount in a separate savings account</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="cta-card">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <div class="cta-icon">
+                            <span class="material-symbols-outlined">notifications_active</span>
+                        </div>
+                        <h3 class="cta-title">Never Miss a Deadline</h3>
+                        <p class="cta-description">
+                            Get nagging reminders for tax deadlines with C-Money's MUST ToDo feature.
+                        </p>
+                        <button class="cta-btn" onclick="window.location.href='../pricing.html'">
+                            Start Free Trial
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg class="footer-logo-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455" fill="currentColor"/>
+            </svg>
+            <span class="footer-logo-text">C-Money Toolbox</span>
+        </div>
+        <p class="footer-copyright">&copy; 2024 C-Money Software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const stateTaxRates = {
+            none: 0, AL: 0.05, AZ: 0.025, CA: 0.0725, CO: 0.044,
+            FL: 0, GA: 0.0549, IL: 0.0495, NY: 0.0685, NC: 0.0475,
+            OH: 0.035, PA: 0.0307, TX: 0, WA: 0
+        };
+
+        function getQuarterlyDates(year) {
+            return [
+                { q: 1, date: new Date(year, 3, 15), label: `April 15, ${year}` },
+                { q: 2, date: new Date(year, 5, 15), label: `June 15, ${year}` },
+                { q: 3, date: new Date(year, 8, 15), label: `September 15, ${year}` },
+                { q: 4, date: new Date(year + 1, 0, 15), label: `January 15, ${year + 1}` }
+            ];
+        }
+
+        function createGoogleCalendarLink(title, date, amount) {
+            const startDate = date.toISOString().replace(/-|:|\.\d\d\d/g, '').slice(0, 8);
+            const endDate = startDate;
+            const details = `Quarterly estimated tax payment of ${amount}. Pay via IRS Direct Pay or EFTPS.`;
+            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(details)}`;
+        }
+
+        function calculate() {
+            const annualIncome = parseFloat(document.getElementById('annualIncome').value) || 0;
+            const annualExpenses = parseFloat(document.getElementById('annualExpenses').value) || 0;
+            const filingStatus = document.getElementById('filingStatus').value;
+            const state = document.getElementById('state').value;
+
+            const netIncome = annualIncome - annualExpenses;
+
+            // SE Tax
+            const seIncomeForTax = netIncome * 0.9235;
+            const seTax = Math.min(seIncomeForTax, 168600) * 0.124 + seIncomeForTax * 0.029;
+
+            // Federal tax (simplified)
+            const standardDeduction = filingStatus === 'married_joint' ? 29200 : 14600;
+            const taxableIncome = Math.max(0, netIncome - (seTax / 2) - standardDeduction);
+            let federalTax = 0;
+            if (taxableIncome > 0) {
+                if (taxableIncome <= 11600) federalTax = taxableIncome * 0.10;
+                else if (taxableIncome <= 47150) federalTax = 1160 + (taxableIncome - 11600) * 0.12;
+                else if (taxableIncome <= 100525) federalTax = 5426 + (taxableIncome - 47150) * 0.22;
+                else federalTax = 17168.5 + (taxableIncome - 100525) * 0.24;
+            }
+
+            // State tax
+            const stateRate = stateTaxRates[state] || 0;
+            const stateTax = taxableIncome * stateRate;
+
+            const totalTax = seTax + federalTax + stateTax;
+            const quarterlyPayment = totalTax / 4;
+            const monthlySetaside = totalTax / 12;
+
+            // Update UI
+            document.getElementById('annualTax').textContent = totalTax.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            document.getElementById('monthlySetaside').textContent = '$' + monthlySetaside.toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+            const formattedQuarterly = '$' + quarterlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            document.getElementById('q1Amount').textContent = formattedQuarterly;
+            document.getElementById('q2Amount').textContent = formattedQuarterly;
+            document.getElementById('q3Amount').textContent = formattedQuarterly;
+            document.getElementById('q4Amount').textContent = formattedQuarterly;
+
+            // Update dates and calendar links
+            const currentYear = new Date().getFullYear();
+            const dates = getQuarterlyDates(currentYear);
+            const today = new Date();
+
+            dates.forEach((d, i) => {
+                document.getElementById(`q${i + 1}Date`).textContent = d.label;
+
+                const card = document.getElementById(`q${i + 1}Card`);
+                card.classList.remove('upcoming');
+
+                // Mark next upcoming payment
+                if (d.date > today && !document.querySelector('.calendar-card.upcoming')) {
+                    card.classList.add('upcoming');
+                }
+
+                // Update calendar link
+                const calLink = document.getElementById(`q${i + 1}Cal`);
+                calLink.href = createGoogleCalendarLink(`Q${i + 1} Estimated Tax Payment`, d.date, formattedQuarterly);
+                calLink.target = '_blank';
+            });
+        }
+
+        // Auto-calculate on input change
+        document.querySelectorAll('.form-input, .form-select').forEach(input => {
+            input.addEventListener('input', calculate);
+            input.addEventListener('change', calculate);
+        });
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>
