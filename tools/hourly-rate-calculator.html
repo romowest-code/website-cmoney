@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contractor Hourly Rate Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="Calculate exactly what hourly rate you need to charge as a contractor to hit your income goals. Free calculator for handymen, electricians, plumbers, and more.">
-    <meta name="keywords" content="contractor hourly rate, handyman pricing calculator, how much to charge per hour, trade business calculator">
+    <title>Contractor Hourly Rate Calculator | Free Calculator | C-Money</title>
+    <meta name="description" content="Free contractor hourly rate calculator. Calculate what to charge per hour as a handyman, electrician, or plumber based on your income goals. Free to use. No sign up required.">
+    <meta name="keywords" content="contractor hourly rate calculator, what to charge per hour contractor, handyman hourly rate calculator, trade business calculator">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Contractor Hourly Rate Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Calculate exactly what hourly rate you need to charge as a contractor to hit your income goals after expenses and taxes."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Why is my calculated rate so much higher than I'm charging?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most contractors dramatically underestimate their true costs. When you factor in unbillable time, vehicle expenses, insurance, and taxes, you need to charge 2-3x what you might expect."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's a realistic number for billable hours per week?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For most solo contractors, 25-30 billable hours is realistic. Time goes to estimates, travel, admin, and the inevitable no-shows and cancellations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I charge the same rate for all jobs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Many contractors charge different rates for different job types. Quick service calls often warrant higher rates, while larger projects can be priced lower per hour."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I justify a high hourly rate to customers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Focus on the value delivered, not the time. Customers pay for your expertise, tools, insurance, and the problem being solved—not just labor hours."
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -400,6 +455,167 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .content-section { padding: 2rem; } }
+
+        .content-section h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .content-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-section ol, .content-section ul {
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .intro-section {
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Rate Table */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .rate-table th, .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rate-table th {
+            background-color: var(--input-bg);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rate-table tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 3rem;
+        }
+
+        .related-tools h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .related-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .related-tools-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .related-tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .related-tool-card h3 {
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-tool-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -437,6 +653,24 @@
             <p class="page-description">
                 Calculate exactly what hourly rate you need to charge to hit your income goals after expenses and taxes.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Most contractors guess at their hourly rate and end up working for less than minimum wage once expenses are factored in. This calculator works backwards from your income goals to tell you exactly what you need to charge.</p>
+            <p>The formula accounts for everything: your desired take-home pay, business expenses, vehicle costs, tools, insurance, taxes, and the reality that you can't bill 40 hours a week—some time goes to estimates, travel, admin, and chasing payments.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use This Calculator</h2>
+            <ol>
+                <li>Enter your desired annual take-home pay (after taxes)</li>
+                <li>Add up your annual business expenses (tools, insurance, marketing)</li>
+                <li>Include vehicle costs (gas, maintenance, payments)</li>
+                <li>Set your estimated tax rate (typically 25-35% for self-employed)</li>
+                <li>Enter realistic billable hours per week (most contractors bill 25-35 hrs)</li>
+                <li>Adjust weeks worked per year (account for vacation, slow seasons)</li>
+                <li>See your required hourly rate and annual gross needed</li>
+            </ol>
         </div>
 
         <div class="calculator-layout">
@@ -573,6 +807,101 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <!-- Educational Section -->
+        <div class="content-section">
+            <h2>Average Contractor Hourly Rates by Trade (2024)</h2>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Trade</th>
+                        <th>Average Rate</th>
+                        <th>Range</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>General Handyman</td>
+                        <td>$50-75/hr</td>
+                        <td>$35-125</td>
+                    </tr>
+                    <tr>
+                        <td>Electrician</td>
+                        <td>$75-100/hr</td>
+                        <td>$50-150</td>
+                    </tr>
+                    <tr>
+                        <td>Plumber</td>
+                        <td>$75-125/hr</td>
+                        <td>$50-200</td>
+                    </tr>
+                    <tr>
+                        <td>Carpenter</td>
+                        <td>$50-85/hr</td>
+                        <td>$35-125</td>
+                    </tr>
+                    <tr>
+                        <td>Painter</td>
+                        <td>$40-60/hr</td>
+                        <td>$25-85</td>
+                    </tr>
+                    <tr>
+                        <td>General Contractor</td>
+                        <td>$50-150/hr</td>
+                        <td>$40-250</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Rates vary significantly by region. Urban areas and high cost-of-living cities command 50-100% higher rates.</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="content-section faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Why is my calculated rate so much higher than I'm charging?</h3>
+                <p class="faq-answer">Most contractors dramatically underestimate their true costs. When you factor in unbillable time, vehicle expenses, insurance, and taxes, you need to charge 2-3x what you might expect.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">What's a realistic number for billable hours per week?</h3>
+                <p class="faq-answer">For most solo contractors, 25-30 billable hours is realistic. Time goes to estimates, travel, admin, and the inevitable no-shows and cancellations.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Should I charge the same rate for all jobs?</h3>
+                <p class="faq-answer">Many contractors charge different rates for different job types. Quick service calls often warrant higher rates, while larger projects can be priced lower per hour.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">How do I justify a high hourly rate to customers?</h3>
+                <p class="faq-answer">Focus on the value delivered, not the time. Customers pay for your expertise, tools, insurance, and the problem being solved—not just labor hours.</p>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="profit-margin-calculator.html" class="related-tool-card">
+                    <h3>Profit Margin Calculator</h3>
+                    <p>Calculate your profit margin on any job</p>
+                </a>
+                <a href="markup-calculator.html" class="related-tool-card">
+                    <h3>Markup Calculator</h3>
+                    <p>Convert between markup and margin percentages</p>
+                </a>
+                <a href="self-employment-tax-calculator.html" class="related-tool-card">
+                    <h3>Self-Employment Tax Calculator</h3>
+                    <p>Estimate your total tax burden</p>
+                </a>
+                <a href="break-even-calculator.html" class="related-tool-card">
+                    <h3>Break-Even Calculator</h3>
+                    <p>Find how many jobs you need to cover costs</p>
+                </a>
+            </div>
         </div>
     </main>
 

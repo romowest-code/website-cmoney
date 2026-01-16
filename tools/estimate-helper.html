@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Estimate Helper | Free Tool | C-Money</title>
-    <meta name="description" content="AI-powered tool to help contractors write professional job estimates. Generate clear scope of work descriptions and professional proposals.">
-    <meta name="keywords" content="job estimate template, contractor proposal generator, scope of work template, quote generator">
+    <title>Estimate Helper | Free Job Estimate Builder | C-Money</title>
+    <meta name="description" content="Free estimate helper for contractors. Build professional job estimates with line items, labor, and materials. Free to use. No sign up required.">
+    <meta name="keywords" content="contractor estimate template, job estimate builder, how to write contractor estimates">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Estimate Helper",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free estimate helper for contractors to build professional job estimates with line items, labor, and materials."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -593,6 +608,150 @@
             .calculator-card { border: none; padding: 0; background: none; }
             .results-section { border: none; margin: 0; padding: 0; }
         }
+
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section ol, .content-section ul {
+            margin-left: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .intro-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .rate-table th, .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rate-table th {
+            background-color: var(--input-bg);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+        }
+
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9375rem;
+        }
+
+        .rate-table tbody tr:hover {
+            background-color: var(--input-bg);
+        }
+
+        .related-tools {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .related-tools h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .related-tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .related-tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .related-tool-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .related-tool-card .material-symbols-outlined {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .related-tool-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .related-tool-card p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -634,6 +793,10 @@
             <p class="page-description">
                 Generate professional job estimates and scope of work descriptions. Perfect for proposals and quotes.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>A professional estimate does more than list prices—it builds trust and helps you close more jobs. This tool helps you create detailed, clear estimates that customers understand and accept.</p>
         </div>
 
         <div class="calculator-layout">
@@ -804,6 +967,80 @@
                     </ul>
                 </div>
             </aside>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use This Tool</h2>
+            <ol>
+                <li>Enter your customer and job information</li>
+                <li>Add line items for materials and labor</li>
+                <li>Set your markup and any applicable discounts</li>
+                <li>Generate a professional PDF estimate</li>
+            </ol>
+        </div>
+
+        <div class="content-section">
+            <h2>What to Include in Every Estimate</h2>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Why It Matters</th>
+                        <th>What to Include</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Header</td><td>Builds credibility</td><td>Logo, license #, insurance info, contact</td></tr>
+                    <tr><td>Scope of Work</td><td>Sets expectations</td><td>Detailed description of what you'll do</td></tr>
+                    <tr><td>Line Items</td><td>Shows transparency</td><td>Materials, quantities, labor hours</td></tr>
+                    <tr><td>Timeline</td><td>Manages expectations</td><td>Start date, duration, milestones</td></tr>
+                    <tr><td>Payment Terms</td><td>Protects you</td><td>Deposit, progress payments, final payment</td></tr>
+                    <tr><td>Exclusions</td><td>Prevents disputes</td><td>What's NOT included in the price</td></tr>
+                    <tr><td>Validity</td><td>Protects pricing</td><td>"Estimate valid for 30 days"</td></tr>
+                </tbody>
+            </table>
+            <h3>Estimate Best Practices</h3>
+            <ul>
+                <li>Always visit the job site before estimating</li>
+                <li>Include photos of the work area in your estimate</li>
+                <li>Break down costs so customers understand value</li>
+                <li>Offer 2-3 options at different price points</li>
+                <li>Follow up within 48 hours if you haven't heard back</li>
+            </ul>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="markup-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">calculate</span>
+                    <div>
+                        <h3>Markup Calculator</h3>
+                        <p>Calculate your markup percentage</p>
+                    </div>
+                </a>
+                <a href="pricing-research.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">search</span>
+                    <div>
+                        <h3>Pricing Research</h3>
+                        <p>Research local market rates</p>
+                    </div>
+                </a>
+                <a href="hourly-rate-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">timer</span>
+                    <div>
+                        <h3>Hourly Rate Calculator</h3>
+                        <p>Set your hourly rate</p>
+                    </div>
+                </a>
+                <a href="profit-margin-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">percent</span>
+                    <div>
+                        <h3>Profit Margin Calculator</h3>
+                        <p>Calculate your profit margin</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
 

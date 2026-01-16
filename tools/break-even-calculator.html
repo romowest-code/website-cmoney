@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Break-Even Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="Calculate how many jobs or hours you need to cover your monthly expenses. Free break-even calculator for contractors.">
-    <meta name="keywords" content="break even calculator business, how many jobs to cover expenses, contractor break even point">
+    <title>Break-Even Calculator | Free Break-Even Analysis | C-Money</title>
+    <meta name="description" content="Free break-even calculator. Find out how many jobs or hours you need to cover your costs. Essential for contractors and freelancers. Free to use. No sign up required.">
+    <meta name="keywords" content="break even calculator, break even point calculator, break even analysis contractor">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Break-Even Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free break-even calculator to find how many jobs or hours you need to cover costs as a contractor."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -462,6 +477,156 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .intro-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+        }
+
+        .content-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-section ol {
+            padding-left: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .content-section ol li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Rate Table */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .rate-table th,
+        .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rate-table th {
+            background-color: rgba(242, 13, 13, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rate-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .related-tools h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .related-tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .related-tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .related-tool-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .related-tool-card .material-symbols-outlined {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .related-tool-card h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .related-tool-card p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -499,6 +664,10 @@
             <p class="page-description">
                 How many jobs or hours do you need to cover your monthly expenses?
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Your break-even point is the minimum you need to charge (or work) just to cover your costs. Beyond that point, everything is profit. This calculator helps you understand exactly where that line is.</p>
         </div>
 
         <div class="calculator-layout">
@@ -622,6 +791,72 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use This Calculator</h2>
+            <ol>
+                <li>Enter your fixed costs (insurance, truck payment, tools, etc.)</li>
+                <li>Enter your variable costs per job (materials, supplies)</li>
+                <li>Enter your average price per job or hourly rate</li>
+                <li>See how many jobs/hours you need to break even</li>
+            </ol>
+        </div>
+
+        <div class="content-section">
+            <h2>Understanding Break-Even for Contractors</h2>
+            <p>Your break-even formula: Fixed Costs ÷ (Price - Variable Costs) = Number of Jobs Needed</p>
+            <h3>Example Break-Even Analysis</h3>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Monthly Costs</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Truck payment</td><td>$500</td></tr>
+                    <tr><td>Insurance</td><td>$300</td></tr>
+                    <tr><td>Tools/equipment</td><td>$200</td></tr>
+                    <tr><td>Phone/software</td><td>$100</td></tr>
+                    <tr><td><strong>Total Fixed Costs</strong></td><td><strong>$1,100</strong></td></tr>
+                </tbody>
+            </table>
+            <p>If you charge $200/job with $50 in materials, you keep $150 per job. Break-even = $1,100 ÷ $150 = 7.3 jobs per month.</p>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="markup-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">calculate</span>
+                    <div>
+                        <h3>Markup Calculator</h3>
+                        <p>Calculate markup vs margin</p>
+                    </div>
+                </a>
+                <a href="profit-margin-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">percent</span>
+                    <div>
+                        <h3>Profit Margin Calculator</h3>
+                        <p>Find your true profit margin</p>
+                    </div>
+                </a>
+                <a href="hourly-rate-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">timer</span>
+                    <div>
+                        <h3>Hourly Rate Calculator</h3>
+                        <p>Find your ideal hourly rate</p>
+                    </div>
+                </a>
+                <a href="quarterly-tax-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    <div>
+                        <h3>Quarterly Tax Calculator</h3>
+                        <p>Plan for quarterly taxes</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
 

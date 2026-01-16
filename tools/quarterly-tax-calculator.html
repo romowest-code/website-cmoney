@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quarterly Tax Payment Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="Calculate your quarterly estimated tax payments and see due dates. Free estimated tax calculator for contractors and self-employed.">
-    <meta name="keywords" content="quarterly tax payment calculator, estimated tax payments contractor, 1099 quarterly taxes, self employed tax deadlines">
+    <title>Quarterly Tax Calculator Self Employed | Free Calculator | C-Money</title>
+    <meta name="description" content="Free quarterly tax calculator for self-employed contractors. Calculate estimated tax payments for 1099 workers with due dates. Free to use. No sign up required.">
+    <meta name="keywords" content="quarterly tax calculator self employed, estimated tax payments contractor, 1099 quarterly taxes, self employed tax deadlines">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Quarterly Tax Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Calculate your quarterly estimated tax payments and never miss an IRS deadline."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -466,6 +481,110 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .content-section { padding: 2rem; } }
+
+        .content-section h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .content-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-section ol, .content-section ul {
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .intro-section {
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 3rem;
+        }
+
+        .related-tools h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .related-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .related-tools-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .related-tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .related-tool-card h3 {
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-tool-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -503,6 +622,11 @@
             <p class="page-description">
                 Calculate your quarterly estimated tax payments and never miss a deadline.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Unlike W-2 employees who have taxes withheld every paycheck, contractors must pay taxes quarterly or face IRS penalties. This calculator tells you exactly how much to set aside and when to pay it.</p>
+            <p>The IRS wants their money throughout the year—not as a lump sum in April. Miss quarterly payments and you'll owe penalties even if you pay your full tax bill on time.</p>
         </div>
 
         <div class="calculator-layout">
@@ -649,6 +773,49 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <!-- Educational Section -->
+        <div class="content-section">
+            <h2>Quarterly Tax Educational Guide</h2>
+
+            <h3>The Safe Harbor Rule</h3>
+            <p>To avoid underpayment penalties, you must pay either:</p>
+            <ol>
+                <li>100% of last year's tax liability (110% if income was over $150K)</li>
+                <li>OR 90% of this year's tax liability</li>
+            </ol>
+            <p>Most contractors use Option 1—it's easier to calculate and guarantees no penalties.</p>
+
+            <h3>How to Handle Irregular Income</h3>
+            <p>Contractor income fluctuates. Two approaches:</p>
+            <ol>
+                <li><strong>Even payments:</strong> Divide last year's tax by 4, pay that quarterly</li>
+                <li><strong>Annualized method:</strong> Calculate actual income each quarter (more work, but pays less if income is back-loaded)</li>
+            </ol>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="self-employment-tax-calculator.html" class="related-tool-card">
+                    <h3>Self-Employment Tax Calculator</h3>
+                    <p>Estimate your total SE tax burden</p>
+                </a>
+                <a href="hourly-rate-calculator.html" class="related-tool-card">
+                    <h3>Hourly Rate Calculator</h3>
+                    <p>Find your required hourly rate</p>
+                </a>
+                <a href="break-even-calculator.html" class="related-tool-card">
+                    <h3>Break-Even Calculator</h3>
+                    <p>Calculate jobs needed to cover costs</p>
+                </a>
+                <a href="profit-margin-calculator.html" class="related-tool-card">
+                    <h3>Profit Margin Calculator</h3>
+                    <p>Calculate profit on any job</p>
+                </a>
+            </div>
         </div>
     </main>
 

@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contractor Retirement Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="See if you're on track for retirement and what you need to save. Free retirement calculator for self-employed contractors.">
-    <meta name="keywords" content="retirement calculator for self employed, contractor retirement savings, SEP IRA calculator, Solo 401k calculator">
+    <title>Retirement Calculator for Self-Employed | SEP IRA vs Solo 401k | C-Money</title>
+    <meta name="description" content="Free retirement calculator for self-employed contractors. Compare SEP IRA vs Solo 401k contribution limits. See how much you can save. Free to use. No sign up required.">
+    <meta name="keywords" content="self employed retirement calculator, SEP IRA calculator, Solo 401k calculator contractor">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Self-Employed Retirement Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free retirement calculator for self-employed contractors comparing SEP IRA and Solo 401k options."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -450,6 +465,132 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) { .content-section { padding: 2rem; } }
+        .content-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        .content-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+        .content-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+        .content-section ol {
+            color: rgba(255, 255, 255, 0.7);
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+        .content-section ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.1) 0%, rgba(242, 13, 13, 0.05) 100%);
+            border: 1px solid rgba(242, 13, 13, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Rate Table */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+        .rate-table th, .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .rate-table th {
+            background-color: var(--input-bg);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .rate-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 2rem;
+        }
+        .related-tools h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .related-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .related-tool-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            background-color: rgba(242, 13, 13, 0.05);
+        }
+        .related-tool-card .material-symbols-outlined {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .related-tool-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+        .related-tool-card p {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -487,6 +628,10 @@
             <p class="page-description">
                 See if you're on track for retirement and what you need to save as a self-employed contractor.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Self-employed contractors can often save MORE for retirement than W-2 employees—with bigger tax deductions. This calculator compares your options and shows your maximum contribution limits.</p>
         </div>
 
         <div class="calculator-layout">
@@ -638,6 +783,73 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use This Calculator</h2>
+            <ol>
+                <li>Enter your net self-employment income</li>
+                <li>See maximum contributions for each account type</li>
+                <li>Compare tax savings between SEP IRA and Solo 401k</li>
+                <li>Use the projection to see your retirement growth</li>
+            </ol>
+        </div>
+
+        <div class="content-section">
+            <h2>SEP IRA vs Solo 401k for Contractors</h2>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>SEP IRA</th>
+                        <th>Solo 401k</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2024 Max Contribution</td><td>$69,000</td><td>$69,000 + $7,500 catch-up</td></tr>
+                    <tr><td>Contribution Limit</td><td>25% of net SE income</td><td>25% employer + $23,000 employee</td></tr>
+                    <tr><td>Setup Complexity</td><td>Simple (1 form)</td><td>More complex</td></tr>
+                    <tr><td>Loan Option</td><td>No</td><td>Yes (up to $50K)</td></tr>
+                    <tr><td>Roth Option</td><td>No</td><td>Yes</td></tr>
+                    <tr><td>Best For</td><td>Simple needs, lower income</td><td>Max savings, want Roth/loans</td></tr>
+                </tbody>
+            </table>
+            <h3>Quick Rule of Thumb</h3>
+            <p>If your net self-employment income is under $150K and you want simplicity, go with a SEP IRA. If you want to maximize contributions or need loan access, choose a Solo 401k.</p>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="self-employment-tax-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    <div>
+                        <h3>Self-Employment Tax Calculator</h3>
+                        <p>See your SE tax liability</p>
+                    </div>
+                </a>
+                <a href="quarterly-tax-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    <div>
+                        <h3>Quarterly Tax Calculator</h3>
+                        <p>Plan quarterly payments</p>
+                    </div>
+                </a>
+                <a href="hourly-rate-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">timer</span>
+                    <div>
+                        <h3>Hourly Rate Calculator</h3>
+                        <p>Factor retirement into your rate</p>
+                    </div>
+                </a>
+                <a href="llc-vs-sole-proprietor.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">business</span>
+                    <div>
+                        <h3>LLC vs Sole Proprietor</h3>
+                        <p>Compare business structures</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
 

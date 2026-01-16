@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contractor Markup Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="Calculate customer price from job cost using markup or margin. Free calculator for contractors to price jobs profitably.">
-    <meta name="keywords" content="contractor markup calculator, how to markup materials, markup vs margin, contractor pricing">
+    <title>Markup Calculator | Free Markup vs Margin Tool | C-Money</title>
+    <meta name="description" content="Free markup calculator. Convert between markup and margin percentages. See markup vs margin explained with examples. Free to use. No sign up required.">
+    <meta name="keywords" content="markup calculator, markup vs margin calculator, how to calculate markup">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Markup Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free markup calculator to convert between markup and margin percentages with examples for contractors."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -465,6 +480,209 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .intro-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.0625rem;
+            line-height: 1.7;
+        }
+
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.375rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .content-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-section ol,
+        .content-section ul {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Rate Table */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--input-bg);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .rate-table th,
+        .rate-table td {
+            padding: 0.875rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rate-table th {
+            background-color: rgba(242, 13, 13, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+        }
+
+        .rate-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rate-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .faq-section h2 {
+            font-size: 1.375rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .faq-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .related-tools h2 {
+            font-size: 1.375rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .related-tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .related-tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .related-tool-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .related-tool-card .material-symbols-outlined {
+            color: var(--primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .related-tool-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .related-tool-card p {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -502,6 +720,10 @@
             <p class="page-description">
                 Calculate customer price from job cost using markup or margin. Know exactly what to charge.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Markup and margin are two different ways to express your profit on a job. Many contractors confuse them, which can lead to underpricing. This calculator instantly converts between the two and shows you exactly how much profit you're making.</p>
         </div>
 
         <div class="calculator-layout">
@@ -611,6 +833,43 @@
                         <strong>The key insight:</strong> A 50% markup only gives you a 33.3% margin. Many contractors aim for a 50% markup thinking they're getting 50% profit—but margin tells the true story of your profitability.
                     </p>
                 </div>
+
+                <div class="content-section">
+                    <h2>How to Use This Calculator</h2>
+                    <ol>
+                        <li>Enter your cost (materials + labor)</li>
+                        <li>Enter either your desired markup percentage OR your selling price</li>
+                        <li>The calculator shows your profit margin, gross profit, and selling price</li>
+                        <li>Use the comparison to understand the relationship between markup and margin</li>
+                    </ol>
+                </div>
+
+                <div class="content-section">
+                    <h2>Markup vs Margin: What's the Difference?</h2>
+                    <p>Markup is calculated based on your COST. Margin is calculated based on your SELLING PRICE. This is why a 50% markup doesn't equal a 50% margin.</p>
+                    <table class="rate-table">
+                        <thead>
+                            <tr>
+                                <th>Markup %</th>
+                                <th>Equals Margin %</th>
+                                <th>Example ($1000 cost)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>15%</td><td>13%</td><td>Sell for $1,150 / Keep $150</td></tr>
+                            <tr><td>20%</td><td>16.7%</td><td>Sell for $1,200 / Keep $200</td></tr>
+                            <tr><td>25%</td><td>20%</td><td>Sell for $1,250 / Keep $250</td></tr>
+                            <tr><td>30%</td><td>23%</td><td>Sell for $1,300 / Keep $300</td></tr>
+                            <tr><td>40%</td><td>28.6%</td><td>Sell for $1,400 / Keep $400</td></tr>
+                            <tr><td>50%</td><td>33.3%</td><td>Sell for $1,500 / Keep $500</td></tr>
+                            <tr><td>75%</td><td>42.9%</td><td>Sell for $1,750 / Keep $750</td></tr>
+                            <tr><td>100%</td><td>50%</td><td>Sell for $2,000 / Keep $1,000</td></tr>
+                        </tbody>
+                    </table>
+                    <h3>Key Formula</h3>
+                    <p><strong>Markup to Margin:</strong> Margin = Markup ÷ (1 + Markup)</p>
+                    <p><strong>Margin to Markup:</strong> Markup = Margin ÷ (1 - Margin)</p>
+                </div>
             </div>
 
             <aside class="sidebar">
@@ -630,6 +889,40 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="hourly-rate-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">timer</span>
+                    <div>
+                        <h3>Hourly Rate Calculator</h3>
+                        <p>Find your ideal hourly rate</p>
+                    </div>
+                </a>
+                <a href="break-even-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">trending_up</span>
+                    <div>
+                        <h3>Break-Even Calculator</h3>
+                        <p>Know when you start profiting</p>
+                    </div>
+                </a>
+                <a href="profit-margin-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">percent</span>
+                    <div>
+                        <h3>Profit Margin Calculator</h3>
+                        <p>Calculate your true profit margin</p>
+                    </div>
+                </a>
+                <a href="estimate-helper.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">request_quote</span>
+                    <div>
+                        <h3>Estimate Helper</h3>
+                        <p>Build accurate job estimates</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
 

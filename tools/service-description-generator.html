@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Description Generator | Free Tool | C-Money</title>
-    <meta name="description" content="AI-powered tool to write professional service descriptions for your contractor website, Google Business profile, and marketing materials.">
-    <meta name="keywords" content="service description generator, contractor website copy, Google Business description, handyman service descriptions">
+    <title>Service Description Generator | Free Contractor Copy Tool | C-Money</title>
+    <meta name="description" content="Free service description generator for contractors. Create compelling service page copy for your website. Professional descriptions that convert. Free to use. No sign up required.">
+    <meta name="keywords" content="service description generator, contractor website copy, how to write service descriptions">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Service Description Generator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free service description generator for contractors to create compelling website copy."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -508,6 +523,126 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) { .content-section { padding: 2rem; } }
+        .content-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        .content-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+        .content-section ol, .content-section ul {
+            margin-left: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .intro-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.0625rem;
+            line-height: 1.7;
+        }
+
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .rate-table th, .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .rate-table th {
+            background-color: var(--input-bg);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .rate-table td {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .rate-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .related-tools {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) { .related-tools { padding: 2rem; } }
+        .related-tools h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .related-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .related-tool-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            background-color: rgba(242, 13, 13, 0.05);
+        }
+        .related-tool-card .material-symbols-outlined {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .related-tool-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+        .related-tool-card p {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -549,6 +684,10 @@
             <p class="page-description">
                 Create professional service descriptions for your website, Google Business profile, and marketing materials.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Your service descriptions are often the first thing potential customers read. This generator creates professional, persuasive copy that explains what you do and why customers should choose you.</p>
         </div>
 
         <div class="calculator-layout">
@@ -678,11 +817,11 @@
                     <div class="cta-glow"></div>
                     <div class="cta-content">
                         <div class="cta-icon">
-                            <span class="material-symbols-outlined">web</span>
+                            <span class="material-symbols-outlined">request_quote</span>
                         </div>
-                        <h3 class="cta-title">Need a Website?</h3>
+                        <h3 class="cta-title">Need quick and easy estimates?</h3>
                         <p class="cta-description">
-                            C-Money includes a professional website builder designed for contractors. Just $9.99/mo.
+                            C-Money uses AI to make a professional detailed estimate for you to tweak, in seconds.
                         </p>
                         <button class="cta-btn" onclick="window.location.href='../pricing.html'">
                             Start Free Trial
@@ -719,6 +858,78 @@
                     </ul>
                 </div>
             </aside>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use This Generator</h2>
+            <ol>
+                <li>Select your trade or service type</li>
+                <li>Enter your business name and location</li>
+                <li>Choose the key benefits you want to highlight</li>
+                <li>Generate and customize your service descriptions</li>
+            </ol>
+        </div>
+
+        <div class="content-section">
+            <h2>What Makes a Great Service Description</h2>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Clear headline</td><td>Grab attention</td><td>"Professional Deck Building in [City]"</td></tr>
+                    <tr><td>Problem statement</td><td>Show understanding</td><td>"Tired of a worn-out deck that's unsafe for your family?"</td></tr>
+                    <tr><td>Solution</td><td>Present your service</td><td>"We build beautiful, long-lasting decks..."</td></tr>
+                    <tr><td>Benefits</td><td>Answer "what's in it for me"</td><td>"Increase your home value by up to 10%"</td></tr>
+                    <tr><td>Social proof</td><td>Build trust</td><td>"500+ decks built since 2010"</td></tr>
+                    <tr><td>Call to action</td><td>Tell them what to do</td><td>"Get your free estimate today"</td></tr>
+                </tbody>
+            </table>
+            <h3>SEO Tips for Service Pages</h3>
+            <ul>
+                <li>Include your city/service area in the title and first paragraph</li>
+                <li>Use your service name as the page's H1 heading</li>
+                <li>Add specific details (materials, brands, processes)</li>
+                <li>Include a clear contact form or phone number</li>
+            </ul>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="tagline-generator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">format_quote</span>
+                    <div>
+                        <h3>Tagline Generator</h3>
+                        <p>Create a memorable business tagline</p>
+                    </div>
+                </a>
+                <a href="business-name-generator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">badge</span>
+                    <div>
+                        <h3>Business Name Generator</h3>
+                        <p>Generate contractor business names</p>
+                    </div>
+                </a>
+                <a href="review-response-generator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">reviews</span>
+                    <div>
+                        <h3>Review Response Generator</h3>
+                        <p>Respond to customer reviews</p>
+                    </div>
+                </a>
+                <a href="estimate-helper.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">request_quote</span>
+                    <div>
+                        <h3>Estimate Helper</h3>
+                        <p>Create professional estimates</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
 

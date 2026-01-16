@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truck Affordability Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="Should you buy that truck? See if the payment makes sense for your contractor income. Free truck payment calculator.">
-    <meta name="keywords" content="can I afford this truck, truck payment calculator contractor, work truck affordability, contractor vehicle calculator">
+    <title>Work Truck Affordability Calculator | Contractor Truck Budget | C-Money</title>
+    <meta name="description" content="Free work truck affordability calculator. Find out how much truck you can afford based on your income. Includes payment, insurance, and fuel costs. Free to use. No sign up required.">
+    <meta name="keywords" content="work truck affordability calculator, how much truck can I afford, contractor truck payment calculator">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Work Truck Affordability Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free work truck affordability calculator for contractors to determine truck budget based on income."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -481,6 +496,138 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .content-section { padding: 2rem; } }
+        .content-section h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        .content-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+        .content-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        .content-section ol, .content-section ul {
+            color: rgba(255, 255, 255, 0.7);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.1) 0%, rgba(242, 13, 13, 0.05) 100%);
+            border: 1px solid rgba(242, 13, 13, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Rate Table */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .rate-table th, .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .rate-table th {
+            background-color: var(--input-bg);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .rate-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .related-tools h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .related-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .related-tools-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .related-tool-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .related-tool-card .material-symbols-outlined {
+            font-size: 1.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        .related-tool-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+        .related-tool-card p {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -518,6 +665,10 @@
             <p class="page-description">
                 Should you buy that truck? See if the payment makes sense for your income.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Buying the wrong truck can sink your business. This calculator helps you figure out how much truck you can realistically afford based on your actual income—not what the dealer says you qualify for.</p>
         </div>
 
         <div class="calculator-layout">
@@ -683,6 +834,72 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Use This Calculator</h2>
+            <ol>
+                <li>Enter your monthly gross income (before taxes)</li>
+                <li>Enter your current monthly expenses</li>
+                <li>Set your desired down payment</li>
+                <li>See the maximum truck price you can afford</li>
+            </ol>
+        </div>
+
+        <div class="content-section">
+            <h2>True Cost of Owning a Work Truck</h2>
+            <p>The monthly payment is just the beginning. Here's the full picture:</p>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Expense</th>
+                        <th>Monthly Cost Range</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Loan payment ($40K, 6yr)</td><td>$650 - $750</td></tr>
+                    <tr><td>Full coverage insurance</td><td>$200 - $400</td></tr>
+                    <tr><td>Fuel (1,500 mi/month)</td><td>$300 - $500</td></tr>
+                    <tr><td>Maintenance/repairs</td><td>$100 - $200</td></tr>
+                    <tr><td><strong>Total Monthly Cost</strong></td><td><strong>$1,250 - $1,850</strong></td></tr>
+                </tbody>
+            </table>
+            <h3>The 20/4/10 Rule</h3>
+            <p>Financial experts recommend: 20% down payment, 4-year loan maximum, and total vehicle costs should be less than 10% of your gross income.</p>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="break-even-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">trending_up</span>
+                    <div>
+                        <h3>Break-Even Calculator</h3>
+                        <p>Factor truck costs into your break-even</p>
+                    </div>
+                </a>
+                <a href="hourly-rate-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">timer</span>
+                    <div>
+                        <h3>Hourly Rate Calculator</h3>
+                        <p>Build truck costs into your rate</p>
+                    </div>
+                </a>
+                <a href="self-employment-tax-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    <div>
+                        <h3>Self-Employment Tax Calculator</h3>
+                        <p>Plan for taxes on truck income</p>
+                    </div>
+                </a>
+                <a href="retirement-calculator.html" class="related-tool-card">
+                    <span class="material-symbols-outlined">savings</span>
+                    <div>
+                        <h3>Retirement Calculator</h3>
+                        <p>Balance truck costs with savings</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
 

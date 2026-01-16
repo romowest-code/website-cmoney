@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deck Cost Calculator | Free Tool | C-Money</title>
-    <meta name="description" content="Estimate deck building costs by size and materials. Free deck cost calculator for contractors and homeowners.">
-    <meta name="keywords" content="deck cost calculator, how much does a deck cost, deck building estimate, deck materials cost">
+    <title>Deck Cost Calculator | Free Deck Building Estimator | C-Money</title>
+    <meta name="description" content="Free deck cost calculator. Estimate deck building costs including materials, labor, and permits. Compare pressure-treated, cedar, composite, and PVC. Free to use. No sign up required.">
+    <meta name="keywords" content="deck cost calculator, how much does a deck cost, deck building cost estimator">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Deck Cost Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free deck cost calculator to estimate deck building costs including materials, labor, and permits. Compare pressure-treated, cedar, composite, and PVC decking options."
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -441,6 +456,141 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .content-section { padding: 2rem; } }
+
+        .content-section h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .content-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .content-section ol, .content-section ul {
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .intro-section {
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Rate Table */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .rate-table th, .rate-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rate-table th {
+            background-color: var(--input-bg);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .rate-table td {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rate-table tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Related Tools */
+        .related-tools {
+            margin-top: 3rem;
+        }
+
+        .related-tools h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .related-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .related-tools-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .related-tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .related-tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .related-tool-card h3 {
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-tool-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -478,6 +628,11 @@
             <p class="page-description">
                 Estimate deck building costs by size and materials.
             </p>
+        </div>
+
+        <div class="intro-section">
+            <p>Planning a deck build or pricing one for a customer? This calculator estimates total project costs including materials, labor, and permits based on deck size and material choices.</p>
+            <p>Compare pressure-treated wood, cedar, composite, and PVC options side-by-side to help customers understand the cost-value tradeoff. Composite costs more upfront but requires zero maintenance for 25+ years.</p>
         </div>
 
         <div class="calculator-layout">
@@ -632,6 +787,79 @@
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <!-- Educational Section -->
+        <div class="content-section">
+            <h2>Deck Building Cost Breakdown</h2>
+
+            <h3>What Affects Deck Cost</h3>
+            <ul>
+                <li><strong>Size:</strong> Larger decks cost less per sq ft (economy of scale)</li>
+                <li><strong>Material:</strong> Pressure-treated ($15-25/sq ft) vs composite ($40-60/sq ft)</li>
+                <li><strong>Height:</strong> Elevated decks require more structural support</li>
+                <li><strong>Features:</strong> Stairs, railings, built-in seating add cost</li>
+                <li><strong>Location:</strong> Permits and labor rates vary by region</li>
+            </ul>
+
+            <h3>2024 Average Deck Costs</h3>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>Deck Size</th>
+                        <th>Pressure Treated</th>
+                        <th>Composite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12x12 (144 sq ft)</td>
+                        <td>$3,500-5,500</td>
+                        <td>$7,500-12,000</td>
+                    </tr>
+                    <tr>
+                        <td>16x16 (256 sq ft)</td>
+                        <td>$5,500-8,500</td>
+                        <td>$12,000-18,000</td>
+                    </tr>
+                    <tr>
+                        <td>20x20 (400 sq ft)</td>
+                        <td>$8,000-12,000</td>
+                        <td>$18,000-28,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Material Lifespan Comparison</h3>
+            <ul>
+                <li><strong>Pressure-treated:</strong> 10-15 years (with regular maintenance)</li>
+                <li><strong>Cedar:</strong> 15-20 years</li>
+                <li><strong>Composite:</strong> 25-30 years (warranty typically 25 years)</li>
+                <li><strong>PVC:</strong> 30+ years</li>
+            </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="related-tools-grid">
+                <a href="fence-calculator.html" class="related-tool-card">
+                    <h3>Fence Calculator</h3>
+                    <p>Estimate fencing materials and costs</p>
+                </a>
+                <a href="paint-calculator.html" class="related-tool-card">
+                    <h3>Paint Calculator</h3>
+                    <p>Calculate paint needed for any project</p>
+                </a>
+                <a href="profit-margin-calculator.html" class="related-tool-card">
+                    <h3>Profit Margin Calculator</h3>
+                    <p>Calculate your profit margin on any job</p>
+                </a>
+                <a href="estimate-helper.html" class="related-tool-card">
+                    <h3>Estimate Helper</h3>
+                    <p>Build professional estimates for customers</p>
+                </a>
+            </div>
         </div>
     </main>
 
