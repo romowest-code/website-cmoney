@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Free Trial | Contractor Money</title>
+    <meta name="description" content="Try Contractor Money free for 14 days. No credit card required. AI estimates in 15 seconds, MUST ToDo with Nagging, and professional invoicing. Just $9.99/mo after trial.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .trial-hero {
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(242, 13, 13, 0.08) 0%, transparent 60%);
+        }
+
+        .trial-hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .trial-hero-title {
+                font-size: 4rem;
+            }
+        }
+
+        .trial-hero-title span {
+            color: var(--primary);
+        }
+
+        .trial-hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .trial-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .trial-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .trial-badge .material-symbols-outlined {
+            font-size: 1.25rem;
+            color: #22c55e;
+        }
+
+        .trial-form-card {
+            max-width: 480px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .trial-form-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .trial-form-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-input {
+            width: 100%;
+            height: 3.25rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.5rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(242, 13, 13, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .trial-submit-btn {
+            width: 100%;
+            height: 3.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 30px rgba(242, 13, 13, 0.4);
+            margin-top: 0.5rem;
+        }
+
+        .trial-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(242, 13, 13, 0.5);
+        }
+
+        .trial-form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1.25rem;
+        }
+
+        .trial-form-note span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* What You Get Section */
+        .what-you-get {
+            padding: 5rem 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .what-you-get-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-item-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff4444 100%);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .feature-item-icon .material-symbols-outlined {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-item-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Mid CTA */
+        .mid-cta {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .mid-cta-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .mid-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(242, 13, 13, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .mid-cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .how-it-works-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .steps-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .step-item {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        /* Guarantee Section */
+        .guarantee {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .guarantee-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.02) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 1rem;
+            padding: 2.5rem;
+        }
+
+        .guarantee-icon {
+            font-size: 3rem;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        .guarantee-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .guarantee-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 5rem 1.5rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(242, 13, 13, 0.1) 100%);
+        }
+
+        .final-cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .final-cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .final-cta-title {
+                font-size: 3rem;
+            }
+        }
+
+        .final-cta-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .final-cta-price {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .final-cta-price-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .final-cta-price-period {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .final-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--primary);
+            color: white;
+            padding: 1.25rem 3rem;
+            border-radius: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(242, 13, 13, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .final-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(242, 13, 13, 0.5);
+        }
+
+        .final-cta-note {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .trial-footer {
+            padding: 2rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .trial-footer-text {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">construction</span>
+                </div>
+                <span class="logo-text">Contractor Money</span>
+            </a>
+            <nav class="nav">
+                <a href="free-tools.html" class="nav-link">Free Tools</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="#start-trial" class="btn btn-primary">Start Free Trial</a>
+                <button class="mobile-menu-btn">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="trial-hero">
+            <h1 class="trial-hero-title">
+                Try It Free.<br><span>No Risk.</span>
+            </h1>
+            <p class="trial-hero-subtitle">
+                14 days to see if Contractor Money works for your business. No credit card. No commitment. No BS.
+            </p>
+            <div class="trial-badges">
+                <div class="trial-badge">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    14-Day Free Trial
+                </div>
+                <div class="trial-badge">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    No Credit Card Required
+                </div>
+                <div class="trial-badge">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    Cancel Anytime
+                </div>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="trial-form-card" id="start-trial">
+                <h2 class="trial-form-title">Start Your Free Trial</h2>
+                <p class="trial-form-subtitle">Get full access to everything for 14 days</p>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-input" placeholder="Mike Johnson" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="mike@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Your Trade</label>
+                        <select class="form-input" required>
+                            <option value="">Select your trade...</option>
+                            <option value="handyman">Handyman / General</option>
+                            <option value="plumber">Plumber</option>
+                            <option value="electrician">Electrician</option>
+                            <option value="hvac">HVAC</option>
+                            <option value="carpenter">Carpenter</option>
+                            <option value="painter">Painter</option>
+                            <option value="roofer">Roofer</option>
+                            <option value="landscaper">Landscaper</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="trial-submit-btn">
+                        Start My Free Trial
+                    </button>
+                </form>
+                <p class="trial-form-note">
+                    Then just <span>$9.99/month</span> after your trial. Cancel anytime.
+                </p>
+            </div>
+        </section>
+
+        <!-- What You Get Section -->
+        <section class="what-you-get">
+            <h2 class="what-you-get-title">What You Get in Your Trial</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <h3 class="feature-item-title">AI Estimates</h3>
+                    <p class="feature-item-desc">Generate professional estimates in 15 seconds. Just describe the job.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <span class="material-symbols-outlined">notifications_active</span>
+                    </div>
+                    <h3 class="feature-item-title">MUST ToDo with Nagging</h3>
+                    <p class="feature-item-desc">The task list that won't shut up until the job is closed and paid.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <span class="material-symbols-outlined">description</span>
+                    </div>
+                    <h3 class="feature-item-title">Professional Invoicing</h3>
+                    <p class="feature-item-desc">Send invoices that get paid. Look professional without the hassle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mid CTA -->
+        <section class="mid-cta">
+            <h2 class="mid-cta-title">Ready to simplify your business?</h2>
+            <a href="#start-trial" class="mid-cta-btn">
+                <span class="material-symbols-outlined">rocket_launch</span>
+                Start Free Trial
+            </a>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2 class="how-it-works-title">How the Trial Works</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <p class="step-title">Sign Up</p>
+                    <p class="step-desc">Just name, email, and trade. 30 seconds.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <p class="step-title">Explore</p>
+                    <p class="step-desc">Full access to all features for 14 days.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <p class="step-title">Decide</p>
+                    <p class="step-desc">Love it? Keep it for $9.99/mo.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <p class="step-title">Or Don't</p>
+                    <p class="step-desc">Cancel anytime. No questions asked.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guarantee -->
+        <section class="guarantee">
+            <div class="guarantee-card">
+                <span class="material-symbols-outlined guarantee-icon">verified_user</span>
+                <h2 class="guarantee-title">The Contractor Money Guarantee</h2>
+                <p class="guarantee-text">
+                    If you don't find value in the first 14 days, just don't subscribe. We won't charge you a penny. We won't spam you. We won't even ask why. Simple as that.
+                </p>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="final-cta-inner">
+                <h2 class="final-cta-title">Stop Overthinking It.</h2>
+                <p class="final-cta-subtitle">
+                    You've got nothing to lose and 14 days to gain. Try the toolbox that actually fits how you work.
+                </p>
+                <div class="final-cta-price">
+                    <span class="final-cta-price-amount">$0</span>
+                    <span class="final-cta-price-period">for 14 days</span>
+                </div>
+                <br>
+                <a href="#start-trial" class="final-cta-btn">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                    Start Your Free Trial Now
+                </a>
+                <p class="final-cta-note">
+                    No credit card required. Then $9.99/month. Cancel anytime.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="trial-footer">
+        <p class="trial-footer-text">&copy; 2026 Colo Transport Corporation. Built for contractors, by a contractor.</p>
+    </footer>
+</body>
+</html>
