@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profit Margin Calculator | C-Money Free Tools</title>
-    <meta name="description" content="Free profit margin calculator for contractors. Know exactly how much you're clearing on every job. Account for labor, materials, and overhead in seconds.">
+    <meta name="description" content="Free contractor profit margin calculator. Know your true profit after materials, labor, overhead, and self-employment taxes. Built for handymen, GCs, and specialty trades.">
+    <meta name="keywords" content="contractor profit margin calculator, construction job profit calculator, how to calculate profit margin contracting">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -617,7 +618,182 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Intro Section */
+        .intro-section {
+            background: linear-gradient(135deg, rgba(242, 13, 13, 0.05) 0%, transparent 100%);
+            border: 1px solid rgba(242, 13, 13, 0.15);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* How To Use */
+        .how-to-section {
+            margin-bottom: 3rem;
+        }
+
+        .how-to-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .how-to-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .how-to-number {
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .how-to-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding-top: 0.25rem;
+        }
+
+        /* Benchmarks Section */
+        .benchmarks-section {
+            margin-top: 4rem;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .benchmark-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .benchmark-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 0.5rem;
+        }
+
+        .benchmark-trade {
+            font-weight: 600;
+            color: white;
+        }
+
+        .benchmark-margin {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .benchmark-warning {
+            background-color: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
     </style>
+
+    <!-- FAQ Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What's the difference between markup and margin?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Markup is the percentage added to cost to get price. Margin is the percentage of the final price that's profit. A 50% markup = 33% margin."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I include my own labor in the calculation?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Many contractors make the mistake of not paying themselves. Your time has value—include it as labor cost."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What overhead costs should contractors include?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vehicle expenses, insurance, tools, phone, licensing, marketing, and administrative time. Most contractors underestimate overhead at 10% when it's often 15-25%."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do taxes affect profit margin?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Self-employment tax (15.3%) plus income tax can take 30-40% of your profit. Always calculate margin AFTER taxes."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -653,10 +829,54 @@
 
         <!-- Page Header -->
         <div class="page-header">
-            <h1 class="page-title">Job Profit Margin Calculator</h1>
+            <h1 class="page-title">Contractor Profit Margin Calculator</h1>
             <p class="page-description">
-                Stop guessing. Know exactly how much you're clearing on every job. Account for labor, materials, and overhead in seconds.
+                Stop guessing. Know exactly how much you're clearing on every job. Account for labor, materials, overhead, and taxes in seconds.
             </p>
+        </div>
+
+        <!-- Intro Section -->
+        <div class="intro-section">
+            <p>
+                As a contractor, knowing your true profit margin is the difference between building wealth and working for free. This calculator accounts for what most contractors forget: overhead, taxes, and the hidden costs that eat into your bottom line.
+            </p>
+            <p>
+                Whether you're a handyman pricing small jobs or a general contractor bidding large projects, this tool helps you see exactly what you're clearing after materials, labor, overhead, and self-employment taxes.
+            </p>
+        </div>
+
+        <!-- How To Use -->
+        <div class="how-to-section">
+            <div class="section-header">
+                <span class="material-symbols-outlined">help</span>
+                <h2 class="section-title">How to Use This Calculator</h2>
+            </div>
+            <div class="how-to-list">
+                <div class="how-to-item">
+                    <div class="how-to-number">1</div>
+                    <p class="how-to-text">Enter your <strong>material costs</strong> (lumber, supplies, fixtures)</p>
+                </div>
+                <div class="how-to-item">
+                    <div class="how-to-number">2</div>
+                    <p class="how-to-text">Add <strong>labor costs</strong> (your time or crew wages)</p>
+                </div>
+                <div class="how-to-item">
+                    <div class="how-to-number">3</div>
+                    <p class="how-to-text">Set your <strong>overhead percentage</strong> (typically 10-20% for most contractors)</p>
+                </div>
+                <div class="how-to-item">
+                    <div class="how-to-number">4</div>
+                    <p class="how-to-text">Include your <strong>tax rate</strong> (remember self-employment tax is 15.3%)</p>
+                </div>
+                <div class="how-to-item">
+                    <div class="how-to-number">5</div>
+                    <p class="how-to-text">Enter your <strong>quote price</strong> to the customer</p>
+                </div>
+                <div class="how-to-item">
+                    <div class="how-to-number">6</div>
+                    <p class="how-to-text">See your <strong>true net profit</strong> and margin percentage</p>
+                </div>
+            </div>
         </div>
 
         <!-- Calculator Layout -->
@@ -750,6 +970,62 @@
                     <p class="info-text">
                         Successful contracting businesses target a minimum of 25% net profit margin. Anything less puts your business in the "danger zone" where a single delayed material delivery or one sick employee can turn a project into a net loss.
                     </p>
+
+                    <!-- Benchmarks Section -->
+                    <div class="benchmarks-section">
+                        <div class="section-header" style="margin-bottom: 1rem;">
+                            <span class="material-symbols-outlined">analytics</span>
+                            <h2 class="section-title">What's a Good Profit Margin for Contractors?</h2>
+                        </div>
+                        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">Industry benchmarks vary by trade:</p>
+                        <div class="benchmark-list">
+                            <div class="benchmark-item">
+                                <span class="benchmark-trade">General Contractors</span>
+                                <span class="benchmark-margin">25-35% gross, 8-15% net</span>
+                            </div>
+                            <div class="benchmark-item">
+                                <span class="benchmark-trade">Handymen</span>
+                                <span class="benchmark-margin">35-50% (lower overhead)</span>
+                            </div>
+                            <div class="benchmark-item">
+                                <span class="benchmark-trade">Specialty Trades (Electrical, Plumbing)</span>
+                                <span class="benchmark-margin">30-40%</span>
+                            </div>
+                            <div class="benchmark-item">
+                                <span class="benchmark-trade">Remodelers</span>
+                                <span class="benchmark-margin">35-40% gross, 10-15% net</span>
+                            </div>
+                        </div>
+                        <div class="benchmark-warning">
+                            <strong>Warning:</strong> If your margin is under 25%, you're likely underpricing. Anything under 15% net and one bad job can wipe out months of profit.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="faq-section">
+                        <div class="section-header">
+                            <span class="material-symbols-outlined">quiz</span>
+                            <h2 class="section-title">Frequently Asked Questions</h2>
+                        </div>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <h3 class="faq-question">What's the difference between markup and margin?</h3>
+                                <p class="faq-answer">Markup is the percentage added to cost to get price. Margin is the percentage of the final price that's profit. A 50% markup = 33% margin.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">Should I include my own labor in the calculation?</h3>
+                                <p class="faq-answer">Yes. Many contractors make the mistake of not paying themselves. Your time has value—include it as labor cost.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">What overhead costs should contractors include?</h3>
+                                <p class="faq-answer">Vehicle expenses, insurance, tools, phone, licensing, marketing, and administrative time. Most contractors underestimate overhead at 10% when it's often 15-25%.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">How do taxes affect profit margin?</h3>
+                                <p class="faq-answer">Self-employment tax (15.3%) plus income tax can take 30-40% of your profit. Always calculate margin AFTER taxes.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
