@@ -4,12 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Features | C-Money Contractor Toolbox</title>
-    <meta name="description" content="Everything you need, nothing you don't. The $9.99/month toolbox built for the job site, not the office desk.">
+    <meta name="description" content="Two features that change everything. AI estimates and relentless reminders. The $9.99/month toolbox built for the job site.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .flagship-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, rgba(242, 13, 13, 0.03) 0%, transparent 100%);
+        }
+        .flagship-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .flagship-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .flagship-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff4444 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .flagship-icon span {
+            font-size: 2rem;
+            color: #fff;
+        }
+        .flagship-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        .flagship-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+        }
+        .flagship-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .flagship-bullet {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .flagship-bullet span {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+        .nagging-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .nagging-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+        }
+        .nagging-level-icon {
+            font-size: 1.25rem;
+            min-width: 4rem;
+        }
+        .nagging-level-name {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 6rem;
+        }
+        .nagging-level-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .flagship-tagline {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .priority-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(242, 13, 13, 0.15);
+            border: 1px solid rgba(242, 13, 13, 0.3);
+            border-radius: 9999px;
+            padding: 0.375rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .priority-badge::before {
+            content: '';
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .core-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .core-features-grid {
+                grid-template-columns: 1fr;
+            }
+            .flagship-card {
+                padding: 1.5rem;
+            }
+            .flagship-card-header {
+                flex-direction: column;
+            }
+        }
+        .core-feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+        .core-feature-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .core-feature-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -43,10 +197,10 @@
                 <div class="features-hero-bg" style="background-image: linear-gradient(rgba(35, 24, 15, 0.8) 0%, rgba(35, 24, 15, 0.95) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdThEJfDPezEj4cxtLPsdn1glN4aaQMmZ1mKsqZzKg19Qorj3lwjhO7JcGkpotzjTkRgX9pCG9_BqZoCa7YmuUoGKee5CaeIFTP1KTyRtgTPpve-B-569g9NUtNm0gSf5yHcd4_hUkcq_YVNBfGnf160H4yQNvfTQaPI0Gt1alKWU_vcYjioygiHOSWGQxiWB4kHTE4CrNRZMJ-9T0TpbeDBPmrnQi9cg3u2EV_4ckYqey6LBJEU4DWsbszXGeUNRcRz8PxlSeW2g');">
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
                         <h1 class="features-hero-title">
-                            Everything You Need.<br>Nothing You Don't.
+                            Two Features That Change Everything.<br><span style="color: rgba(255, 255, 255, 0.7);">Plus Everything Else You Need.</span>
                         </h1>
                         <p class="features-hero-description">
-                            The $9.99/month toolbox built for the job site, not the office desk. Get the tools that actually help you finish the job.
+                            The $9.99/month toolbox built for the job site, not the office desk. AI that writes your estimates. A task list that won't shut up until it's done.
                         </p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
@@ -59,6 +213,89 @@
             </div>
         </section>
 
+        <!-- Flagship Features Section -->
+        <section class="flagship-section">
+            <div class="max-w-960">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                    <div style="height: 4px; width: 3rem; background-color: var(--primary); border-radius: 9999px;"></div>
+                    <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary);">Game Changers</span>
+                </div>
+                <h2 style="font-size: 1.875rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 2rem;">Flagship Features</h2>
+
+                <!-- AI Estimates Feature -->
+                <div class="flagship-card">
+                    <div class="flagship-card-header">
+                        <div class="flagship-icon">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </div>
+                        <div>
+                            <h3 class="flagship-title">AI Estimates Change the Game.</h3>
+                        </div>
+                    </div>
+                    <p class="flagship-description">
+                        Go from your chicken-scratch notes to a detailed, professional estimate in the customer's inbox&mdash;in minutes, not hours. Describe the job in plain English. C-Money's AI builds the line items, calculates labor, adds materials, applies your markup, and formats it like you have an office staff. Quote on the spot. Win the job before your competition gets home to type theirs up.
+                    </p>
+                    <div class="flagship-bullets">
+                        <div class="flagship-bullet">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Voice or type your job notes
+                        </div>
+                        <div class="flagship-bullet">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            AI generates complete estimate with labor + materials
+                        </div>
+                        <div class="flagship-bullet">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Adjust pricing, add your markup, send as PDF
+                        </div>
+                        <div class="flagship-bullet">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            From notes to customer in minutes&mdash;not hours
+                        </div>
+                    </div>
+                    <a href="pricing.html" class="btn btn-primary">Try AI Estimates</a>
+                </div>
+
+                <!-- MUST ToDo Feature -->
+                <div class="flagship-card">
+                    <div class="flagship-card-header">
+                        <div class="flagship-icon">
+                            <span class="material-symbols-outlined">notifications_active</span>
+                        </div>
+                        <div>
+                            <div class="priority-badge">High Priority</div>
+                            <h3 class="flagship-title">MUST ToDo&trade; with Nagging</h3>
+                        </div>
+                    </div>
+                    <p class="flagship-description">
+                        The only task list that won't stop until the job is closed. Forget to call that customer back? C-Money won't. Persistent reminders that escalate until you mark it done.
+                    </p>
+                    <div class="nagging-levels">
+                        <div class="nagging-level">
+                            <span class="nagging-level-icon">🔔</span>
+                            <span class="nagging-level-name">Gentle</span>
+                            <span class="nagging-level-desc">Reminder at deadline, then daily</span>
+                        </div>
+                        <div class="nagging-level">
+                            <span class="nagging-level-icon">🔔🔔</span>
+                            <span class="nagging-level-name">Persistent</span>
+                            <span class="nagging-level-desc">Multiple reminders per day</span>
+                        </div>
+                        <div class="nagging-level">
+                            <span class="nagging-level-icon">🔔🔔🔔</span>
+                            <span class="nagging-level-name">Relentless</span>
+                            <span class="nagging-level-desc">Every few hours until done</span>
+                        </div>
+                    </div>
+                    <p class="flagship-tagline">Helps you get sh*t done.</p>
+                    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                        <a href="pricing.html" class="btn btn-primary">Try Nagging Feature</a>
+                        <span style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.5);">Included in all plans</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Core Features Section -->
         <section class="features-section">
             <div class="max-w-960">
@@ -66,99 +303,31 @@
                     <div style="height: 4px; width: 3rem; background-color: var(--primary); border-radius: 9999px;"></div>
                     <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary);">Capabilities</span>
                 </div>
-                <h2 style="font-size: 1.875rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 2rem;">Core Features</h2>
+                <h2 style="font-size: 1.875rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 2rem;">The Basics, Done Right</h2>
 
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">filter_alt</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Visual Sales Pipeline</h3>
-                            <p class="feature-card-description">Track leads from first call to handshake with a simple drag-and-drop board.</p>
-                        </div>
+                <div class="core-features-grid">
+                    <div class="core-feature-card">
+                        <h3>Client Database</h3>
+                        <p>All your contacts, history, and job notes in one spot. Searchable and secure. Know exactly what you did for Mrs. Johnson two years ago.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">group</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Client Database</h3>
-                            <p class="feature-card-description">All your contacts, history, and job notes in one spot. Searchable and secure.</p>
-                        </div>
+                    <div class="core-feature-card">
+                        <h3>Invoicing & Payments</h3>
+                        <p>Professional invoices sent in seconds. Get paid faster with integrated payment links. No more chasing checks.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">description</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Quick Estimates & Invoices</h3>
-                            <p class="feature-card-description">Professional paperwork sent in seconds. Get paid faster with integrated payments.</p>
-                        </div>
+                    <div class="core-feature-card">
+                        <h3>Job Scheduling</h3>
+                        <p>Keep your calendar synced. No more double-booking or missed jobs. Reminders for you and your customers.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">calendar_today</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Job Scheduling</h3>
-                            <p class="feature-card-description">Keep your crew and your calendar synced. No more double-booking or missed jobs.</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">photo_camera</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Photo Documentation</h3>
-                            <p class="feature-card-description">Before and afters, stored and organized by project. Proof of work at your fingertips.</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">bar_chart</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Financial Dashboard</h3>
-                            <p class="feature-card-description">See your real profit without the headache. Track expenses vs revenue instantly.</p>
-                        </div>
+                    <div class="core-feature-card">
+                        <h3>Photo Documentation</h3>
+                        <p>Before and afters, stored and organized by project. Proof of work at your fingertips. Build your portfolio automatically.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Nagging Feature Banner -->
-        <section class="nagging-banner">
-            <div class="max-w-960">
-                <div class="nagging-banner-content">
-                    <div class="nagging-banner-inner">
-                        <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 36rem;">
-                            <div class="nagging-badge">
-                                <span style="position: relative; display: flex; width: 0.5rem; height: 0.5rem;">
-                                    <span style="animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; position: absolute; width: 100%; height: 100%; border-radius: 9999px; background-color: var(--primary); opacity: 0.75;"></span>
-                                    <span style="position: relative; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background-color: var(--primary);"></span>
-                                </span>
-                                High Priority
-                            </div>
-                            <h2 class="nagging-title">MUST ToDo&trade; <span>with Nagging</span></h2>
-                            <p class="nagging-description">
-                                The only task list that won't stop until the job is closed. Persistent reminders for items that matter most.
-                            </p>
-                            <span class="nagging-highlight">Helps you get sh*t done.</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0;">
-                            <a href="pricing.html" class="btn btn-primary btn-large" style="box-shadow: 0 4px 6px rgba(209, 17, 17, 0.3);">
-                                Try Nagging Feature
-                            </a>
-                            <p style="text-align: center; font-size: 0.75rem; color: #94a3b8;">Included in all plans</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Additional Features Grid -->
-        <section class="features-section" style="padding-top: 4rem; padding-bottom: 6rem;">
+        <!-- More Tools Section -->
+        <section class="features-section" style="padding-top: 2rem; padding-bottom: 6rem;">
             <div class="max-w-960">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
                     <div style="height: 4px; width: 3rem; background-color: var(--primary); border-radius: 9999px;"></div>
@@ -169,29 +338,20 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-card-icon">
+                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">format_list_bulleted</span>
+                        </div>
+                        <div>
+                            <h3 class="feature-card-title">AI Material List Builder</h3>
+                            <p class="feature-card-description">When you create or move a job, C-Money's AI reads the estimate and automatically builds your materials pickup list. Every item you need, added to your MUST ToDo&mdash;ready to check off at the supply house. No more forgetting the flange.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
                             <span class="material-symbols-outlined" style="font-size: 1.875rem;">phone_iphone</span>
                         </div>
                         <div>
                             <h3 class="feature-card-title">Mobile-First Design</h3>
                             <p class="feature-card-description">One-handed operation for the job site. Large buttons, high contrast, works with gloves.</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">credit_card</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Instant Payments</h3>
-                            <p class="feature-card-description">Accept credit cards on the spot. Money hits your account fast, not weeks later.</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">inventory_2</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Material Tracking</h3>
-                            <p class="feature-card-description">Know what you have, what you need, and what each job cost you in supplies.</p>
                         </div>
                     </div>
                     <div class="feature-card">
@@ -212,15 +372,6 @@
                             <p class="feature-card-description">Export everything your accountant needs. Quarterly reports in one click.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">
-                            <span class="material-symbols-outlined" style="font-size: 1.875rem;">support_agent</span>
-                        </div>
-                        <div>
-                            <h3 class="feature-card-title">Real Human Support</h3>
-                            <p class="feature-card-description">Talk to actual people who understand the trades. No bots, no runaround.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -233,7 +384,7 @@
                     <div class="cta-inner">
                         <h2 class="cta-title">Ready to Simplify Your Business?</h2>
                         <p class="cta-description">
-                            Get all these features for just $9.99/month. No hidden fees. No upsells.
+                            AI estimates. Relentless reminders. And everything else&mdash;for just $9.99/month. No hidden fees. No upsells.
                         </p>
                         <div class="cta-buttons">
                             <a href="pricing.html" class="cta-btn">Start Your Free Trial</a>
@@ -243,6 +394,9 @@
                                 </span>
                                 <span class="cta-feature">
                                     <span class="material-symbols-outlined">verified</span> 14-Day Free Trial
+                                </span>
+                                <span class="cta-feature">
+                                    <span class="material-symbols-outlined">verified</span> Cancel Anytime
                                 </span>
                             </div>
                         </div>
